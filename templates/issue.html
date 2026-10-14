@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!--
+  주차 페이지 템플릿. archive/YYYY/MM/weekN.html 로 복사해서 {{...}} 를 채운다.
+  - {{ID}}        예: 2026-10-w2   (data/issues.json 의 id 와 동일)
+  - {{LABEL}}     예: 2026년 10월 2주차
+  - {{EYEBROW}}   예: 2026.10 · WEEK 2
+  - {{PERIOD}}    예: 2026.10.05 – 10.11
+  - {{PUBLISHED}} 예: 2026-10-14
+  - {{HEADLINE}}  이번 주 한 줄 요약 (issues.json headline 과 동일)
+  - {{SITE_URL}}  CLAUDE.md 의 SITE_URL
+  - {{PATH}}      예: archive/2026/10/week2.html
+  카드/영상 블록은 아래 예시를 필요한 만큼 반복. 텍스트의 & < > " 는 HTML 이스케이프할 것.
+  - {{VIDEO_ID}}  YouTube watch?v= 뒤의 ID (영상 블록 안 4곳: href 2개, data-yt, 썸네일 img)
+  이 주석 블록은 생성된 페이지에서 삭제한다.
+-->
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{LABEL}} · IT 주간동향</title>
+  <meta name="description" content="{{HEADLINE}}">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="IT 주간동향">
+  <meta property="og:title" content="{{LABEL}} · IT 주간동향">
+  <meta property="og:description" content="{{HEADLINE}}">
+  <meta property="og:url" content="{{SITE_URL}}/{{PATH}}">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+</head>
+<body data-root="../../../" data-issue="{{ID}}">
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../../../index.html"><span class="brand-mark">IT</span>주간동향</a>
+      <nav class="nav"><a href="../../../index.html">홈</a><a href="../../../archive.html">아카이브</a></nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="page-head">
+      <p class="eyebrow">{{EYEBROW}}</p>
+      <h1 class="page-title">{{LABEL}} IT 동향</h1>
+      <p class="meta">수집 기간 {{PERIOD}} · 발행 {{PUBLISHED}}</p>
+    </section>
+
+    <section class="summary">
+      <h2>// 이번 주 핵심</h2>
+      <ol>
+        <li>핵심 1</li>
+        <li>핵심 2</li>
+        <li>핵심 3</li>
+      </ol>
+    </section>
+
+    <div class="filters" id="filters" role="toolbar" aria-label="카테고리 필터"></div>
+
+    <div class="grid">
+      <!-- 카드: data-cat 과 tag 텍스트는 같은 카테고리명, class 는 CLAUDE.md 의 slug -->
+      <article class="card" data-cat="AI">
+        <span class="tag cat-ai">AI</span>
+        <h2 class="card-title">기사 제목</h2>
+        <p class="card-summary">2–3문장 요약.</p>
+        <p class="card-why">왜 중요한가: 한 줄.</p>
+        <div class="card-foot">
+          <span>출처명 · 10.07</span>
+          <a href="https://example.com" target="_blank" rel="noopener">원문 ↗</a>
+        </div>
+      </article>
+    </div>
+
+    <h2 class="section-title">이번 주 볼만한 영상</h2>
+    <ul class="videos">
+      <li class="video">
+        <a class="video-thumb" href="https://www.youtube.com/watch?v={{VIDEO_ID}}" target="_blank" rel="noopener" data-yt="{{VIDEO_ID}}">
+          <img src="https://i.ytimg.com/vi/{{VIDEO_ID}}/mqdefault.jpg" alt="영상 제목" loading="lazy" width="320" height="180">
+          <span class="video-play" aria-hidden="true"></span>
+        </a>
+        <div class="video-body">
+          <a class="v-title" href="https://www.youtube.com/watch?v={{VIDEO_ID}}" target="_blank" rel="noopener">영상 제목</a>
+          <span class="v-ch">채널명 · MM.DD</span>
+        </div>
+      </li>
+    </ul>
+
+    <nav class="pager" id="pager" aria-label="이전/다음 호"></nav>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>IT 주간동향 · 매주 발행</span>
+      <span>각 기사의 저작권은 원문 출처에 있습니다.</span>
+    </div>
+  </footer>
+  <script src="../../../assets/js/main.js"></script>
+</body>
+</html>

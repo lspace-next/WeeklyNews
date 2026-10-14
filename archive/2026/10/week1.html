@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026년 10월 1주차 · IT 주간동향</title>
+  <meta name="description" content="Gemini 4 Argon과 GPT-6.1 Sol의 맞대결, 은행에서 저축은행으로 번진 금융권 연쇄 해킹, 로컬 AI 하드웨어 경쟁까지 — 9월 마지막 주 IT 흐름">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="IT 주간동향">
+  <meta property="og:title" content="2026년 10월 1주차 · IT 주간동향">
+  <meta property="og:description" content="Gemini 4 Argon과 GPT-6.1 Sol의 맞대결, 은행에서 저축은행으로 번진 금융권 연쇄 해킹, 로컬 AI 하드웨어 경쟁까지 — 9월 마지막 주 IT 흐름">
+  <meta property="og:url" content="https://lspace-next.github.io/lspace-weekly-news/archive/2026/10/week1.html">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+</head>
+<body data-root="../../../" data-issue="2026-10-w1">
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../../../index.html"><span class="brand-mark">IT</span>주간동향</a>
+      <nav class="nav"><a href="../../../index.html">홈</a><a href="../../../archive.html">아카이브</a></nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="page-head">
+      <p class="eyebrow">2026.10 · WEEK 1</p>
+      <h1 class="page-title">2026년 10월 1주차 IT 동향</h1>
+      <p class="meta">수집 기간 2026.09.28 – 10.04 · 발행 2026-10-05</p>
+    </section>
+
+    <section class="summary">
+      <h2>// 이번 주 핵심</h2>
+      <ol>
+        <li>Google이 Gemini 4 Argon을, OpenAI가 DevDay에서 GPT-6.1 Sol을 내놓으며 최상위 모델 경쟁이 '성능 대비 가격'으로 옮겨갔다.</li>
+        <li>은행에서 시작된 금융권 해킹이 저축은행까지 번졌고, Citrix NetScaler 취약점이 실제 공격에 쓰이는 등 보안 경보가 이어졌다.</li>
+        <li>CoreWeave의 첫 Vera Rubin 상용 가동, DGX Spark 64GB 출시 예고 등 AI 인프라가 데이터센터와 책상 위 양쪽에서 확장됐다.</li>
+      </ol>
+    </section>
+
+    <div class="filters" id="filters" role="toolbar" aria-label="카테고리 필터"></div>
+
+    <div class="grid">
+      <article class="card" data-cat="AI">
+        <span class="tag cat-ai">AI</span>
+        <h2 class="card-title">Google, 차세대 프런티어 모델 'Gemini 4 Argon' 공개</h2>
+        <p class="card-summary">Google이 장시간·다단계 작업용 모델 Gemini 4 Argon을 발표했다. 출력 한도를 6.4만에서 100만 토큰으로 늘렸고 DeepSWE v1.1 77.9% 등 코딩·장문 영상·보안 벤치마크에서 최고 수준을 주장했다. 보안 방어 기관부터 단계적으로 공개하며, 출시 기념가는 입력 100만 토큰당 2달러·출력 10달러다.</p>
+        <p class="card-why">보안 방어용 선공개라는 출시 방식 자체가 프런티어 모델의 새 관행이 되고 있다.</p>
+        <div class="card-foot">
+          <span>Google Blog · 09.30</span>
+          <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/" target="_blank" rel="noopener">원문 ↗</a>
+        </div>
+      </article>
+      <article class="card" data-cat="AI">
+        <span class="tag cat-ai">AI</span>
+        <h2 class="card-title">OpenAI DevDay: GPT-6 Astra급 성능에 가격 1/5인 'GPT-6.1 Sol'</h2>
+        <p class="card-summary">OpenAI가 DevDay에서 GPT-6.1 Sol을 공개했다. 에이전트 코딩·컴퓨터 사용·전문 업무에서 GPT-6 Astra에 근접한 성능을 표준 토큰 가격의 5분의 1로 제공한다고 밝혔고, 저추론 모드의 사실 오류 응답 비율은 GPT-6 Sol의 11.4%에서 7.7%로 줄었다. ChatGPT Work와 Codex의 유료 요금제부터 적용된다.</p>
+        <p class="card-why">최상위 모델 경쟁이 '가장 똑똑한 모델'에서 '충분히 똑똑하고 싼 모델'로 옮겨가고 있다.</p>
+        <div class="card-foot">
+          <span>TechCrunch · 09.29</span>
+          <a href="https://techcrunch.com/2026/09/29/openai-launches-gpt-6-1-sol-says-it-nearly-matches-gpt-6-astra-and-costs-less/" target="_blank" rel="noopener">원문 ↗</a>
+        </div>
+      </article>
+      <article class="card" data-cat="보안">
+        <span class="tag cat-security">보안</span>
+        <h2 class="card-title">금융권 연쇄 해킹, 은행 이어 저축은행까지 확산</h2>
+        <p class="card-summary">신한·국민·하나·BNK부산은행에 이어 예가람저축은행도 9월 30일 서버 침입으로 고객 이름·생년월일·전화번호가 유출됐다고 공지했다. 신한은행 공격에선 중국어 기반 AI 침투 테스트 도구로 의심되는 흔적이 나왔고, 금융감독원은 금융보안원과 공격 IP를 분석하며 연휴 기간 모니터링을 강화했다.</p>
+        <p class="card-why">고객용 앱이 아닌 보조 업무 시스템이 뚫리며 금융권 전반의 점검 범위가 넓어지고 있다.</p>
+        <div class="card-foot">
+          <span>YTN · 10.03</span>
+          <a href="https://www.ytn.co.kr/_ln/0102_202610031354082149" target="_blank" rel="noopener">원문 ↗</a>
+        </div>
+      </article>
+      <article class="card" data-cat="모바일·디바이스">
+        <span class="tag cat-device">모바일·디바이스</span>
+        <h2 class="card-title">삼성, 클립형 '갤럭시 버즈 온'·탭 S12·스마트태그3 공개</h2>
+        <p class="card-summary">삼성전자가 버즈 시리즈 최초의 클립형 이어폰 '버즈 온'(29만9천 원, 최대 9.5시간 재생)과 갤럭시 탭 S12 울트라·플러스, 스마트태그3를 공개했다. 탭 S12는 안드로이드 태블릿 최초로 어도비 포토샵을 기본 탑재했고, 스마트태그3는 시리즈 처음으로 아이폰에서도 쓸 수 있다.</p>
+        <p class="card-why">자사 생태계 밖(iOS)까지 기기 호환을 넓힌 점이 눈에 띈다.</p>
+        <div class="card-foot">
+          <span>시사경제 · 10.01</span>
+          <a href="https://sateconomy.co.kr/news/view/1065593987946268" target="_blank" rel="noopener">원문 ↗</a>
+        </div>
+      </article>
+      <article class="card" data-cat="보안">
+        <span class="tag cat-security">보안</span>
+        <h2 class="card-title">Citrix NetScaler SAML 취약점 실제 공격… CISA, 긴급 패치 지시</h2>
+        <p class="card-summary">SAML 인증을 쓰는 NetScaler ADC·Gateway의 메모리 결함(CVE-2026-88779, CVSS 8.7)이 표적 공격에 악용돼 CISA가 10월 4일 악용 취약점 목록(KEV)에 올리고 연방기관에 7일까지 조치를 지시했다. 수정 버전은 14.1-73.41·13.1-64.28이며, 직전 패치를 설치했더라도 SAML 구성이라면 다시 업데이트해야 한다.</p>
+        <p class="card-why">원격 접속 관문 장비라 국내 기관·기업도 SAML 구성 여부부터 확인할 필요가 있다.</p>
+        <div class="card-foot">
+          <span>BleepingComputer · 10.04</span>
+          <a href="https://www.bleepingcomputer.com/news/security/citrix-patches-netscaler-saml-zero-day-exploited-in-attacks/" target="_blank" rel="noopener">원문 ↗</a>
+        </div>
+      </article>
+      <article class="card" data-cat="클라우드·인프라">
+        <span class="tag cat-cloud">클라우드·인프라</span>
+        <h2 class="card-title">CoreWeave, NVIDIA Vera Rubin 첫 상용 가동… 첫 고객은 Cognition</h2>
+        <p class="card-summary">CoreWeave가 NVIDIA Vera Rubin NVL72 시스템을 상용 서비스로 열었고, AI 개발 에이전트 'Devin'을 만든 Cognition이 첫 프로덕션 고객이 됐다. Cognition은 초기 테스트에서 GB200 NVL72 대비 토큰 처리량이 최대 4.8배 늘었다고 밝혔다.</p>
+        <p class="card-why">차세대 GPU의 첫 실사용처가 '코딩 에이전트'라는 점이 AI 수요의 방향을 보여준다.</p>
+        <div class="card-foot">
+          <span>NVIDIA Blog · 09.30</span>
+          <a href="https://blogs.nvidia.com/blog/coreweave-agentic-ai-vera-rubin/" target="_blank" rel="noopener">원문 ↗</a>
+        </div>
+      </article>
+      <article class="card" data-cat="보안">
+        <span class="tag cat-security">보안</span>
+        <h2 class="card-title">OpenAI, 추론 과정 빼내는 '모델 증류' 조직적 시도 차단</h2>
+        <p class="card-summary">OpenAI가 암호화된 추론 내용을 다른 대화에서 복원하게 만드는 방식으로 자사 모델의 추론을 대량 추출하려던 조직적 시도를 막았다고 공개했다. 관련 계정을 차단하고 재사용 경로를 막았으며, 업계 협의체(Frontier Model Forum)와 정보를 공유했다. 보도에 따르면 핵심 그룹은 중국 Moonshot AI 관련자로 지목됐다.</p>
+        <p class="card-why">모델 출력 자체가 '훔칠 수 있는 자산'이 되면서 AI 기업 간 보안 경쟁이 시작됐다.</p>
+        <div class="card-foot">
+          <span>OpenAI · 09.30</span>
+          <a href="https://openai.com/index/disrupting-a-coordinated-model-distillation-campaign/" target="_blank" rel="noopener">원문 ↗</a>
+        </div>
+      </article>
+      <article class="card" data-cat="국내 IT">
+        <span class="tag cat-korea">국내 IT</span>
+        <h2 class="card-title">국산 AI 반도체 성능지표 'K-Perf', 한전 현장 검증에 첫 적용</h2>
+        <p class="card-summary">과기정통부는 국산 AI 반도체 성능지표 K-Perf가 공공 현장 도입 검증에 처음 쓰인다고 밝혔다. 한국전력·리벨리온·TTA가 전력 분야 AI 영상분석 협약을 맺었고, 한전은 NPU 기반 통합 관제 시스템을 실증하며 칩 성능을 넘어 운영 효율과 비용 절감 효과를 검증한다.</p>
+        <p class="card-why">국산 NPU가 '벤치마크 점수'에서 '공공 현장 레퍼런스'로 넘어가는 첫 단계다.</p>
+        <div class="card-foot">
+          <span>과학기술정보통신부 · 10.02</span>
+          <a href="https://eiec.kdi.re.kr/policy/materialView.do?num=287779" target="_blank" rel="noopener">원문 ↗</a>
+        </div>
+      </article>
+      <article class="card" data-cat="국내 IT">
+        <span class="tag cat-korea">국내 IT</span>
+        <h2 class="card-title">젠슨 황, 밴 플리트상 수상… "삼성·SK하이닉스 외 대안 없다"</h2>
+        <p class="card-summary">NVIDIA 젠슨 황 CEO가 9월 28일(현지시간) 뉴욕 코리아소사이어티 갈라에서 한미 관계 기여로 밴 플리트상을 받았다. 이재용 삼성전자 회장과 최태원 SK 회장이 참석한 가운데 황 CEO는 한국 제조 역량을 최고 수준으로 평가하며 "지난 33년처럼 앞으로 33년도 함께하겠다"고 말했다.</p>
+        <p class="card-why">AI 메모리 수요가 커질수록 국내 메모리 업체의 협상력도 커지고 있다.</p>
+        <div class="card-foot">
+          <span>머니투데이방송 · 09.29</span>
+          <a href="https://news.mtn.co.kr/news-detail/2026092916234771845" target="_blank" rel="noopener">원문 ↗</a>
+        </div>
+      </article>
+      <article class="card" data-cat="반도체·HW">
+        <span class="tag cat-chip">반도체·HW</span>
+        <h2 class="card-title">NVIDIA, 'DGX Spark 64GB' 출시 예고… 4,999달러부터</h2>
+        <p class="card-summary">NVIDIA가 GB10 Grace Blackwell 칩을 쓰는 개인용 AI 슈퍼컴퓨터 DGX Spark의 64GB 모델을 10월 23일 출시한다고 밝혔다. 최대 1,000억 파라미터 모델을 기기에서 돌릴 수 있고, 두 대를 케이블로 묶으면 128GB 메모리로 2,000억 파라미터 모델까지 지원한다.</p>
+        <p class="card-why">대형 모델 개발·추론을 책상 위에서 하는 진입 가격이 낮아졌다.</p>
+        <div class="card-foot">
+          <span>NVIDIA Blog · 10.02</span>
+          <a href="https://blogs.nvidia.com/blog/local-ai-dgx-spark-64gb-sync/" target="_blank" rel="noopener">원문 ↗</a>
+        </div>
+      </article>
+    </div>
+
+    <h2 class="section-title">이번 주 볼만한 영상</h2>
+    <ul class="videos">
+      <li class="video">
+        <a class="video-thumb" href="https://www.youtube.com/watch?v=Ez4Su9C-uiQ" target="_blank" rel="noopener" data-yt="Ez4Su9C-uiQ">
+          <img src="https://i.ytimg.com/vi/Ez4Su9C-uiQ/mqdefault.jpg" alt="엔비디아 없이 AI 칩 가능한가? GPU·TPU·xPU 경쟁 속 진짜 셈법 분석" loading="lazy" width="320" height="180">
+          <span class="video-play" aria-hidden="true"></span>
+        </a>
+        <div class="video-body">
+          <a class="v-title" href="https://www.youtube.com/watch?v=Ez4Su9C-uiQ" target="_blank" rel="noopener">엔비디아 없이 AI 칩 가능한가? GPU·TPU·xPU 경쟁 속 진짜 셈법 분석</a>
+          <span class="v-ch">안될공학 · 09.29</span>
+        </div>
+      </li>
+      <li class="video">
+        <a class="video-thumb" href="https://www.youtube.com/watch?v=No-JPdFvYWU" target="_blank" rel="noopener" data-yt="No-JPdFvYWU">
+          <img src="https://i.ytimg.com/vi/No-JPdFvYWU/mqdefault.jpg" alt="The one OpenAI announcement that can actually make you money..." loading="lazy" width="320" height="180">
+          <span class="video-play" aria-hidden="true"></span>
+        </a>
+        <div class="video-body">
+          <a class="v-title" href="https://www.youtube.com/watch?v=No-JPdFvYWU" target="_blank" rel="noopener">The one OpenAI announcement that can actually make you money...</a>
+          <span class="v-ch">Fireship · 10.01</span>
+        </div>
+      </li>
+      <li class="video">
+        <a class="video-thumb" href="https://www.youtube.com/watch?v=_mVNIzbAeug" target="_blank" rel="noopener" data-yt="_mVNIzbAeug">
+          <img src="https://i.ytimg.com/vi/_mVNIzbAeug/mqdefault.jpg" alt="AI가 자기보다 뛰어난 AI를 만드는 위험한 질주가 시작됐다" loading="lazy" width="320" height="180">
+          <span class="video-play" aria-hidden="true"></span>
+        </a>
+        <div class="video-body">
+          <a class="v-title" href="https://www.youtube.com/watch?v=_mVNIzbAeug" target="_blank" rel="noopener">AI가 자기보다 뛰어난 AI를 만드는 위험한 질주가 시작됐다</a>
+          <span class="v-ch">티타임즈TV · 10.01</span>
+        </div>
+      </li>
+      <li class="video">
+        <a class="video-thumb" href="https://www.youtube.com/watch?v=128Atbma07g" target="_blank" rel="noopener" data-yt="128Atbma07g">
+          <img src="https://i.ytimg.com/vi/128Atbma07g/mqdefault.jpg" alt="삼성 최초의 클립형 무선 이어폰? 갤럭시 버즈 온&amp;탭S12&amp;스마트태그3" loading="lazy" width="320" height="180">
+          <span class="video-play" aria-hidden="true"></span>
+        </a>
+        <div class="video-body">
+          <a class="v-title" href="https://www.youtube.com/watch?v=128Atbma07g" target="_blank" rel="noopener">삼성 최초의 클립형 무선 이어폰? 갤럭시 버즈 온&amp;탭S12&amp;스마트태그3</a>
+          <span class="v-ch">ITSub잇섭 · 10.01</span>
+        </div>
+      </li>
+    </ul>
+
+    <nav class="pager" id="pager" aria-label="이전/다음 호"></nav>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>IT 주간동향 · 매주 발행</span>
+      <span>각 기사의 저작권은 원문 출처에 있습니다.</span>
+    </div>
+  </footer>
+  <script src="../../../assets/js/main.js"></script>
+</body>
+</html>

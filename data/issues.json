@@ -1,0 +1,54 @@
+[
+  {
+    "id": "2026-10-w2",
+    "year": 2026,
+    "month": 10,
+    "week": 2,
+    "label": "2026년 10월 2주차",
+    "period": "2026.10.05 – 10.11",
+    "published": "2026-10-14",
+    "path": "archive/2026/10/week2.html",
+    "headline": "GPT-6 전면 개방과 Haiku 5.5 출시, 삼성전자 영업이익 107조 원, AI 해킹 도구의 금융권 공격까지 — AI가 실적·PC·보안을 동시에 흔든 한 주",
+    "highlights": [
+      "OpenAI가 GPT-6와 대화형 답변 'Intelligent UI'를 무료 사용자까지 열었고, Anthropic은 가격을 크게 낮춘 Claude Haiku 5.5를 내놨다.",
+      "AI 메모리 수요로 삼성전자 3분기 영업이익이 107.4조 원까지 뛴 반면, 같은 이유로 부품값이 올라 세계 PC 출하량은 20% 넘게 줄었다.",
+      "AI 침투 테스트 도구 'ARTEX'가 국내 금융사 공격에 쓰인 정황이 나오고 GitHub Actions 공급망 공격이 재발하는 등 AI·개발 인프라를 노린 보안 위협이 이어졌다."
+    ],
+    "categories": {
+      "AI": 2,
+      "국내 IT": 2,
+      "보안": 2,
+      "클라우드·인프라": 2,
+      "모바일·디바이스": 1,
+      "반도체·HW": 1,
+      "정책·규제": 1,
+      "개발도구": 1
+    },
+    "count": 12
+  },
+  {
+    "id": "2026-10-w1",
+    "year": 2026,
+    "month": 10,
+    "week": 1,
+    "label": "2026년 10월 1주차",
+    "period": "2026.09.28 – 10.04",
+    "published": "2026-10-05",
+    "path": "archive/2026/10/week1.html",
+    "headline": "Gemini 4 Argon과 GPT-6.1 Sol의 맞대결, 은행에서 저축은행으로 번진 금융권 연쇄 해킹, 로컬 AI 하드웨어 경쟁까지 — 9월 마지막 주 IT 흐름",
+    "highlights": [
+      "Google이 Gemini 4 Argon을, OpenAI가 DevDay에서 GPT-6.1 Sol을 내놓으며 최상위 모델 경쟁이 '성능 대비 가격'으로 옮겨갔다.",
+      "은행에서 시작된 금융권 해킹이 저축은행까지 번졌고, Citrix NetScaler 취약점이 실제 공격에 쓰이는 등 보안 경보가 이어졌다.",
+      "CoreWeave의 첫 Vera Rubin 상용 가동, DGX Spark 64GB 출시 예고 등 AI 인프라가 데이터센터와 책상 위 양쪽에서 확장됐다."
+    ],
+    "categories": {
+      "AI": 2,
+      "보안": 3,
+      "국내 IT": 2,
+      "모바일·디바이스": 1,
+      "클라우드·인프라": 1,
+      "반도체·HW": 1
+    },
+    "count": 10
+  }
+]
