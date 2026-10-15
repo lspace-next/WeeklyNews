@@ -438,6 +438,7 @@ a:hover { color: var(--accent); }
   .hero-poster .hp-week { order: -1; align-items: flex-start; text-align: left; flex-direction: row; align-items: flex-end; gap: 14px; }
   .hero-poster .hp-week .big-num { font-size: 120px; }
   .hero-poster .hp-week small { margin: 0 0 6px; }
+  .hero-poster .pills { display: none; } /* 주차 페이지 필터 칩과 중복 */
 }
 
 /* ---------- issue tiles (home "지난 호" / archive) ---------- */
@@ -554,9 +555,7 @@ a:hover { color: var(--accent); }
 .catbar:empty { display: none; }
 @media (max-width: 760px) {
   .issue-hero { grid-template-columns: 1fr; }
-  .issue-hero .ih-week { order: -1; flex-direction: row; align-items: flex-end; gap: 14px; }
-  .issue-hero .ih-week .big-num { font-size: 110px; }
-  .issue-hero .ih-week small { margin: 0 0 6px; }
+  .issue-hero .ih-week { display: none; } /* 주차 정보는 eyebrow·제목에 이미 있음 */
 }
 
 /* ---------- summary (이번 주 핵심) ---------- */
