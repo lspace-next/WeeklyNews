@@ -41,12 +41,13 @@ CLAUDE.md 의 규칙을 따라 L.SPACE Tech Radar 한 호를 만든다. 인자: 
    - 대화형: `python -m http.server` 로 띄워 홈·아카이브·새 호 페이지 렌더, 카테고리 필터·이전/다음 링크를 확인한다. 가능하면 375px/1280px 스크린샷.
 
 8. **커밋·푸시**
+   - 커밋 메시지는 CLAUDE.md "커밋 컨벤션"을 따른다.
    - 대화형: 하지 않는다. 보고 후 사용자 승인을 기다린다.
    - dry-run: 하지 않는다.
    - auto: `check_issue.py` 가 PASS 이고 위 날짜 확인까지 끝났을 때만 진행한다.
      ```
      git add archive/ data/issues.json
-     git commit -m "YYYY년 M월 N주차 발행 (auto)" -m "Co-Authored-By: Claude <noreply@anthropic.com>"
+     git commit -m "Content: YYYY년 M월 N주차 발행 (auto)" -m "Co-Authored-By: Claude <noreply@anthropic.com>"
      git push origin main     # 거부되면 git pull --rebase origin main 후 1회 재시도
      ```
      검증을 통과하지 못했으면 **커밋·푸시하지 않고** 변경을 되돌린 뒤(`git checkout -- . && git clean -fd archive/`) 실패 사유를 보고한다. 공개 사이트에 불완전한 호를 올리지 않는 것이 우선이다.

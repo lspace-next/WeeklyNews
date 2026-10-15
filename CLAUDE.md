@@ -205,6 +205,20 @@ tools/feedback/            독자 피드백 수집용 Google Apps Script(Code.gs
 - 텍스트의 `& < > "` 는 이스케이프.
 - `data/issues.json` 은 배열 맨 앞에 추가. `headline`/`highlights` 는 페이지의 내용과 동일하게, `categories` 는 카테고리별 건수, `count` 는 총 카드 수.
 
+## 커밋 컨벤션
+
+`Type: 한글 제목` — 타입은 첫 글자 대문자 + 콜론, 제목은 한글로 간결하게(마침표 없음). 필요하면 빈 줄 뒤 본문에 `- ` 목록으로 상세.
+
+| Type | 용도 |
+|---|---|
+| Feat | 새 기능 (예: `Feat: 주차 페이지 독자 피드백 추가`) |
+| Fix | 버그·오류 수정 |
+| Style | 디자인·CSS·레이아웃 변경 (동작 변화 없음) |
+| Content | 주간 호 발행·기사 내용 수정 (예: `Content: 2026년 10월 3주차 발행`) |
+| Docs | CLAUDE.md·README·주석 등 문서 |
+| Refactor | 동작 변화 없는 코드 정리 |
+| Chore | 설정·배포·도구 (예: `_config.yml`, `tools/`) |
+
 ## 로컬 확인
 
 ```
