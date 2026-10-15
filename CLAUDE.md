@@ -2,6 +2,7 @@
 
 L.SPACE의 주간 기술 동향 콘텐츠. 매주 AI·제조/조선 AX·클라우드·보안·개발도구 등 기술 변화를 카드 형식으로 정리해 GitHub Pages(프로젝트 사이트)에 발행하는 정적 사이트.
 빌드 도구 없음. HTML/CSS/JS를 그대로 배포한다. 매주 발행은 `/weekly` 커맨드(`.claude/commands/weekly.md`)로 수행한다.
+- **자동 발행**: Claude Code 클라우드 루틴이 매주 월요일 07:00 KST 에 `/weekly auto` 를 실행해 지난주 호를 만들고 `main` 에 푸시한다. 발행 전 `tools/check_issue.py` 검증을 통과하지 못하면 푸시하지 않고 실패 사유만 남긴다.
 
 - **SITE_URL**: `https://lspace-next.github.io/WeeklyNews`
 - **저장소**: https://github.com/lspace-next/WeeklyNews (main 브랜치 / root 를 Pages 로 배포)
@@ -17,6 +18,7 @@ data/issues.json           발행 인덱스. 홈·아카이브·이전/다음 �
 templates/issue.html       주차 페이지 템플릿
 assets/css/style.css       단일 스타일시트 (라이트/다크 자동)
 assets/js/main.js          목록 렌더 · 카테고리 필터 · 이전/다음 링크
+tools/check_issue.py       발행 전 자동 검증(구조·카드 규칙·링크). /weekly 가 실행
 tools/feedback/            독자 피드백 수집용 Google Apps Script(Code.gs)와 설정 방법(README.md)
 404.html                   절대경로(/WeeklyNews/...) 사용 — 저장소명이 바뀌면 함께 수정
 ```
