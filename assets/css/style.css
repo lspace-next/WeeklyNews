@@ -172,6 +172,10 @@ a:hover { color: var(--accent); }
 .site-footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; align-items: flex-end; }
 .footer-brand { display: flex; flex-direction: column; gap: 10px; }
 .footer-logo { display: block; width: 114px; height: auto; }
+.footer-home { display: inline-block; align-self: flex-start; transition: opacity .15s; }
+.footer-home:hover { opacity: .7; }
+.footer-link { color: var(--text-sub); font-weight: 600; text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 3px; }
+.footer-link:hover { color: var(--accent); text-decoration-color: currentColor; }
 @media (prefers-color-scheme: dark) { .footer-logo { filter: brightness(0) invert(1); opacity: .85; } }
 
 /* ---------- generic heads ---------- */
