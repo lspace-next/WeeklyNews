@@ -1,10 +1,10 @@
-# IT 주간동향 (lspace-weekly-news)
+# IT 주간동향 (WeeklyNews)
 
 매주 IT 핵심 뉴스를 카드 형식으로 정리해 GitHub Pages(프로젝트 사이트)에 발행하는 정적 사이트.
 빌드 도구 없음. HTML/CSS/JS를 그대로 배포한다. 매주 발행은 `/weekly` 커맨드(`.claude/commands/weekly.md`)로 수행한다.
 
-- **SITE_URL**: `https://lspace-next.github.io/lspace-weekly-news`
-- **저장소**: https://github.com/lspace-next/lspace-weekly-news (main 브랜치 / root 를 Pages 로 배포)
+- **SITE_URL**: `https://lspace-next.github.io/WeeklyNews`
+- **저장소**: https://github.com/lspace-next/WeeklyNews (main 브랜치 / root 를 Pages 로 배포)
 - 참고한 원형: https://busanbus.github.io/weekly-mobility (주차별 카드뉴스 아카이브 구조)
 
 ## 구조
@@ -17,12 +17,14 @@ data/issues.json           발행 인덱스. 홈·아카이브·이전/다음 �
 templates/issue.html       주차 페이지 템플릿
 assets/css/style.css       단일 스타일시트 (라이트/다크 자동)
 assets/js/main.js          목록 렌더 · 카테고리 필터 · 이전/다음 링크
-404.html                   절대경로(/lspace-weekly-news/...) 사용 — 저장소명이 바뀌면 함께 수정
+404.html                   절대경로(/WeeklyNews/...) 사용 — 저장소명이 바뀌면 함께 수정
 ```
 
 - 내부 링크는 상대경로. 각 페이지 `<body data-root="...">` 가 루트까지의 상대경로(주차 페이지는 `../../../`).
 - 월별 index 페이지, 다국어, 빌드 스크립트는 만들지 않는다.
-- 기사 이미지는 쓰지 않는다(핫링크 깨짐·저작권). 텍스트 카드만.
+- 카드 상단은 **포스터**(카테고리 색 + 큰 키워드)가 기본이고, 원문에 대표 이미지(og:image)가 있으면 그 위에 이미지를 얹는다.
+  이미지는 원문 og:image 를 그대로 링크(복사·재호스팅 안 함)하고 `onerror="this.remove()"` 로 깨지면 포스터가 보이게 한다.
+  로고만 있는 이미지, `http://` 이미지(혼합 콘텐츠 차단)는 쓰지 않는다. 기업 보도자료·공식 블로그 이미지를 우선한다.
 
 ## 주차 규칙
 
@@ -45,13 +47,16 @@ assets/js/main.js          목록 렌더 · 카테고리 필터 · 이전/다음
 | 모바일·디바이스 | `cat-device` | 스마트폰, 웨어러블, XR, 가전 |
 | 정책·규제 | `cat-policy` | 각국 법·규제, 반독점, 개인정보 |
 | 국내 IT | `cat-korea` | 국내 기업·정부 IT 소식 |
+| 조선·해양 | `cat-ship` | 조선사·기자재 업체의 IT/DX(스마트 야드, 디지털 트윈, 자율운항, 선박 SW·사이버보안), 업계 영향이 큰 수주·정책 |
 | 개발도구 | `cat-dev` | 언어, 프레임워크, 오픈소스, 개발 플랫폼 |
 
-카테고리를 추가/변경하면 이 표, `assets/js/main.js` 의 `CATEGORIES`, `style.css` 의 `.cat-*` 를 함께 고친다.
+카테고리를 추가/변경하면 이 표, `assets/js/main.js` 의 `CATEGORIES`, `style.css` 의 `--c-*`·`--p-*`·`.cat-*`/`[data-cat]` 를 함께 고친다.
+
+> 조선·해양: 우리 회사는 조선사·기자재 업체 대상 SI 를 주로 한다. 순수 수주 소식보다 **IT·디지털 전환과 연결되는 소식**(조선소 자동화·MES·PLM, 디지털 트윈, 자율운항/원격관제, IMO·IACS 사이버보안 규칙 UR E26/E27, 친환경 선박 운항 SW 등)을 우선한다.
 
 ## 선정 기준
 
-- **8–12건**, 한 카테고리 최대 4건, 국내 IT 최소 2건.
+- **8–12건**, 한 카테고리 최대 4건, 국내 IT 최소 2건, 조선·해양 1–2건(해당 주에 쓸 만한 소식이 없으면 0건 가능, 보고 때 명시).
 - **1차 출처 우선**: 공식 발표/블로그/보도자료 > 주요 언론 > 기타. 커뮤니티(HN 등)는 화제성 확인용으로만 쓰고 출처로 쓰지 않는다.
 - 수집 기간 안에 발표·보도된 것만. 날짜를 원문에서 확인한다.
 - 루머, 익명 소식통 단독 보도, 미확인 유출, 광고성 기사는 제외한다.
@@ -89,6 +94,27 @@ assets/js/main.js          목록 렌더 · 카테고리 필터 · 이전/다음
 | Apple Newsroom | https://www.apple.com/newsroom/ | https://www.apple.com/newsroom/rss-feed.rss |
 | AWS What's New | https://aws.amazon.com/new/ | https://aws.amazon.com/about-aws/whats-new/recent/feed/ |
 | GitHub Blog / Changelog | https://github.blog/ | https://github.blog/feed/ , https://github.blog/changelog/feed/ |
+
+### 조선·해양
+2026-10-15 기준 접근 확인.
+| 소스 | URL | RSS/검색 |
+|---|---|---|
+| HD현대 뉴스룸 (HD한국조선해양·HD현대중공업·미포·삼호) | https://www.hd.com/kr/newsroom/media-hub/press/list | 페이지 직접 |
+| 삼성중공업 보도자료 | https://www.samsungshi.com/kor/pr/news.aspx | 페이지 직접 |
+| 한화오션 | https://www.hanwhaocean.com/ | 미디어 경로 변동 잦음 → WebSearch `site:hanwhaocean.com` |
+| 한국조선해양플랜트협회 | https://www.koshipa.or.kr/ | 연결 불안정 → WebSearch |
+| 한국조선해양기자재연구원 (KOMERI) | https://www.komeri.re.kr/ | 기자재 업계 동향 |
+| 선박해양플랜트연구소 (KRISO) | https://www.kriso.re.kr/ | 자율운항·친환경 선박 연구 |
+| 한국선급 (KR) | https://www.kr.co.kr/ | 선급 규칙·사이버보안 인증 |
+| 산업통상자원부 / 해양수산부 | https://www.motie.go.kr/ , https://www.mof.go.kr/ | 조선·해운 정책 1차 출처 |
+| 쉬핑뉴스넷 | https://www.shippingnewsnet.com/ | https://www.shippingnewsnet.com/rss/allArticle.xml |
+| DNV / Lloyd's Register 뉴스 | https://www.dnv.com/news/ , https://www.lr.org/en/latest-news/ | 선급 규칙·디지털 |
+| Splash247 | https://splash247.com/ | https://splash247.com/feed/ |
+| Offshore Energy | https://www.offshore-energy.biz/ | https://www.offshore-energy.biz/feed/ |
+| gCaptain | https://gcaptain.com/ | https://gcaptain.com/feed/ |
+| MarineLink | https://www.marinelink.com/ | https://www.marinelink.com/news/rss |
+| Seatrade Maritime | https://www.seatrade-maritime.com/ | https://www.seatrade-maritime.com/rss.xml |
+| Riviera Maritime Media | https://www.rivieramm.com/ | 페이지 직접 |
 
 ### 보안
 | 소스 | URL | RSS/검색 |
@@ -165,8 +191,10 @@ assets/js/main.js          목록 렌더 · 카테고리 필터 · 이전/다음
 ## HTML 작성 규칙
 
 - `templates/issue.html` 을 복사해 플레이스홀더를 채우고 맨 위 안내 주석은 지운다.
-- 카드: `<article class="card" data-cat="카테고리명">` + `<span class="tag cat-xxx">카테고리명</span>` — data-cat 과 tag 텍스트는 위 표의 이름과 정확히 일치.
-- 카드 순서: 중요도 순 (카테고리 순 아님). 필터 칩은 JS가 자동 생성.
+- 카드: `<article class="card" data-cat="카테고리명">` > `.card-media`(포스터 + 선택 이미지) + `.card-body`(tag·제목·요약·why·foot). data-cat · `poster-cat` · tag 텍스트는 위 표의 이름과 정확히 일치. 구조는 `templates/issue.html` 참고.
+- 포스터 키워드(`poster-kw`): 기사를 한눈에 대표하는 2–12자. 숫자·제품명·고유명사 위주(예: `107.4조`, `GPT-6`, `−20%`, `Vera Rubin`). 원문에 없는 숫자를 만들지 않는다.
+- 이미지: 원문 HTML 의 `og:image`(없으면 `twitter:image`)를 curl 로 뽑아 200 확인 후 `<img class="card-img" ... onerror="this.remove()">`. URL 의 `&` 는 `&amp;`.
+- 카드 순서: 중요도 순 (카테고리 순 아님). **첫 카드는 PC 에서 가로 전체 리드 카드**가 된다. 필터 칩·카테고리 막대는 JS가 자동 생성.
 - 출처 표기: `출처명 · MM.DD` (원문 발표일).
 - 외부 링크는 `target="_blank" rel="noopener"`.
 - 텍스트의 `& < > "` 는 이스케이프.

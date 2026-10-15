@@ -1,6 +1,6 @@
 # IT 주간동향
 
-https://lspace-next.github.io/lspace-weekly-news/
+https://lspace-next.github.io/WeeklyNews/
 
 매주 AI·빅테크·보안·클라우드·반도체·국내 IT 핵심 뉴스를 카드로 정리하는 정적 사이트 (GitHub Pages).
 
@@ -24,7 +24,7 @@ http://localhost:8000 (file:// 로 열면 목록이 안 뜸)
 
 ## 배포
 
-- 사이트: https://lspace-next.github.io/lspace-weekly-news/
-- 저장소: https://github.com/lspace-next/lspace-weekly-news
+- 사이트: https://lspace-next.github.io/WeeklyNews/
+- 저장소: https://github.com/lspace-next/WeeklyNews
 - GitHub Pages: Settings → Pages → Source `Deploy from a branch`, Branch `main` / `(root)`
 - `main` 에 push 하면 1–2분 뒤 자동 반영됩니다.

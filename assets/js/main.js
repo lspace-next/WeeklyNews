@@ -3,11 +3,20 @@
 
 (function () {
   const root = document.body.dataset.root || "";
-  // Keep in sync with the category table in CLAUDE.md.
-  const CATEGORIES = ["AI", "빅테크", "보안", "클라우드·인프라", "반도체·HW", "모바일·디바이스", "정책·규제", "국내 IT", "개발도구"];
+  // Keep in sync with the category table in CLAUDE.md (name → .cat-* slug in style.css).
+  const CATEGORIES = {
+    "AI": "ai", "빅테크": "bigtech", "보안": "security", "클라우드·인프라": "cloud", "반도체·HW": "chip",
+    "모바일·디바이스": "device", "정책·규제": "policy", "국내 IT": "korea", "조선·해양": "ship", "개발도구": "dev",
+  };
+  const CAT_NAMES = Object.keys(CATEGORIES);
+  const MONTHS = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
 
   const esc = (s) =>
     String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const catClass = (cat) => "cat-" + (CATEGORIES[cat] || "policy");
+  const order = (cat) => (CAT_NAMES.indexOf(cat) + 1 || 99);
+  // category entries of an issue, most cards first
+  const catsOf = (it) => Object.entries(it.categories || {}).sort((a, b) => b[1] - a[1] || order(a[0]) - order(b[0]));
 
   let issuesPromise;
   function loadIssues() {
@@ -17,37 +26,61 @@
     return issuesPromise;
   }
 
-  function issueRow(it) {
-    return `<li><a href="${root}${esc(it.path)}">
-      <span class="il-label">${esc(it.label)}</span>
-      <span class="il-head">${esc(it.headline)}</span>
-      <span class="il-count">${esc(it.count)}건</span>
-    </a></li>`;
+  // poster tile, tinted by the issue's biggest category
+  function issueTile(it) {
+    const cats = catsOf(it);
+    return `<a class="tile panel-dark ${cats[0] ? catClass(cats[0][0]) : ""}" href="${root}${esc(it.path)}">
+      <span class="tile-top"><span>${esc(it.period)}</span><span>${MONTHS[it.month - 1] || ""} ${esc(it.year)}</span></span>
+      <span class="big-num">W${esc(it.week)}</span>
+      <span class="tile-label">${esc(it.label)}</span>
+      <span class="tile-head">${esc(it.headline)}</span>
+      <span class="tile-foot">
+        <span class="dots">${cats.map(([c]) => `<span class="${catClass(c)}" title="${esc(c)}"></span>`).join("")}</span>
+        <span class="arrow">${esc(it.count)}건 →</span>
+      </span>
+    </a>`;
   }
 
   // ---------- home ----------
   async function renderHome() {
     const latestEl = document.getElementById("latest");
     const recentEl = document.getElementById("recent");
+    const statsEl = document.getElementById("stats");
     if (!latestEl && !recentEl) return;
     const issues = await loadIssues();
+
+    if (statsEl && issues.length) {
+      const total = issues.reduce((n, it) => n + (it.count || 0), 0);
+      statsEl.innerHTML = [
+        [issues.length + "호", "발행"],
+        [total + "건", "누적 뉴스"],
+        [CAT_NAMES.length + "개", "카테고리"],
+        [issues[0].published.slice(5).replace("-", "."), "최근 발행"],
+      ].map(([b, s]) => `<div class="stat"><b>${esc(b)}</b><span>${esc(s)}</span></div>`).join("");
+    }
 
     if (latestEl) {
       const it = issues[0];
       latestEl.innerHTML = it
-        ? `<a class="latest" href="${root}${esc(it.path)}">
-            <p class="eyebrow">LATEST · ${esc(it.period)}</p>
-            <span class="latest-label">${esc(it.label)}</span>
-            <h2>${esc(it.headline)}</h2>
-            <ol>${it.highlights.map((h) => `<li>${esc(h)}</li>`).join("")}</ol>
-            <span class="btn">이번 주 동향 읽기 →</span>
+        ? `<a class="hero-poster panel-dark" href="${root}${esc(it.path)}">
+            <div class="hp-top"><span class="badge"><span class="live"></span>LATEST ISSUE</span><span>${esc(it.period)}</span></div>
+            <div class="hp-text">
+              <span class="hp-label">${esc(it.label)}</span>
+              <h2>${esc(it.headline)}</h2>
+              <ol>${it.highlights.map((h) => `<li>${esc(h)}</li>`).join("")}</ol>
+              <div class="hp-foot">
+                <span class="btn">이번 주 동향 읽기 →</span>
+                <span class="pills">${catsOf(it).map(([c, n]) => `<span class="pill ${catClass(c)}">${esc(c)}<i>${n}</i></span>`).join("")}</span>
+              </div>
+            </div>
+            <div class="hp-week" aria-hidden="true"><span class="big-num">W${esc(it.week)}</span><small>${MONTHS[it.month - 1] || ""} ${esc(it.year)} · ${esc(it.count)} NEWS</small></div>
           </a>`
         : `<p class="empty">아직 발행된 호가 없습니다.</p>`;
     }
     if (recentEl) {
-      const rest = issues.slice(1, 9);
+      const rest = issues.slice(1, 7);
       recentEl.innerHTML = rest.length
-        ? `<ul class="issue-list">${rest.map(issueRow).join("")}</ul>`
+        ? `<div class="tiles">${rest.map(issueTile).join("")}</div>`
         : `<p class="empty">이전 호가 없습니다.</p>`;
     }
   }
@@ -72,14 +105,14 @@
     for (const [year, months] of byYear) {
       html += `<section class="year-block"><h2>${year}</h2>`;
       for (const [month, list] of months) {
-        html += `<div class="month-block"><h3>${month}월</h3><ul class="issue-list">${list.map(issueRow).join("")}</ul></div>`;
+        html += `<div class="month-block"><h3>${month}월</h3><div class="tiles">${list.map(issueTile).join("")}</div></div>`;
       }
       html += `</section>`;
     }
     el.innerHTML = html;
   }
 
-  // ---------- issue page: category filter ----------
+  // ---------- issue page: category filter + category bar ----------
   function initFilter() {
     const bar = document.getElementById("filters");
     const cards = [...document.querySelectorAll(".grid .card")];
@@ -87,12 +120,16 @@
 
     const counts = new Map();
     for (const c of cards) counts.set(c.dataset.cat, (counts.get(c.dataset.cat) || 0) + 1);
+    const sorted = [...counts].sort((a, b) => order(a[0]) - order(b[0]));
 
     const chip = (label, value, n) =>
-      `<button type="button" class="chip" data-value="${esc(value)}" aria-pressed="${value === "" ? "true" : "false"}">${esc(label)}<span class="n">${n}</span></button>`;
-    const order = (cat) => (CATEGORIES.indexOf(cat) + 1 || 99);
-    const sorted = [...counts].sort((a, b) => order(a[0]) - order(b[0]));
+      `<button type="button" class="chip ${value ? catClass(value) : ""}" data-value="${esc(value)}" aria-pressed="${value === "" ? "true" : "false"}">${esc(label)}<span class="n">${n}</span></button>`;
     bar.innerHTML = chip("전체", "", cards.length) + sorted.map(([cat, n]) => chip(cat, cat, n)).join("");
+
+    const catbar = document.getElementById("catbar");
+    if (catbar) {
+      catbar.innerHTML = sorted.map(([cat, n]) => `<span class="${catClass(cat)}" style="--n:${n}" title="${esc(cat)} ${n}건"></span>`).join("");
+    }
 
     bar.addEventListener("click", (e) => {
       const btn = e.target.closest(".chip");
