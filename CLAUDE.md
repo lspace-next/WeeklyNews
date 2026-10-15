@@ -196,6 +196,7 @@ assets/js/main.js          목록 렌더 · 카테고리 필터 · 이전/다음
 - 이미지: 원문 HTML 의 `og:image`(없으면 `twitter:image`)를 curl 로 뽑아 200 확인 후 `<img class="card-img" ... onerror="this.remove()">`. URL 의 `&` 는 `&amp;`.
 - 카드 순서: 중요도 순 (카테고리 순 아님). **첫 카드는 PC 에서 가로 전체 리드 카드**가 된다. 필터 칩·카테고리 막대는 JS가 자동 생성.
 - 출처 표기: `출처명 · MM.DD` (원문 발표일).
+- 링크 공유 미리보기: 모든 페이지 `og:image` = `assets/images/og-cover.png`(1200×630, 템플릿에 포함). 문구·디자인을 바꾸면 이미지를 다시 만들고 카카오톡은 캐시 초기화(https://developers.kakao.com/tool/clear/og)가 필요하다.
 - 외부 링크는 `target="_blank" rel="noopener"`.
 - 텍스트의 `& < > "` 는 이스케이프.
 - `data/issues.json` 은 배열 맨 앞에 추가. `headline`/`highlights` 는 페이지의 내용과 동일하게, `categories` 는 카테고리별 건수, `count` 는 총 카드 수.
