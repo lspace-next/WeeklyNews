@@ -2,7 +2,7 @@
 
 https://lspace-next.github.io/WeeklyNews/
 
-매주 AI·빅테크·보안·클라우드·반도체·국내 IT 핵심 뉴스를 카드로 정리하는 정적 사이트 (GitHub Pages).
+L.SPACE 의 주간 기술 동향. AI부터 제조·조선 AX, 클라우드, 보안, 개발도구까지 한 주의 기술 변화를 카드로 정리하는 정적 사이트 (GitHub Pages).
 
 ## 매주 발행
 
