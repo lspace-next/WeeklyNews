@@ -158,6 +158,23 @@
       (newer ? `<a class="next" href="${root}${esc(newer.path)}"><span class="dir">다음 호 →</span>${esc(newer.label)}</a>` : "");
   }
 
+  // ---------- issue page: card title → original article ----------
+  // Titles are plain text in the HTML; link each one to the card's "원문" URL so every issue gets it without markup changes.
+  function initCardTitles() {
+    for (const card of document.querySelectorAll(".grid .card")) {
+      const title = card.querySelector(".card-title");
+      const src = card.querySelector(".card-foot a[href]");
+      if (!title || !src || title.querySelector("a")) continue;
+      const a = document.createElement("a");
+      a.className = "card-title-link";
+      a.href = src.href;
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.append(...title.childNodes);
+      title.append(a);
+    }
+  }
+
   // ---------- issue page: play video in place ----------
   // Thumbnails link to YouTube; a plain click swaps the thumbnail for an embedded player instead.
   function initVideos() {
@@ -271,6 +288,7 @@
   renderArchive();
   initFilter();
   renderPager();
+  initCardTitles();
   initVideos();
   initFeedback();
 })();

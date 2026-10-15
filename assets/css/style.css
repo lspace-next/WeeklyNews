@@ -769,6 +769,18 @@ a:hover { color: var(--accent); }
   letter-spacing: -0.03em;
   margin: 12px 0 10px;
 }
+.card-title-link {
+  color: inherit;
+  text-decoration: underline 2px transparent;
+  text-underline-offset: 5px;
+  transition: text-decoration-color .15s;
+}
+.card-title-link:hover,
+.card-title-link:focus-visible {
+  color: inherit;
+  text-decoration-color: var(--cat, currentColor);
+}
+.card-title-link:focus-visible { outline: 2px solid var(--cat, var(--accent)); outline-offset: 3px; border-radius: 4px; }
 .card-summary { color: var(--text-sub); font-size: 15px; margin: 0 0 14px; }
 .card-why {
   font-size: 14px;
