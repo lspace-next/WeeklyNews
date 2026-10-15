@@ -1,9 +1,9 @@
 ---
-description: 이번 주 IT 주간동향 호를 조사·작성·발행 준비한다
+description: 이번 주 L.SPACE Tech Radar 호를 조사·작성·발행 준비한다
 argument-hint: "[YYYY-MM-DD 발행일 (생략 시 오늘)]"
 ---
 
-CLAUDE.md 의 규칙을 따라 IT 주간동향 한 호를 만든다. 발행일: $ARGUMENTS (비어 있으면 오늘).
+CLAUDE.md 의 규칙을 따라 L.SPACE Tech Radar 한 호를 만든다. 발행일: $ARGUMENTS (비어 있으면 오늘).
 
 1. **주차 계산**: CLAUDE.md "주차 규칙"으로 라벨·id·파일 경로·수집 기간(직전 주 월~일)을 정한다. `data/issues.json` 에 같은 id가 있으면 멈추고 사용자에게 묻는다.
 

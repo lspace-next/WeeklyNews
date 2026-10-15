@@ -1,6 +1,6 @@
-# IT 주간동향 (WeeklyNews)
+# L.SPACE Tech Radar (WeeklyNews)
 
-매주 IT 핵심 뉴스를 카드 형식으로 정리해 GitHub Pages(프로젝트 사이트)에 발행하는 정적 사이트.
+L.SPACE의 주간 기술 동향 콘텐츠. 매주 AI·제조/조선 AX·클라우드·보안·개발도구 등 기술 변화를 카드 형식으로 정리해 GitHub Pages(프로젝트 사이트)에 발행하는 정적 사이트.
 빌드 도구 없음. HTML/CSS/JS를 그대로 배포한다. 매주 발행은 `/weekly` 커맨드(`.claude/commands/weekly.md`)로 수행한다.
 
 - **SITE_URL**: `https://lspace-next.github.io/WeeklyNews`

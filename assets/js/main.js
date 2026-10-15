@@ -1,4 +1,4 @@
-// IT 주간동향 — renders issue lists from data/issues.json and wires the category filter.
+// L.SPACE Tech Radar — renders issue lists from data/issues.json and wires the category filter.
 // Each page sets <body data-root="..."> (relative path to the site root) so links work at any depth.
 
 (function () {

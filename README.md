@@ -1,4 +1,4 @@
-# IT 주간동향
+# L.SPACE Tech Radar
 
 https://lspace-next.github.io/WeeklyNews/
 

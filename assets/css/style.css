@@ -1,4 +1,4 @@
-/* IT 주간동향 — single stylesheet (light / dark)
+/* L.SPACE Tech Radar — single stylesheet (light / dark)
    Bento card grid & hover-lift pattern adapted from 21st.dev "Bento Grid" (kokonutd, aceternity). */
 
 :root {
@@ -144,6 +144,7 @@ a:hover { color: var(--accent); }
   letter-spacing: -0.02em;
 }
 .brand:hover { color: var(--text); }
+.brand-sub { font-weight: 500; color: var(--text-sub); }
 .brand-logo {
   width: 30px;
   height: 30px;
