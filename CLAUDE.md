@@ -18,6 +18,7 @@ data/issues.json           발행 인덱스. 홈·아카이브·이전/다음 �
 templates/issue.html       주차 페이지 템플릿
 assets/css/style.css       단일 스타일시트 (라이트/다크 자동)
 assets/js/main.js          목록 렌더 · 카테고리 필터 · 이전/다음 링크
+_config.yml                Pages(Jekyll) 배포 제외 목록 — CLAUDE.md·README·templates·tools·.claude 는 사이트로 공개하지 않음
 tools/check_issue.py       발행 전 자동 검증(구조·카드 규칙·링크). /weekly 가 실행
 tools/feedback/            독자 피드백 수집용 Google Apps Script(Code.gs)와 설정 방법(README.md)
 404.html                   절대경로(/WeeklyNews/...) 사용 — 저장소명이 바뀌면 함께 수정
@@ -55,7 +56,7 @@ tools/feedback/            독자 피드백 수집용 Google Apps Script(Code.gs
 
 카테고리를 추가/변경하면 이 표, `assets/js/main.js` 의 `CATEGORIES`, `style.css` 의 `--c-*`·`--p-*`·`.cat-*`/`[data-cat]` 를 함께 고친다.
 
-> 조선·해양: 우리 회사는 조선사·기자재 업체 대상 SI 를 주로 한다. 순수 수주 소식보다 **IT·디지털 전환과 연결되는 소식**(조선소 자동화·MES·PLM, 디지털 트윈, 자율운항/원격관제, IMO·IACS 사이버보안 규칙 UR E26/E27, 친환경 선박 운항 SW 등)을 우선한다.
+> 조선·해양: 조선·해양 분야 독자를 위해 순수 수주 소식보다 **IT·디지털 전환과 연결되는 소식**(조선소 자동화·MES·PLM, 디지털 트윈, 자율운항/원격관제, IMO·IACS 사이버보안 규칙 UR E26/E27, 친환경 선박 운항 SW 등)을 우선한다.
 
 ## 선정 기준
 
