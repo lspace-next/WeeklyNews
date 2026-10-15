@@ -17,6 +17,7 @@ data/issues.json           발행 인덱스. 홈·아카이브·이전/다음 �
 templates/issue.html       주차 페이지 템플릿
 assets/css/style.css       단일 스타일시트 (라이트/다크 자동)
 assets/js/main.js          목록 렌더 · 카테고리 필터 · 이전/다음 링크
+tools/feedback/            독자 피드백 수집용 Google Apps Script(Code.gs)와 설정 방법(README.md)
 404.html                   절대경로(/WeeklyNews/...) 사용 — 저장소명이 바뀌면 함께 수정
 ```
 

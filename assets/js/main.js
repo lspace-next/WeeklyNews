@@ -2,6 +2,9 @@
 // Each page sets <body data-root="..."> (relative path to the site root) so links work at any depth.
 
 (function () {
+  // Reader feedback endpoint (Google Apps Script web app — see tools/feedback/README.md). Empty = feedback block hidden.
+  const FEEDBACK_URL = "https://script.google.com/macros/s/AKfycbyc6IF4vHzz8lNAGg4ytzL5PVJgBxTtBABNXk_YGXIC1qWZGP4cmi5162vi6i2vSEi1/exec";
+
   const root = document.body.dataset.root || "";
   // Keep in sync with the category table in CLAUDE.md (name → .cat-* slug in style.css).
   const CATEGORIES = {
@@ -173,9 +176,101 @@
     });
   }
 
+  // ---------- issue page: reader feedback ----------
+  // One anonymous row per browser per issue; changing the rating or sending a comment updates that row.
+  const RATES = [["good", "👍", "유용했어요"], ["soso", "😐", "보통이에요"], ["bad", "👎", "아쉬워요"]];
+
+  function initFeedback() {
+    const el = document.getElementById("feedback");
+    const issue = document.body.dataset.issue;
+    if (!el || !issue || !FEEDBACK_URL) return;
+
+    const key = "fb:" + issue;
+    let state = {};
+    try { state = JSON.parse(localStorage.getItem(key)) || {}; } catch {}
+    if (!state.sid) state.sid = (crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36) + Math.random().toString(36).slice(2)).replace(/[^\w-]/g, "");
+    const save = () => { try { localStorage.setItem(key, JSON.stringify(state)); } catch {} };
+
+    el.innerHTML = `
+      <div class="fb-head">
+        <span class="kicker">FEEDBACK</span>
+        <h2 id="fb-title">이번 호 어땠나요?</h2>
+        <p>익명으로 전달되며, 다음 호 기사 선정에 반영합니다.</p>
+      </div>
+      <div class="fb-rates" role="group" aria-labelledby="fb-title">
+        ${RATES.map(([v, icon, label]) => `<button type="button" class="fb-rate" data-rate="${v}" aria-pressed="false"><span class="fb-icon" aria-hidden="true">${icon}</span>${label}</button>`).join("")}
+      </div>
+      <form class="fb-form" hidden>
+        <label for="fb-text">다음에 다뤘으면 하는 주제나 의견 <span>(선택)</span></label>
+        <textarea id="fb-text" maxlength="500" rows="3" placeholder="예: 조선소 MES·디지털 트윈 사례를 더 보고 싶어요"></textarea>
+        <input type="text" name="website" class="fb-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="fb-actions"><span class="fb-count">0 / 500</span><button type="submit" class="fb-send">의견 보내기</button></div>
+      </form>
+      <p class="fb-status" role="status" aria-live="polite"></p>`;
+    el.hidden = false;
+
+    const form = el.querySelector(".fb-form");
+    const text = el.querySelector("#fb-text");
+    const status = el.querySelector(".fb-status");
+    const count = el.querySelector(".fb-count");
+
+    const send = (data) =>
+      fetch(FEEDBACK_URL, {
+        method: "POST",
+        mode: "no-cors", // Apps Script sends no CORS headers; text/plain avoids a preflight
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify({ issue, sid: state.sid, website: form.website.value, ...data }),
+      });
+    const mark = () => {
+      for (const b of el.querySelectorAll(".fb-rate")) b.setAttribute("aria-pressed", String(b.dataset.rate === state.rate));
+      form.hidden = !state.rate;
+      if (state.commented) status.textContent = "의견 감사합니다. 다음 호에 반영할게요.";
+    };
+
+    el.querySelector(".fb-rates").addEventListener("click", async (e) => {
+      const btn = e.target.closest(".fb-rate");
+      if (!btn || btn.dataset.rate === state.rate) return;
+      const prev = state.rate;
+      state.rate = btn.dataset.rate;
+      save();
+      mark();
+      status.textContent = "응답 감사합니다! 한 줄 의견도 남겨주시면 큰 도움이 됩니다.";
+      try {
+        await send({ rate: state.rate });
+      } catch {
+        state.rate = prev;
+        save();
+        mark();
+        status.textContent = "전송에 실패했어요. 잠시 후 다시 눌러주세요.";
+      }
+    });
+    text.addEventListener("input", () => (count.textContent = `${text.value.length} / 500`));
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const comment = text.value.trim();
+      if (!comment) return text.focus();
+      const btn = form.querySelector(".fb-send");
+      btn.disabled = true;
+      try {
+        await send({ rate: state.rate, comment });
+        state.commented = true;
+        save();
+        text.value = "";
+        count.textContent = "0 / 500";
+        status.textContent = "의견 감사합니다. 다음 호에 반영할게요.";
+      } catch {
+        status.textContent = "전송에 실패했어요. 잠시 후 다시 시도해주세요.";
+      } finally {
+        btn.disabled = false;
+      }
+    });
+    mark();
+  }
+
   renderHome();
   renderArchive();
   initFilter();
   renderPager();
   initVideos();
+  initFeedback();
 })();
