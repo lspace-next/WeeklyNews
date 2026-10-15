@@ -148,7 +148,8 @@ a:hover { color: var(--accent); }
 .brand-logo {
   width: 30px;
   height: 30px;
-  border-radius: 25px;
+  border-radius: 50%;
+  object-fit: cover;
   box-shadow: 0 4px 14px -4px rgba(30, 41, 140, .55);
 }
 .nav { display: flex; gap: 4px; }
