@@ -3,7 +3,6 @@
   주차 페이지 템플릿. archive/YYYY/MM/weekN.html 로 복사해서 {{...}} 를 채운다.
   - {{ID}}        예: 2026-10-w2   (data/issues.json 의 id 와 동일)
   - {{LABEL}}     예: 2026년 10월 2주차
-  - {{EYEBROW}}   예: 2026.10 · WEEK 2
   - {{PERIOD}}    예: 2026.10.05 – 10.11
   - {{PUBLISHED}} 예: 2026-10-14
   - {{HEADLINE}}  이번 주 한 줄 요약 (issues.json headline 과 동일)
@@ -11,6 +10,7 @@
   - {{PATH}}      예: archive/2026/10/week2.html
   - {{WEEK}}      예: 2          (히어로의 큰 숫자 W2)
   - {{MON}} {{YEAR}} 예: OCT 2026 (영문 월 3글자 대문자)
+  - {{MON_TITLE}} 예: Oct (영문 월 3글자, 첫 글자만 대문자 — 상단 제목 'Tech Radar · Oct W2')
   카드 미디어(.card-media):
   - 포스터는 항상 넣는다. poster-cat = 카테고리명, poster-kw = 기사를 대표하는 짧은 키워드
     (2–12자. 숫자·제품명·고유명사 위주. 예: 107.4조, GPT-6, −20%, Vera Rubin)
@@ -57,8 +57,8 @@
   <main class="wrap">
     <section class="issue-hero panel-dark">
       <div class="ih-text">
-        <p class="eyebrow">{{EYEBROW}}</p>
-        <h1 class="ih-title">{{LABEL}} 기술 동향</h1>
+        <p class="eyebrow">{{LABEL}} · 기술 동향</p>
+        <h1 class="ih-title">Tech Radar <span class="ih-dot">·</span> <em>{{MON_TITLE}} W{{WEEK}}</em></h1>
         <p class="ih-headline">{{HEADLINE}}</p>
         <p class="meta">수집 기간 {{PERIOD}} · 발행 {{PUBLISHED}}</p>
       </div>
