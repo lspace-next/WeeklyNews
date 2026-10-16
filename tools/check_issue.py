@@ -76,6 +76,8 @@ def main():
         fails.append("페이지에 템플릿 안내 주석/예시 카드가 남아 있음")
     if f'data-issue="{issue_id}"' not in src:
         fails.append(f'<body data-issue="{issue_id}"> 가 없음')
+    if "lspace-next.goatcounter.com/count" not in src:
+        fails.append("GoatCounter 방문자 집계 스크립트가 없음 (templates/issue.html 참고)")
     st = entry.get("status", "final")
     live = st == "live"
     if st not in ("live", "final"):

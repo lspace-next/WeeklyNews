@@ -92,6 +92,7 @@ tools/feedback/            독자 피드백 수집용 Google Apps Script(Code.gs
 - 출처 표기: `출처명 · MM.DD` (원문 발표일).
 - 링크 공유 미리보기: 모든 페이지 `og:image` = `assets/images/og-cover.png?v=YYYYMMDD`(1200×630, 템플릿에 포함). 문구·디자인을 바꾸면 이미지를 다시 만들고 모든 페이지의 `?v=` 값을 새 날짜로 올리며(카톡이 이미지 URL 단위로 캐시), 카카오톡은 캐시 초기화(https://developers.kakao.com/tool/clear/og)가 필요하다.
 - CSS/JS 캐시: 모든 페이지가 `style.css?v=YYYYMMDD`·`main.js?v=YYYYMMDD` 로 불러온다(Pages 캐시 10분). `style.css`·`main.js` 를 고치면 모든 페이지와 `templates/issue.html` 의 `?v=` 를 새 날짜로 함께 올린다(같은 날 두 번째면 `YYYYMMDD02`). 주간 발행만 할 때는 템플릿 값을 그대로 쓴다.
+- 방문자 집계: GoatCounter(https://lspace-next.goatcounter.com, 쿠키 없음). 모든 페이지가 `main.js` 바로 다음 줄에서 `count.js` 를 불러온다(템플릿 포함, check_issue 가 검사). 새 페이지를 만들면 같은 줄을 넣는다. localhost 방문은 집계되지 않는다.
 - 외부 링크는 `target="_blank" rel="noopener"`.
 - 텍스트의 `& < > "` 는 이스케이프.
 - `data/issues.json` 은 배열 맨 앞에 추가. `headline`/`highlights` 는 페이지의 내용과 동일하게, `categories` 는 카테고리별 건수, `count` 는 총 카드 수.
