@@ -12,6 +12,7 @@ import json
 import re
 import sys
 import urllib.error
+import urllib.parse
 import urllib.request
 from collections import Counter
 from pathlib import Path
@@ -143,6 +144,9 @@ def main():
                     fails.append(f"{kind} http:// 사용: {u}")
                     continue
                 code = status(u)
+                if kind == "영상" and not 200 <= code < 400:
+                    # 클라우드 IP 는 시청 페이지가 봇 확인(google.com/sorry)으로 넘어가 실패한다 → oEmbed 로 존재 확인
+                    code = status("https://www.youtube.com/oembed?format=json&url=" + urllib.parse.quote(u, safe=""))
                 if code in (401, 403, 429):
                     warns.append(f"{kind} {code} (봇 차단 추정 — WebFetch 로 확인): {u}")
                 elif not 200 <= code < 400:
