@@ -575,7 +575,7 @@
   initViewCounts();
 
   // View counts from GoatCounter (site setting "allow using the visitor counter" must be on).
-  // Issue pages: "· 조회 N" after the hero meta. Every page: "Views for this page" badge in the footer. Hidden on any failure.
+  // Every page: "Views for this page" badge in the footer. Hidden on any failure.
   function initViewCounts() {
     if (!location.hostname.endsWith("github.io")) return; // localhost isn't counted either
     const fetchCount = (path) =>
@@ -583,17 +583,7 @@
         .then((r) => (r.ok ? r.json() : null))
         .then((d) => (d && d.count ? String(d.count) : null))
         .catch(() => null);
-    const append = (el, text) => {
-      if (!el) return;
-      const span = document.createElement("span");
-      span.className = "view-count";
-      span.textContent = text;
-      el.append(span);
-    };
     const page = fetchCount(location.pathname);
-    if (document.body.dataset.issue) {
-      page.then((n) => n && append(document.querySelector(".issue-hero .meta"), ` · 조회 ${n}`));
-    }
     page.then((n) => {
       const copy = document.querySelector(".site-footer .wrap > span:last-child");
       if (!n || !copy) return;
