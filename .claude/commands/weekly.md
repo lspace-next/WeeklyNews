@@ -48,7 +48,7 @@ CLAUDE.md 의 규칙을 따라 L.SPACE Tech Radar 한 호를 만든다. 인자: 
      ```
      git add archive/ data/issues.json
      git commit -m "Content: YYYY년 M월 N주차 발행 (auto)" -m "Co-Authored-By: Claude <noreply@anthropic.com>"
-     git push origin main     # 거부되면 git pull --rebase origin main 후 1회 재시도
+     git push origin HEAD:main  # 거부되면 git pull --rebase origin main 후 1회 재시도
      ```
      검증을 통과하지 못했으면 **커밋·푸시하지 않고** 변경을 되돌린 뒤(`git checkout -- . && git clean -fd archive/`) 실패 사유를 보고한다. 공개 사이트에 불완전한 호를 올리지 않는 것이 우선이다.
 

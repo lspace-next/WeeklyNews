@@ -36,7 +36,7 @@ CLAUDE.md 의 규칙을 따라 이번 주 호를 하루치 채운다. 인자: `$
      ```
      git add archive/ data/issues.json
      git commit -m "Content: YYYY년 M월 N주차 업데이트 (MM.DD, auto)" -m "Co-Authored-By: Claude <noreply@anthropic.com>"
-     git push origin main     # 거부되면 git pull --rebase origin main 후 1회 재시도
+     git push origin HEAD:main  # 거부되면 git pull --rebase origin main 후 1회 재시도
      ```
 
 5. **마감** (월요일만, 2–3단계로 금–일분을 추가한 뒤)
