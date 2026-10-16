@@ -7,6 +7,7 @@
 issues.json 의 status 로 규칙이 갈린다: live(매일 채우는 중)는 건수 하한·국내 IT 최소 건수를 보지 않는다.
 링크가 403(봇 차단)이면 WARN 으로만 표시한다 → /weekly 가 WebFetch 로 존재를 확인한다.
 """
+import gzip
 import html
 import json
 import re
@@ -157,6 +158,11 @@ def main():
     import build_index
     if not build_index.is_current():
         fails.append("data/cards.json 이 최신이 아님 — python tools/build_index.py 실행 후 함께 커밋")
+    # 압축 크기가 이만큼 크면 모바일 첫 검색이 느려진다 → 연도별 분할(data/cards-YYYY.json) 검토
+    INDEX_WARN_KB = 800
+    gz = len(gzip.compress((ROOT / "data/cards.json").read_bytes())) // 1024
+    if gz > INDEX_WARN_KB:
+        warns.append(f"data/cards.json 압축 {gz}KB (> {INDEX_WARN_KB}KB) — 검색 인덱스를 연도별로 나눌 때가 됨")
 
     # 5. 링크·이미지
     if check_links:
