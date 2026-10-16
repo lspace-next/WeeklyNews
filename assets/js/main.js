@@ -575,7 +575,7 @@
   initViewCounts();
 
   // View counts from GoatCounter (site setting "allow using the visitor counter" must be on).
-  // Issue pages: "· 조회 N" after the hero meta. Every page: "· 누적 조회 N" in the footer. Hidden on any failure.
+  // Issue pages: "· 조회 N" after the hero meta. Every page: "Views for this page" badge in the footer. Hidden on any failure.
   function initViewCounts() {
     if (!location.hostname.endsWith("github.io")) return; // localhost isn't counted either
     const fetchCount = (path) =>
@@ -590,9 +590,23 @@
       span.textContent = text;
       el.append(span);
     };
+    const page = fetchCount(location.pathname);
     if (document.body.dataset.issue) {
-      fetchCount(location.pathname).then((n) => n && append(document.querySelector(".issue-hero .meta"), ` · 조회 ${n}`));
+      page.then((n) => n && append(document.querySelector(".issue-hero .meta"), ` · 조회 ${n}`));
     }
-    fetchCount("TOTAL").then((n) => n && append(document.querySelector(".site-footer .wrap > span:last-child"), ` · 누적 조회 ${n}`));
+    page.then((n) => {
+      const copy = document.querySelector(".site-footer .wrap > span:last-child");
+      if (!n || !copy) return;
+      // badge above the copyright line, both right-aligned
+      const side = document.createElement("div");
+      side.className = "footer-side";
+      copy.replaceWith(side);
+      side.innerHTML = `<div class="gc-badge">
+        <span class="gc-label">Views for this page</span>
+        <strong class="gc-num">${esc(n)}</strong>
+        <a class="gc-by" href="https://www.goatcounter.com" target="_blank" rel="noopener">stats by GoatCounter ↗</a>
+      </div>`;
+      side.append(copy);
+    });
   }
 })();

@@ -178,6 +178,40 @@ a:hover { color: var(--accent); }
 .footer-link { color: var(--text-sub); font-weight: 600; text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 3px; }
 .footer-link:hover { color: var(--accent); text-decoration-color: currentColor; }
 @media (prefers-color-scheme: dark) { .footer-logo { filter: brightness(0) invert(1); opacity: .85; } }
+/* GoatCounter page-view badge (added by main.js) — category-color stripe + accent number */
+.footer-side { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+.gc-badge {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 7px 14px 7px 18px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  overflow: hidden;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  line-height: 1.4;
+}
+.gc-badge::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 5px;
+  background: linear-gradient(var(--c-ai), var(--c-bigtech), var(--c-cloud), var(--c-korea), var(--c-dev), var(--c-chip), var(--c-security), var(--c-device));
+}
+.gc-label { color: var(--text-mute); text-transform: uppercase; letter-spacing: .06em; font-size: 10.5px; }
+.gc-num { color: var(--accent); font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.gc-by { color: var(--text-mute); border-left: 1px solid var(--line); padding-left: 10px; transition: color .15s; }
+.gc-by:hover { color: var(--accent); }
+@media (max-width: 640px) {
+  .footer-side { align-items: flex-start; }
+  .gc-badge { flex-wrap: wrap; gap: 2px 8px; padding: 6px 12px 6px 15px; border-radius: 16px; font-size: 10.5px; max-width: 100%; } /* wraps on narrow phones */
+  .gc-label { font-size: 9.5px; letter-spacing: .03em; }
+  .gc-num { font-size: 13px; }
+  .gc-by { padding-left: 8px; }
+}
 
 /* ---------- generic heads ---------- */
 
