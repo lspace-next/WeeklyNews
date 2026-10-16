@@ -119,6 +119,8 @@
   function initFilter() {
     const bar = document.getElementById("filters");
     const cards = [...document.querySelectorAll(".grid .card")];
+    // 카드 번호: CSS counter 는 container-type(.card-media) 안에서 0 으로 초기화되는 브라우저(iOS Safari 등)가 있어 JS 로 넣는다
+    cards.forEach((c, i) => c.querySelector(".card-media")?.setAttribute("data-n", String(i + 1).padStart(2, "0")));
     if (!bar || !cards.length) return;
 
     const counts = new Map();

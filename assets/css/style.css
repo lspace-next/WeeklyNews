@@ -639,7 +639,6 @@ a:hover { color: var(--accent); }
 /* ---------- news cards (bento) ---------- */
 
 .grid {
-  counter-reset: card;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
@@ -648,7 +647,6 @@ a:hover { color: var(--accent); }
 @media (max-width: 640px)  { .grid { grid-template-columns: 1fr; } }
 
 .card {
-  counter-increment: card;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -692,8 +690,8 @@ a:hover { color: var(--accent); }
 }
 .card:hover .card-media::before { opacity: 1; }
 /* issue number, oversized & outlined */
-.card-media::after {
-  content: counter(card, decimal-leading-zero);
+.card-media[data-n]::after {
+  content: attr(data-n);
   position: absolute;
   top: 10px;
   right: 16px;
