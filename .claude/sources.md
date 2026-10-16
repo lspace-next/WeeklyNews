@@ -122,3 +122,27 @@
 영상은 수집 기간에 올라온 것 중 2–4개(카드 그리드라 4개가 PC 한 줄). 공식 채널 키노트/발표 영상을 우선하고, Shorts(`/shorts/`)는 제외한다. 영상 URL은 `watch?v=` 형식으로 실제 존재를 확인한다.
 - 채널 업로드 목록: `https://www.youtube.com/feeds/videos.xml?channel_id=<UC...>` (채널 ID는 채널 페이지의 `"externalId"`)
 - 영상 카드는 썸네일 `https://i.ytimg.com/vi/<ID>/mqdefault.jpg` 을 쓴다(200 확인). 썸네일 클릭 시 main.js가 페이지 안에서 재생한다.
+
+## 클라우드 루틴 네트워크 허용 목록
+
+자동 업데이트 루틴(클라우드 환경 `env_019Gsub89APkhvWuyuCTH9nL`)은 아래 도메인만 접속할 수 있다. **이 목록은 참고용 사본이고, 실제 적용은 claude.ai/code 환경 설정의 네트워크 허용 목록에서 한다.** 위 표에 소스를 추가하면 두 곳을 함께 고친다.
+허용되지 않은 원문·이미지 도메인은 열리지 않으므로, 루틴 보고에 "접속 실패"가 나오면 그 도메인을 환경 설정에 추가한다.
+
+```
+# 해외 IT 언론
+www.theverge.com techcrunch.com arstechnica.com feeds.arstechnica.com www.wired.com www.technologyreview.com www.theregister.com image.theregister.com www.reuters.com www.bloomberg.com
+# 기업 공식
+openai.com www.anthropic.com www-cdn.anthropic.com blog.google storage.googleapis.com deepmind.google blogs.microsoft.com ai.meta.com about.fb.com nvidianews.nvidia.com blogs.nvidia.com www.apple.com aws.amazon.com github.blog
+# 보안
+www.cisa.gov www.bleepingcomputer.com www.bleepstatic.com thehackernews.com feeds.feedburner.com krebsonsecurity.com www.boho.or.kr www.securityweek.com
+# 리서치·커뮤니티
+www.gartner.com www.idc.com hai.stanford.edu news.ycombinator.com hn.algolia.com
+# 국내 IT 언론
+www.etnews.com rss.etnews.com img.etnews.com zdnet.co.kr www.ddaily.co.kr www.bloter.net byline.network cdn.byline.network www.inews24.com image.inews24.com www.yna.co.kr
+# 국내 공공
+www.msit.go.kr www.iitp.kr www.nia.or.kr spri.kr www.nipa.kr www.motie.go.kr www.mof.go.kr
+# 조선·해양
+www.hd.com www.samsungshi.com www.hanwhaocean.com www.koshipa.or.kr www.komeri.re.kr www.kriso.re.kr www.kr.co.kr www.shippingnewsnet.com cdn.shippingnewsnet.com www.dnv.com www.lr.org splash247.com www.offshore-energy.biz offshore-energy.biz gcaptain.com www.marinelink.com www.seatrade-maritime.com www.rivieramm.com
+# 유튜브
+www.youtube.com youtube.com i.ytimg.com
+```
