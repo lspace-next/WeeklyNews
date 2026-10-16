@@ -572,4 +572,27 @@
   initCardTitles();
   initVideos();
   initFeedback();
+  initViewCounts();
+
+  // View counts from GoatCounter (site setting "allow using the visitor counter" must be on).
+  // Issue pages: "· 조회 N" after the hero meta. Every page: "· 누적 조회 N" in the footer. Hidden on any failure.
+  function initViewCounts() {
+    if (!location.hostname.endsWith("github.io")) return; // localhost isn't counted either
+    const fetchCount = (path) =>
+      fetch(`https://lspace-next.goatcounter.com/counter/${encodeURIComponent(path)}.json`)
+        .then((r) => (r.ok ? r.json() : null))
+        .then((d) => (d && d.count ? String(d.count) : null))
+        .catch(() => null);
+    const append = (el, text) => {
+      if (!el) return;
+      const span = document.createElement("span");
+      span.className = "view-count";
+      span.textContent = text;
+      el.append(span);
+    };
+    if (document.body.dataset.issue) {
+      fetchCount(location.pathname).then((n) => n && append(document.querySelector(".issue-hero .meta"), ` · 조회 ${n}`));
+    }
+    fetchCount("TOTAL").then((n) => n && append(document.querySelector(".site-footer .wrap > span:last-child"), ` · 누적 조회 ${n}`));
+  }
 })();
