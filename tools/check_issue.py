@@ -1,9 +1,10 @@
-"""발행 전 자동 검증. /weekly 의 auto·dry-run 모드가 커밋 전에 실행한다.
+"""발행 전 자동 검증. /daily·/weekly 의 auto·dry-run 모드가 커밋 전에 실행한다.
 
     python tools/check_issue.py 2026-10-w3            # 구조 검사 + 링크 검사
     python tools/check_issue.py 2026-10-w3 --no-links # 구조 검사만
 
 통과하면 exit 0, 하나라도 실패하면 실패 항목을 출력하고 exit 1.
+issues.json 의 status 로 규칙이 갈린다: live(매일 채우는 중)는 건수 하한·국내 IT 최소 건수를 보지 않는다.
 링크가 403(봇 차단)이면 WARN 으로만 표시한다 → /weekly 가 WebFetch 로 존재를 확인한다.
 """
 import html
@@ -73,16 +74,27 @@ def main():
         fails.append("페이지에 템플릿 안내 주석/예시 카드가 남아 있음")
     if f'data-issue="{issue_id}"' not in src:
         fails.append(f'<body data-issue="{issue_id}"> 가 없음')
+    st = entry.get("status", "final")
+    live = st == "live"
+    if st not in ("live", "final"):
+        fails.append(f"issues.json status '{st}' (live 또는 final 이어야 함)")
+    if f'data-status="{st}"' not in src:
+        fails.append(f'<body data-status="{st}"> 가 없음 (issues.json status 와 같아야 함)')
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(entry.get("updated", ""))):
+        fails.append("issues.json updated 가 YYYY-MM-DD 가 아님")
 
     # 3. 카드 규칙
     cats = categories()
-    cards = re.findall(r'<article class="card" data-cat="([^"]+)">(.*?)</article>', src, re.S)
+    cards = re.findall(r'<article class="card" data-cat="([^"]+)"(?: data-added="([^"]*)")?>(.*?)</article>', src, re.S)
     n = len(cards)
-    if not 8 <= n <= 12:
-        fails.append(f"카드 수 {n}건 (8–12건이어야 함)")
+    lo, hi = (1, 20) if live else (10, 20)
+    if not lo <= n <= hi:
+        fails.append(f"카드 수 {n}건 ({lo}–{hi}건이어야 함)")
     count = Counter()
-    for i, (cat, body) in enumerate(cards, 1):
+    for i, (cat, added, body) in enumerate(cards, 1):
         count[cat] += 1
+        if live and not re.fullmatch(r"\d{4}-\d{2}-\d{2}", added):
+            fails.append(f"카드 {i}: data-added=\"YYYY-MM-DD\" 가 없음")
         if cat not in cats:
             fails.append(f"카드 {i}: data-cat '{cat}' 이 CLAUDE.md 카테고리 표에 없음")
             continue
@@ -101,12 +113,16 @@ def main():
         if not re.search(r"<span>[^<]+ · \d{2}\.\d{2}</span>", body):
             fails.append(f"카드 {i}: 출처 표기 '출처명 · MM.DD' 형식이 아님")
     for cat, c in count.items():
-        if c > 4:
-            fails.append(f"카테고리 '{cat}' {c}건 (최대 4건)")
-    if count.get("국내 IT", 0) < 2:
+        if c > 5:
+            fails.append(f"카테고리 '{cat}' {c}건 (최대 5건)")
+    if not live and count.get("국내 IT", 0) < 2:
         fails.append(f"국내 IT {count.get('국내 IT', 0)}건 (최소 2건)")
-    if count.get("조선·해양", 0) == 0:
+    if not live and count.get("조선·해양", 0) == 0:
         warns.append("조선·해양 0건 — 보고에 명시할 것")
+    srcs = re.findall(r'<a href="(https?://[^"]+)" target="_blank" rel="noopener">원문', src)
+    for u, c in Counter(srcs).items():
+        if c > 1:
+            fails.append(f"같은 원문 링크가 카드 {c}개에 있음 (같은 사건은 1건으로): {u}")
     if entry.get("count") != n:
         fails.append(f"issues.json count={entry.get('count')} 와 카드 수 {n} 불일치")
     if entry.get("categories") != dict(count):
@@ -136,7 +152,7 @@ def main():
         print("WARN " + w)
     for f in fails:
         print("FAIL " + f)
-    print(f"{'PASS' if not fails else 'FAIL'} {issue_id}: 카드 {n}건 {dict(count)}")
+    print(f"{'PASS' if not fails else 'FAIL'} {issue_id} ({st}): 카드 {n}건 {dict(count)}")
     sys.exit(1 if fails else 0)
 
 

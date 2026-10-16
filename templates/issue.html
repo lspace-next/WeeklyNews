@@ -4,7 +4,10 @@
   - {{ID}}        예: 2026-10-w2   (data/issues.json 의 id 와 동일)
   - {{LABEL}}     예: 2026년 10월 2주차
   - {{PERIOD}}    예: 2026.10.05 – 10.11
-  - {{PUBLISHED}} 예: 2026-10-14
+  - {{PUBLISHED}} 예: 2026-10-13 (호를 처음 연 날)
+  - {{STATUS}}    live = 매일 채우는 중 / final = 마감 (issues.json status 와 동일)
+  - {{META}}      live : 수집 기간 2026.10.12 – 10.18 · 매일 업데이트 중 · 최근 10.15
+                  final: 수집 기간 2026.10.12 – 10.18 · 마감 2026-10-19
   - {{HEADLINE}}  이번 주 한 줄 요약 (issues.json headline 과 동일)
   - {{SITE_URL}}  CLAUDE.md 의 SITE_URL
   - {{PATH}}      예: archive/2026/10/week2.html
@@ -17,6 +20,9 @@
   - 원문에 og:image 가 있고 200 이면 <img class="card-img"> 를 추가한다. 실패 시 onerror 로 지워져 포스터가 보인다.
     로고만 있는 이미지·http:// 이미지는 쓰지 않는다. URL 의 & 는 &amp; 로.
   - 첫 번째 카드는 PC 에서 가로 전체를 쓰는 리드 카드가 된다 → 가장 중요한 기사를 맨 앞에.
+  - 카드 data-added = 그 카드를 추가한 날(YYYY-MM-DD). live 일 때 가장 최근 날짜 카드에 NEW 배지가 붙는다.
+    live 순서: 최근 추가일 먼저, 같은 날 안에서는 중요도 순. 마감(final) 때 주 전체를 중요도 순으로 다시 정렬.
+  - 영상 블록은 마감 때 넣는다. live 동안에는 영상 제목(h2)부터 </ul> 까지 지운다.
   카드/영상 블록은 아래 예시를 필요한 만큼 반복. 텍스트의 & < > " 는 HTML 이스케이프할 것.
   - {{VIDEO_ID}}  YouTube watch?v= 뒤의 ID (영상 블록 안 4곳: href 2개, data-yt, 썸네일 img)
   이 주석 블록은 생성된 페이지에서 삭제한다.
@@ -44,9 +50,9 @@
   <link rel="apple-touch-icon" href="../../../assets/images/profile_lspace.jpg">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap">
-  <link rel="stylesheet" href="../../../assets/css/style.css?v=2026101602">
+  <link rel="stylesheet" href="../../../assets/css/style.css?v=2026101603">
 </head>
-<body data-root="../../../" data-issue="{{ID}}">
+<body data-root="../../../" data-issue="{{ID}}" data-status="{{STATUS}}">
   <header class="site-header">
     <div class="wrap">
       <a class="brand" href="../../../index.html"><img class="brand-logo" src="../../../assets/images/profile_lspace.jpg" alt="L.SPACE" width="30" height="30"><span><span class="brand-sub">L.SPACE</span> Tech Radar</span></a>
@@ -60,7 +66,7 @@
         <p class="eyebrow">{{LABEL}} · 기술 동향</p>
         <h1 class="ih-title">Tech Radar <span class="ih-dot">·</span> <em>{{MON_TITLE}} W{{WEEK}}</em></h1>
         <p class="ih-headline">{{HEADLINE}}</p>
-        <p class="meta">수집 기간 {{PERIOD}} · 발행 {{PUBLISHED}}</p>
+        <p class="meta">{{META}}</p>
       </div>
       <div class="ih-week" aria-hidden="true"><span class="big-num">W{{WEEK}}</span><small>{{MON}} {{YEAR}}</small></div>
       <div class="catbar" id="catbar" aria-hidden="true"></div>
@@ -79,7 +85,7 @@
 
     <div class="grid">
       <!-- 카드: data-cat · poster-cat · tag 텍스트는 같은 카테고리명, tag class 는 CLAUDE.md 의 slug -->
-      <article class="card" data-cat="AI">
+      <article class="card" data-cat="AI" data-added="2026-10-13">
         <div class="card-media">
           <span class="poster-cat">AI</span>
           <span class="poster-kw">키워드</span>
@@ -121,11 +127,11 @@
     <div class="wrap">
       <div class="footer-brand">
         <a class="footer-home" href="https://www.lspace.kr" target="_blank" rel="noopener" aria-label="L.SPACE 회사 홈페이지"><img class="footer-logo" src="../../../assets/images/lspace_logo.png" alt="L.SPACE" width="114" height="16"></a>
-        <span>Tech Radar · 매주 발행 · <a class="footer-link" href="https://www.lspace.kr" target="_blank" rel="noopener">www.lspace.kr ↗</a></span>
+        <span>Tech Radar · 평일 매일 업데이트 · <a class="footer-link" href="https://www.lspace.kr" target="_blank" rel="noopener">www.lspace.kr ↗</a></span>
       </div>
       <span>각 기사의 저작권은 원문 출처에 있습니다.</span>
     </div>
   </footer>
-  <script src="../../../assets/js/main.js?v=2026101602"></script>
+  <script src="../../../assets/js/main.js?v=2026101603"></script>
 </body>
 </html>

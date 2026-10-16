@@ -58,15 +58,18 @@
         [issues.length + "호", "발행"],
         [total + "건", "누적 뉴스"],
         [CAT_NAMES.length + "개", "카테고리"],
-        [issues[0].published.slice(5).replace("-", "."), "최근 발행"],
+        [(issues[0].updated || issues[0].published).slice(5).replace("-", "."), "최근 업데이트"],
       ].map(([b, s]) => `<div class="stat"><b>${esc(b)}</b><span>${esc(s)}</span></div>`).join("");
     }
 
     if (latestEl) {
       const it = issues[0];
+      const live = it && it.status === "live";
       latestEl.innerHTML = it
         ? `<a class="hero-poster panel-dark" href="${root}${esc(it.path)}">
-            <div class="hp-top"><span class="badge"><span class="live"></span>LATEST ISSUE</span><span>${esc(it.period)}</span></div>
+            <div class="hp-top">${live
+              ? `<span class="badge"><span class="live"></span>THIS WEEK · LIVE</span><span>${esc(it.period)} · ${esc((it.updated || "").slice(5).replace("-", "."))} 업데이트</span>`
+              : `<span class="badge">LATEST ISSUE</span><span>${esc(it.period)}</span>`}</div>
             <div class="hp-text">
               <span class="hp-label">${esc(it.label)}</span>
               <h2>${esc(it.headline)}</h2>
@@ -121,6 +124,11 @@
     const cards = [...document.querySelectorAll(".grid .card")];
     // 카드 번호: CSS counter 는 container-type(.card-media) 안에서 0 으로 초기화되는 브라우저(iOS Safari 등)가 있어 JS 로 넣는다
     cards.forEach((c, i) => c.querySelector(".card-media")?.setAttribute("data-n", String(i + 1).padStart(2, "0")));
+    // 매일 채우는 중인 호: 가장 최근에 추가한 날의 카드에 NEW 배지
+    if (document.body.dataset.status === "live") {
+      const latest = cards.reduce((m, c) => (c.dataset.added > m ? c.dataset.added : m), "");
+      for (const c of cards) if (latest && c.dataset.added === latest) c.classList.add("is-new");
+    }
     if (!bar || !cards.length) return;
 
     const counts = new Map();

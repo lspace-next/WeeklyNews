@@ -1,15 +1,15 @@
 ---
-description: 이번 주 L.SPACE Tech Radar 호를 조사·작성·발행 준비한다
-argument-hint: "[YYYY-MM-DD 발행일 (생략 시 오늘)] [auto | dry-run]"
+description: L.SPACE Tech Radar 한 주 호를 통째로 조사·작성한다 (수동 작성·백필용. 매일 업데이트는 /daily)
+argument-hint: "[YYYY-MM-DD 그 주의 아무 날 (생략 시 지난주)] [auto | dry-run]"
 ---
 
 CLAUDE.md 의 규칙을 따라 L.SPACE Tech Radar 한 호를 만든다. 인자: `$ARGUMENTS`
 
 **인자 해석** (순서 무관, 모두 생략 가능)
-- `YYYY-MM-DD` → 발행일. 없으면 오늘(KST).
+- `YYYY-MM-DD` → 만들 주에 속한 아무 날. 없으면 지난주(KST).
 - 모드:
   - 없음 = **대화형**: 막히면 사용자에게 묻고, 커밋·푸시는 사용자 승인 후.
-  - `auto` = **자동 발행**(매주 월요일 클라우드 루틴용): 사용자에게 아무것도 묻지 않는다. 판단이 필요하면 CLAUDE.md 규칙대로 스스로 정하고 보고에 남긴다. 검증을 통과하면 `main` 에 커밋·푸시한다.
+  - `auto` = **무인 실행**: 사용자에게 아무것도 묻지 않는다. 판단이 필요하면 CLAUDE.md 규칙대로 스스로 정하고 보고에 남긴다. 검증을 통과하면 `main` 에 커밋·푸시한다.
   - `dry-run` = auto 와 똑같이 진행하되 **커밋·푸시하지 않고** 결과만 보고한다(테스트용).
 
 0. **준비** (auto·dry-run): `git pull --rebase origin main` 으로 최신 상태에서 시작한다. 작업 트리가 깨끗하지 않으면 중단하고 보고한다.
@@ -22,7 +22,7 @@ CLAUDE.md 의 규칙을 따라 L.SPACE Tech Radar 한 호를 만든다. 인자: 
    - RSS는 `curl -s -A "Mozilla/5.0" <feed>` 로 가져와 pubDate로 기간 필터.
    - CISA KEV JSON은 `dateAdded` 로 기간 필터.
 
-3. **선정**: "선정 기준"에 맞게 8–12건을 고른다. 같은 사건은 합친다. 선정 이유가 약한 것은 뺀다. 가장 중요한 기사를 첫 카드(리드 카드)로 둔다.
+3. **선정**: "선정 기준"에 맞게 10–20건을 고른다. 같은 사건은 합친다. 선정 이유가 약한 것은 뺀다. 가장 중요한 기사를 첫 카드(리드 카드)로 둔다.
 
 4. **검증·작성**: 선정한 기사마다 원문을 WebFetch로 열어 날짜·숫자·이름을 확인한 뒤 요약(2–3문장)과 "왜 중요한가"(1문장)를 직접 쓴다. 이번 주 핵심 3줄과 한 줄 headline 을 쓴다.
    - 날짜를 원문에서 확인하지 못한 기사, 숫자를 대조하지 못한 기사는 쓰지 않는다(auto 에서는 특히 엄격하게 — 애매하면 빼고 다른 후보로 채운다).
@@ -31,7 +31,7 @@ CLAUDE.md 의 규칙을 따라 L.SPACE Tech Radar 한 호를 만든다. 인자: 
 
 5. **영상**: `.claude/sources.md` 유튜브 목록과 영상 규칙에 따라 기간 내 영상 2–4개를 고르고 URL이 존재하는지 확인한다.
 
-6. **생성**: `templates/issue.html` → `archive/YYYY/MM/weekN.html` (안내 주석 삭제). `data/issues.json` 맨 앞에 항목 추가.
+6. **생성**: `templates/issue.html` → `archive/YYYY/MM/weekN.html` (안내 주석 삭제, STATUS=final, 모든 카드 data-added=생성일, meta 는 마감 형식). `data/issues.json` 맨 앞에 항목 추가(`status: "final"`, `published`·`updated` = 생성일). 이미 지난 주를 백필하면 issues.json 안에서 날짜 순 위치에 넣는다.
 
 7. **검증**:
    - `python tools/check_issue.py <id>` 를 실행한다. 구조(issues.json·플레이스홀더·카드 규칙·카테고리 표 일치)와 원문·이미지·영상 링크 상태를 검사한다.

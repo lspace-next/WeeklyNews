@@ -767,6 +767,17 @@ a:hover { color: var(--accent); }
   padding: 3px 10px;
 }
 .tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.card.is-new .tag::after {
+  content: "NEW";
+  margin-left: 2px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: .06em;
+  color: #fff;
+  background: #ef4444;
+  border-radius: 999px;
+  padding: 1px 6px;
+}
 
 .card-title {
   font-size: 18.5px;
