@@ -14,7 +14,7 @@ CLAUDE.md 의 규칙을 따라 L.SPACE Tech Radar 한 호를 만든다. 인자: 
 
 0. **준비** (auto·dry-run): `git pull --rebase origin main` 으로 최신 상태에서 시작한다. 작업 트리가 깨끗하지 않으면 중단하고 보고한다.
 
-1. **주차 계산**: CLAUDE.md "주차 규칙"으로 라벨·id·파일 경로·수집 기간(직전 주 월~일)을 정한다. `data/issues.json` 에 같은 id가 있으면:
+1. **주차 계산**: CLAUDE.md "주차 규칙"으로 라벨·id·파일 경로·수집 기간(그 주 월~일)을 정한다. `data/issues.json` 에 같은 id가 있으면:
    - 대화형: 멈추고 사용자에게 갱신 여부를 묻는다.
    - auto·dry-run: **아무것도 바꾸지 않고** "이미 발행됨(id)"으로 보고하고 끝낸다.
 

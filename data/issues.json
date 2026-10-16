@@ -1,13 +1,13 @@
 [
   {
-    "id": "2026-10-w2",
+    "id": "2026-10-w1",
     "year": 2026,
     "month": 10,
-    "week": 2,
-    "label": "2026년 10월 2주차",
+    "week": 1,
+    "label": "2026년 10월 1주차",
     "period": "2026.10.05 – 10.11",
     "published": "2026-10-14",
-    "path": "archive/2026/10/week2.html",
+    "path": "archive/2026/10/week1.html",
     "headline": "GPT-6 전면 개방과 Haiku 5.5 출시, 삼성전자 영업이익 107조 원, AI 해킹 도구의 금융권 공격까지 — AI가 실적·PC·보안을 동시에 흔든 한 주",
     "highlights": [
       "OpenAI가 GPT-6와 대화형 답변 'Intelligent UI'를 무료 사용자까지 열었고, Anthropic은 가격을 크게 낮춘 Claude Haiku 5.5를 내놨다.",
@@ -28,14 +28,14 @@
     "count": 12
   },
   {
-    "id": "2026-10-w1",
+    "id": "2026-09-w4",
     "year": 2026,
-    "month": 10,
-    "week": 1,
-    "label": "2026년 10월 1주차",
+    "month": 9,
+    "week": 4,
+    "label": "2026년 9월 4주차",
     "period": "2026.09.28 – 10.04",
     "published": "2026-10-05",
-    "path": "archive/2026/10/week1.html",
+    "path": "archive/2026/09/week4.html",
     "headline": "Gemini 4 Argon과 GPT-6.1 Sol의 맞대결, 은행에서 저축은행으로 번진 금융권 연쇄 해킹, 로컬 AI 하드웨어 경쟁까지 — 9월 마지막 주 IT 흐름",
     "highlights": [
       "Google이 Gemini 4 Argon을, OpenAI가 DevDay에서 GPT-6.1 Sol을 내놓으며 최상위 모델 경쟁이 '성능 대비 가격'으로 옮겨갔다.",
