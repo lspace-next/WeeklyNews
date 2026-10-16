@@ -312,9 +312,261 @@
     mark();
   }
 
+  // ---------- search: data/cards.json (tools/build_index.py 가 생성) ----------
+  // 카드 키 = 원문 URL 의 FNV-1a 32bit 해시(base36). tools/build_index.py 의 card_key() 와 같아야 한다.
+  function cardKey(url) {
+    let h = 0x811c9dc5;
+    for (const b of new TextEncoder().encode(url)) h = Math.imul(h ^ b, 0x01000193);
+    return (h >>> 0).toString(36);
+  }
+
+  let cardsPromise;
+  function loadCards() {
+    cardsPromise ||= fetch(root + "data/cards.json", { cache: "no-cache" })
+      .then((r) => (r.ok ? r.json() : []))
+      .catch(() => []);
+    return cardsPromise;
+  }
+
+  const norm = (s) => String(s || "").normalize("NFC").toLowerCase();
+  const termsOf = (q) => [...new Set(norm(q).split(/\s+/).filter(Boolean))];
+  // 한글·영문 표기가 섞이는 이름: 한쪽으로 찾아도 다른 쪽 표기 카드가 나오게 한다 (모두 소문자)
+  const ALIASES = [
+    ["엔비디아", "nvidia"], ["마이크로소프트", "microsoft"], ["구글", "google"], ["애플", "apple"], ["메타", "meta"],
+    ["아마존", "amazon", "aws"], ["오픈ai", "openai", "오픈에이아이"], ["앤트로픽", "anthropic"], ["삼성", "samsung"],
+    ["sk하이닉스", "하이닉스", "hynix"], ["깃허브", "github"], ["인텔", "intel"], ["퀄컴", "qualcomm"],
+    ["클로드", "claude"], ["제미나이", "gemini"], ["챗gpt", "chatgpt"], ["테슬라", "tesla"], ["화웨이", "huawei"],
+    ["시스코", "cisco"], ["오라클", "oracle"], ["랜섬웨어", "ransomware"], ["반도체", "semiconductor", "칩"],
+    ["디지털 트윈", "디지털트윈", "digital twin"], ["자율운항", "autonomous ship"], ["데이터센터", "data center", "데이터 센터"],
+  ];
+  const ALIAS_OF = new Map(ALIASES.flatMap((g) => g.map((w) => [w, g])));
+  const variantsOf = (t) => ALIAS_OF.get(t) || [t];
+  // 필드별 가중치: 제목·포스터 키워드가 본문보다 앞선다
+  const FIELDS = [["t", 5], ["kw", 4], ["c", 2], ["src", 2], ["s", 1], ["w", 1], ["l", 1]];
+
+  // 모든 검색어를 포함하는 카드만, 점수 → 원문 날짜 최신순
+  function searchCards(cards, terms, cat) {
+    const out = [];
+    for (const c of cards) {
+      if (cat && c.c !== cat) continue;
+      c._n ||= Object.fromEntries(FIELDS.map(([f]) => [f, norm(c[f])]));
+      let score = 0;
+      const all = terms.every((t) => {
+        let hit = 0;
+        for (const [f, w] of FIELDS) if (variantsOf(t).some((v) => c._n[f].includes(v))) hit += w;
+        score += hit;
+        return hit > 0;
+      });
+      if (all) out.push([score, c]);
+    }
+    return out.sort((a, b) => b[0] - a[0] || b[1].d.localeCompare(a[1].d)).map(([, c]) => c);
+  }
+
+  // 검색어를 <mark> 로 감싼다 (원문은 이스케이프)
+  function hl(text, terms) {
+    text = String(text || "");
+    const low = norm(text);
+    const marks = [];
+    for (const t of terms.flatMap(variantsOf)) for (let i = low.indexOf(t); i >= 0; i = low.indexOf(t, i + t.length)) marks.push([i, i + t.length]);
+    marks.sort((a, b) => a[0] - b[0]);
+    let html = "", pos = 0;
+    for (const [s, e] of marks) {
+      if (e <= pos) continue;
+      html += esc(text.slice(pos, Math.max(s, pos))) + "<mark>" + esc(text.slice(Math.max(s, pos), e)) + "</mark>";
+      pos = e;
+    }
+    return html + esc(text.slice(pos));
+  }
+
+  // 요약에서 첫 일치 부분 주변을 잘라 보여준다
+  function snippet(c, terms, len = 96) {
+    terms = terms.flatMap(variantsOf);
+    const text = terms.some((t) => norm(c.s).includes(t)) || !terms.some((t) => norm(c.w).includes(t)) ? c.s : c.w;
+    const low = norm(text);
+    const at = Math.min(...terms.map((t) => low.indexOf(t)).filter((i) => i >= 0), Infinity);
+    const start = at === Infinity || at < 30 ? 0 : at - 30;
+    const cut = text.slice(start, start + len);
+    return (start ? "…" : "") + hl(cut, terms) + (start + len < text.length ? "…" : "");
+  }
+
+  const resultHref = (c) => `${root}${esc(c.p)}#c-${esc(c.k)}`;
+  const resultItem = (c, terms, attrs = "") => `<a class="sr-item" href="${resultHref(c)}"${attrs}>
+      <span class="sr-meta"><span class="tag ${catClass(c.c)}">${esc(c.c)}</span><span>${esc(c.src)} · ${esc(c.d.slice(5).replace("-", "."))}</span><span class="sr-issue">${esc(c.l)}</span></span>
+      <span class="sr-title">${hl(c.t, terms)}</span>
+      <span class="sr-snip">${snippet(c, terms)}</span>
+    </a>`;
+
+  const ICON_SEARCH = `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>`;
+  const searchPage = (q) => `${root}search.html${q ? "?q=" + encodeURIComponent(q) : ""}`;
+
+  // 헤더 검색 버튼 + 오버레이(빠른 검색). Enter(선택 없음) → 전용 페이지 search.html
+  function initSearch() {
+    const nav = document.querySelector(".site-header .nav");
+    if (!nav) return;
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "nav-search";
+    btn.setAttribute("aria-label", "기사 검색 (단축키 /)");
+    btn.innerHTML = `${ICON_SEARCH}<span>검색</span><kbd>/</kbd>`;
+    nav.append(btn);
+
+    const dlg = document.createElement("dialog");
+    dlg.className = "search-dialog";
+    dlg.setAttribute("aria-label", "기사 검색");
+    dlg.innerHTML = `<div class="sd-box">
+        <div class="sd-head">${ICON_SEARCH}<input type="search" placeholder="제목·요약·키워드·출처로 검색" aria-label="검색어" autocomplete="off" enterkeyhint="search"><kbd>Esc</kbd></div>
+        <div class="sd-body" role="listbox"></div>
+        <div class="sd-foot"><span class="sd-keys"><kbd>↑</kbd><kbd>↓</kbd> 이동 <kbd>Enter</kbd> 열기</span><a class="sd-all" href="${searchPage("")}">전체 결과 보기 →</a></div>
+      </div>`;
+    document.body.append(dlg);
+    const input = dlg.querySelector("input");
+    const body = dlg.querySelector(".sd-body");
+    const all = dlg.querySelector(".sd-all");
+    let active = -1;
+
+    const items = () => [...body.querySelectorAll(".sr-item")];
+    const setActive = (i) => {
+      const list = items();
+      active = list.length ? (i + list.length) % list.length : -1;
+      list.forEach((el, j) => el.classList.toggle("is-active", j === active));
+      list[active]?.scrollIntoView({ block: "nearest" });
+    };
+    async function render() {
+      const cards = await loadCards();
+      const q = input.value.trim();
+      const terms = termsOf(q);
+      all.href = searchPage(q);
+      active = -1;
+      if (!terms.length) {
+        body.innerHTML = `<p class="sd-label">최근 기사</p>` + [...cards].sort((a, b) => b.d.localeCompare(a.d)).slice(0, 5).map((c) => resultItem(c, [])).join("");
+        return;
+      }
+      const hits = searchCards(cards, terms);
+      body.innerHTML = hits.length
+        ? `<p class="sd-label">${hits.length}건${hits.length > 8 ? " 중 8건" : ""}</p>` + hits.slice(0, 8).map((c) => resultItem(c, terms)).join("")
+        : `<p class="sd-empty">‘${esc(q)}’ 검색 결과가 없습니다.</p>`;
+    }
+    const open = () => {
+      if (dlg.open) return;
+      dlg.showModal();
+      input.select();
+      render();
+    };
+
+    btn.addEventListener("click", () => (document.getElementById("search-q") ? document.getElementById("search-q").focus() : open()));
+    input.addEventListener("input", render);
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+        e.preventDefault();
+        setActive(active + (e.key === "ArrowDown" ? 1 : -1));
+      } else if (e.key === "Enter" && !e.isComposing) {
+        e.preventDefault();
+        const el = items()[active];
+        location.href = el ? el.href : searchPage(input.value.trim());
+        if (el) dlg.close();
+      }
+    });
+    body.addEventListener("click", (e) => e.target.closest(".sr-item") && dlg.close());
+    dlg.addEventListener("click", (e) => e.target === dlg && dlg.close()); // 바깥(backdrop) 클릭
+    document.addEventListener("keydown", (e) => {
+      const typing = e.target.closest?.("input, textarea, select, [contenteditable]");
+      const pageInput = document.getElementById("search-q");
+      if ((e.key === "/" && !typing) || (e.key.toLowerCase() === "k" && (e.ctrlKey || e.metaKey))) {
+        e.preventDefault();
+        pageInput ? pageInput.focus() : open();
+      }
+    });
+  }
+
+  // 전용 검색 페이지(search.html): ?q=검색어&cat=카테고리 — 주소로 공유 가능
+  async function renderSearchPage() {
+    const list = document.getElementById("search-results");
+    if (!list) return;
+    const input = document.getElementById("search-q");
+    const chips = document.getElementById("search-filters");
+    const countEl = document.getElementById("search-count");
+    const params = new URLSearchParams(location.search);
+    input.value = params.get("q") || "";
+    let cat = params.get("cat") || "";
+    let shown = 30;
+    const cards = await loadCards();
+
+    function render() {
+      const q = input.value.trim();
+      const terms = termsOf(q);
+      const base = terms.length ? searchCards(cards, terms) : [...cards].sort((a, b) => b.d.localeCompare(a.d));
+      const counts = new Map();
+      for (const c of base) counts.set(c.c, (counts.get(c.c) || 0) + 1);
+      if (cat && !counts.has(cat)) counts.set(cat, 0);
+      const chip = (label, value, n) =>
+        `<button type="button" class="chip ${value ? catClass(value) : ""}" data-value="${esc(value)}" aria-pressed="${value === cat}">${esc(label)}<span class="n">${n}</span></button>`;
+      chips.innerHTML = chip("전체", "", base.length) + [...counts].sort((a, b) => order(a[0]) - order(b[0])).map(([c, n]) => chip(c, c, n)).join("");
+
+      const hits = cat ? base.filter((c) => c.c === cat) : base;
+      countEl.textContent = terms.length ? `‘${q}’ 검색 결과 ${hits.length}건` : `${cat || "전체"} 기사 ${hits.length}건 · 최신순`;
+      list.innerHTML = hits.length
+        ? hits.slice(0, shown).map((c) => resultItem(c, terms)).join("") +
+          (hits.length > shown ? `<button type="button" class="sr-more">더 보기 (${hits.length - shown}건 남음)</button>` : "")
+        : `<p class="sd-empty">검색 결과가 없습니다. 다른 단어로 찾아보세요.</p>`;
+
+      const p = new URLSearchParams();
+      if (q) p.set("q", q);
+      if (cat) p.set("cat", cat);
+      const qs = p.toString();
+      history.replaceState(null, "", location.pathname + (qs ? "?" + qs : ""));
+      document.title = (q ? `${q} · ` : "") + "검색 · L.SPACE Tech Radar";
+    }
+
+    let timer;
+    input.addEventListener("input", () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => ((shown = 30), render()), 120);
+    });
+    document.getElementById("search-form")?.addEventListener("submit", (e) => (e.preventDefault(), input.blur(), render()));
+    chips.addEventListener("click", (e) => {
+      const b = e.target.closest(".chip");
+      if (!b) return;
+      cat = b.dataset.value;
+      shown = 30;
+      render();
+    });
+    list.addEventListener("click", (e) => {
+      if (!e.target.closest(".sr-more")) return;
+      shown += 30;
+      render();
+    });
+    render();
+    if (!input.value) input.focus();
+  }
+
+  // 주차 페이지: 카드마다 id="c-<키>" — 검색 결과에서 그 카드로 이동해 강조
+  function initCardAnchors() {
+    const cards = [...document.querySelectorAll(".grid .card")];
+    for (const c of cards) {
+      const url = c.querySelector(".card-foot a[href]")?.getAttribute("href");
+      if (url) c.id = "c-" + cardKey(url);
+    }
+    const focus = () => {
+      const el = location.hash.startsWith("#c-") && document.getElementById(location.hash.slice(1));
+      if (!el) return;
+      document.querySelector('#filters .chip[data-value=""]')?.click(); // 필터가 걸려 있으면 전체로
+      el.classList.remove("is-target");
+      void el.offsetWidth; // 같은 카드로 다시 와도 애니메이션 재생
+      el.classList.add("is-target");
+      el.scrollIntoView({ block: "center", behavior: "smooth" });
+    };
+    if (cards.length) {
+      focus();
+      addEventListener("hashchange", focus);
+    }
+  }
+
   renderHome();
   renderArchive();
   initFilter();
+  initCardAnchors();
+  initSearch();
+  renderSearchPage();
   renderPager();
   initCardTitles();
   initVideos();

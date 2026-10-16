@@ -15,14 +15,17 @@ L.SPACE의 주간 기술 동향 콘텐츠. AI·제조/조선 AX·클라우드·�
 ```
 index.html                 홈 — 최신호 + 지난 호 목록 (data/issues.json 렌더)
 archive.html               전체 아카이브 — 연/월 그룹 (data/issues.json 렌더)
+search.html                기사 검색 전용 페이지(?q=검색어&cat=카테고리). 모든 페이지 헤더의 검색 버튼(단축키 / · Ctrl+K)은 오버레이로 빠른 검색
 archive/YYYY/MM/weekN.html 주차 페이지 (정적 HTML, templates/issue.html 기반)
 data/issues.json           발행 인덱스. 홈·아카이브·이전/다음 링크의 단일 소스. 최신순. status(live/final)·updated 포함
+data/cards.json            검색 인덱스(모든 카드). tools/build_index.py 가 주차 HTML 에서 생성 — 손으로 고치지 않는다
 templates/issue.html       주차 페이지 템플릿
 assets/css/style.css       단일 스타일시트 (라이트/다크 자동)
 assets/js/main.js          목록 렌더 · 카테고리 필터 · 이전/다음 링크
 _config.yml                Pages(Jekyll) 배포 제외 목록 — CLAUDE.md·README·templates·tools·.claude 는 사이트로 공개하지 않음
 .claude/sources.md         /daily·/weekly 수집 소스·유튜브 채널 목록
-tools/check_issue.py       발행 전 자동 검증(구조·카드 규칙·링크, status 별 규칙). /daily·/weekly 가 실행
+tools/check_issue.py       발행 전 자동 검증(구조·카드 규칙·검색 인덱스 최신 여부·링크, status 별 규칙). /daily·/weekly 가 실행
+tools/build_index.py       data/cards.json 생성. 카드를 추가·수정하면 커밋 전에 실행
 tools/feedback/            독자 피드백 수집용 Google Apps Script(Code.gs)와 설정 방법(README.md)
 404.html                   절대경로(/WeeklyNews/...) 사용 — 저장소명이 바뀌면 함께 수정
 ```

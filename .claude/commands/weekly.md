@@ -38,7 +38,7 @@ CLAUDE.md 의 규칙을 따라 L.SPACE Tech Radar 한 호를 만든다. 인자: 
 6. **생성**: `templates/issue.html` → `archive/YYYY/MM/weekN.html` (안내 주석 삭제, STATUS=final, 모든 카드 data-date=원문 발표일·data-added=생성일, meta 는 마감 형식). `data/issues.json` 맨 앞에 항목 추가(`status: "final"`, `published`·`updated` = 생성일). 이미 지난 주를 백필하면 issues.json 안에서 날짜 순 위치에 넣는다.
 
 7. **검증**:
-   - `python tools/check_issue.py <id>` 를 실행한다. 구조(issues.json·플레이스홀더·카드 규칙·카테고리 표 일치)와 원문·이미지·영상 링크 상태를 검사한다.
+   - `python tools/build_index.py` 로 검색 인덱스(`data/cards.json`)를 갱신하고 `python tools/check_issue.py <id>` 를 실행한다(인덱스가 최신이 아니면 FAIL). 구조(issues.json·플레이스홀더·카드 규칙·카테고리 표 일치)와 원문·이미지·영상 링크 상태를 검사한다.
      - `FAIL` → 원인을 고치고 다시 실행한다. 고칠 수 없으면(예: 원문 링크가 죽음) 그 카드를 빼거나 다른 후보로 바꾼다.
      - `WARN ... 봇 차단` → 그 URL 을 WebFetch 로 열어 존재를 확인한다. 확인되지 않으면 FAIL 과 같이 처리한다.
    - 모든 카드의 출처 날짜(`MM.DD`)가 수집 기간 안인지 다시 확인한다.
@@ -50,7 +50,7 @@ CLAUDE.md 의 규칙을 따라 L.SPACE Tech Radar 한 호를 만든다. 인자: 
    - dry-run: 하지 않는다.
    - auto: `check_issue.py` 가 PASS 이고 위 날짜 확인까지 끝났을 때만 진행한다.
      ```
-     git add archive/ data/issues.json
+     git add archive/ data/
      git commit -m "Content: YYYY년 M월 N주차 발행 (auto)" -m "Co-Authored-By: Claude <noreply@anthropic.com>"
      git push origin HEAD:main  # 거부되면 git pull --rebase origin main 후 1회 재시도
      ```

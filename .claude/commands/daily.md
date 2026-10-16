@@ -31,10 +31,10 @@ CLAUDE.md 의 규칙을 따라 이번 주 호를 하루치 채운다. 인자: `$
    - issues.json: `updated` = 실행일, `count`·`categories` 갱신.
 
 4. **검증·커밋** (화–금, 또는 월요일 마감까지 끝낸 뒤)
-   - `python tools/check_issue.py <id>` — FAIL 은 고치거나 그 카드를 뺀다. 봇 차단 WARN 은 WebFetch 로 확인. 새 카드의 출처 날짜가 수집 범위 안인지 확인.
+   - `python tools/build_index.py` 로 검색 인덱스(`data/cards.json`)를 갱신한 뒤 `python tools/check_issue.py <id>` — FAIL 은 고치거나 그 카드를 뺀다. 봇 차단 WARN 은 WebFetch 로 확인. 새 카드의 출처 날짜가 수집 범위 안인지 확인.
    - auto: PASS 일 때만 커밋·푸시. 실패하면 되돌리고(`git checkout -- . && git clean -fd archive/`) 사유를 보고한다. 다음 실행이 빠진 날을 이어서 채운다.
      ```
-     git add archive/ data/issues.json
+     git add archive/ data/
      git commit -m "Content: YYYY년 M월 N주차 업데이트 (MM.DD, auto)" -m "Co-Authored-By: Claude <noreply@anthropic.com>"
      git push origin HEAD:main  # 거부되면 git pull --rebase origin main 후 1회 재시도
      ```

@@ -151,7 +151,14 @@ def main():
     if len(entry.get("highlights", [])) != 3:
         fails.append("issues.json highlights 가 3줄이 아님")
 
-    # 4. 링크·이미지
+    # 4. 검색 인덱스(data/cards.json)가 주차 페이지와 일치하는지
+    sys.path.insert(0, str(ROOT / "tools"))
+    sys.dont_write_bytecode = True
+    import build_index
+    if not build_index.is_current():
+        fails.append("data/cards.json 이 최신이 아님 — python tools/build_index.py 실행 후 함께 커밋")
+
+    # 5. 링크·이미지
     if check_links:
         links = set(re.findall(r'<a href="(https?://[^"]+)" target="_blank" rel="noopener">원문', src))
         imgs = set(re.findall(r'class="card-img" src="([^"]+)"', src))
