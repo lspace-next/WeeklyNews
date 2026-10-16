@@ -18,7 +18,7 @@ CLAUDE.md 의 규칙을 따라 L.SPACE Tech Radar 한 호를 만든다. 인자: 
    - 대화형: 멈추고 사용자에게 갱신 여부를 묻는다.
    - auto·dry-run: **아무것도 바꾸지 않고** "이미 발행됨(id)"으로 보고하고 끝낸다.
 
-2. **수집**: CLAUDE.md "공신력 있는 소스"의 RSS/API/페이지를 훑고, 막힌 곳은 WebSearch(필요하면 extended)로 보완한다. 기간 안의 후보를 20–30건 모은다. 카테고리마다 최소 한 번은 확인한다. 조선·해양은 CLAUDE.md 의 조선·해양 소스를 반드시 훑는다.
+2. **수집**: `.claude/sources.md` 의 RSS/API/페이지를 훑고, 막힌 곳은 WebSearch(필요하면 extended)로 보완한다. 기간 안의 후보를 20–30건 모은다. 카테고리마다 최소 한 번은 확인한다. 조선·해양은 같은 파일의 조선·해양 소스를 반드시 훑는다.
    - RSS는 `curl -s -A "Mozilla/5.0" <feed>` 로 가져와 pubDate로 기간 필터.
    - CISA KEV JSON은 `dateAdded` 로 기간 필터.
 
@@ -29,7 +29,7 @@ CLAUDE.md 의 규칙을 따라 L.SPACE Tech Radar 한 호를 만든다. 인자: 
    - 카드마다 포스터 키워드(`poster-kw`, 2–12자)를 정하고, 원문 `og:image` 를 추출해 200 이면 `card-img` 로 넣는다(로고뿐인 이미지·http 이미지는 제외).
      `curl -sL -A "Mozilla/5.0" <url> | grep -oiE '<meta[^>]+(og:image|twitter:image)[^>]*>'`
 
-5. **영상**: CLAUDE.md 유튜브 목록에서 기간 내 영상 2–4개를 고르고 URL이 존재하는지 확인한다.
+5. **영상**: `.claude/sources.md` 유튜브 목록과 영상 규칙에 따라 기간 내 영상 2–4개를 고르고 URL이 존재하는지 확인한다.
 
 6. **생성**: `templates/issue.html` → `archive/YYYY/MM/weekN.html` (안내 주석 삭제). `data/issues.json` 맨 앞에 항목 추가.
 
