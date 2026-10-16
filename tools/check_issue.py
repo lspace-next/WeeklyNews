@@ -86,14 +86,32 @@ def main():
 
     # 3. 카드 규칙
     cats = categories()
-    cards = re.findall(r'<article class="card" data-cat="([^"]+)"(?: data-added="([^"]*)")?>(.*?)</article>', src, re.S)
+    cards = [(dict(re.findall(r'(data-[\w-]+)="([^"]*)"', attrs)), body)
+             for attrs, body in re.findall(r'<article class="card"([^>]*)>(.*?)</article>', src, re.S)]
+    # 수집 기간 "2026.10.12 – 10.18" → 시작·끝 날짜(YYYY-MM-DD, 문자열 비교)
+    pm = re.match(r"(\d{4})\.(\d{2})\.(\d{2}) – (\d{2})\.(\d{2})", entry.get("period", ""))
+    if pm:
+        y, m1, d1, m2, d2 = pm.groups()
+        start, end = f"{y}-{m1}-{d1}", f"{int(y) + (m2 < m1)}-{m2}-{d2}"
+    else:
+        start = end = None
+        fails.append(f"issues.json period '{entry.get('period')}' 가 'YYYY.MM.DD – MM.DD' 형식이 아님")
     n = len(cards)
     lo, hi = (1, 20) if live else (10, 20)
     if not lo <= n <= hi:
         fails.append(f"카드 수 {n}건 ({lo}–{hi}건이어야 함)")
     count = Counter()
-    for i, (cat, added, body) in enumerate(cards, 1):
+    for i, (attrs, body) in enumerate(cards, 1):
+        cat, added, date = attrs.get("data-cat", ""), attrs.get("data-added", ""), attrs.get("data-date", "")
         count[cat] += 1
+        foot = re.search(r"<span>[^<]+ · (\d{2})\.(\d{2})</span>", body)
+        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", date):
+            fails.append(f"카드 {i}: data-date=\"YYYY-MM-DD\"(원문 발표일) 가 없음")
+        else:
+            if foot and date[5:] != f"{foot[1]}-{foot[2]}":
+                fails.append(f"카드 {i}: data-date {date} 가 출처 표기 {foot[1]}.{foot[2]} 와 다름")
+            if start and not start <= date <= end:
+                fails.append(f"카드 {i}: data-date {date} 가 수집 기간({start}~{end}) 밖")
         if live and not re.fullmatch(r"\d{4}-\d{2}-\d{2}", added):
             fails.append(f"카드 {i}: data-added=\"YYYY-MM-DD\" 가 없음")
         if cat not in cats:
@@ -111,7 +129,7 @@ def main():
         for cls in ("card-title", "card-summary", "card-why"):
             if f'class="{cls}"' not in body:
                 fails.append(f"카드 {i}: {cls} 없음")
-        if not re.search(r"<span>[^<]+ · \d{2}\.\d{2}</span>", body):
+        if not foot:
             fails.append(f"카드 {i}: 출처 표기 '출처명 · MM.DD' 형식이 아님")
     for cat, c in count.items():
         if c > 5:

@@ -35,7 +35,7 @@ CLAUDE.md 의 규칙을 따라 L.SPACE Tech Radar 한 호를 만든다. 인자: 
 
 5. **영상**: `.claude/sources.md` 유튜브 목록과 영상 규칙에 따라 기간 내 영상 2–4개를 고르고 URL이 존재하는지 확인한다.
 
-6. **생성**: `templates/issue.html` → `archive/YYYY/MM/weekN.html` (안내 주석 삭제, STATUS=final, 모든 카드 data-added=생성일, meta 는 마감 형식). `data/issues.json` 맨 앞에 항목 추가(`status: "final"`, `published`·`updated` = 생성일). 이미 지난 주를 백필하면 issues.json 안에서 날짜 순 위치에 넣는다.
+6. **생성**: `templates/issue.html` → `archive/YYYY/MM/weekN.html` (안내 주석 삭제, STATUS=final, 모든 카드 data-date=원문 발표일·data-added=생성일, meta 는 마감 형식). `data/issues.json` 맨 앞에 항목 추가(`status: "final"`, `published`·`updated` = 생성일). 이미 지난 주를 백필하면 issues.json 안에서 날짜 순 위치에 넣는다.
 
 7. **검증**:
    - `python tools/check_issue.py <id>` 를 실행한다. 구조(issues.json·플레이스홀더·카드 규칙·카테고리 표 일치)와 원문·이미지·영상 링크 상태를 검사한다.

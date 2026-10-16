@@ -121,11 +121,29 @@
   // ---------- issue page: category filter + category bar ----------
   function initFilter() {
     const bar = document.getElementById("filters");
+    const grid = document.querySelector(".grid");
+    // HTML 순서 = 중요도 순(맨 앞이 리드 카드)
     const cards = [...document.querySelectorAll(".grid .card")];
-    // 카드 번호: CSS counter 는 container-type(.card-media) 안에서 0 으로 초기화되는 브라우저(iOS Safari 등)가 있어 JS 로 넣는다
-    cards.forEach((c, i) => c.querySelector(".card-media")?.setAttribute("data-n", String(i + 1).padStart(2, "0")));
+    const live = document.body.dataset.status === "live";
+    // 원문 날짜 최신순, 같은 날은 중요도 순 (sort 는 안정 정렬)
+    const byDate = (list) => [...list].sort((a, b) => (b.dataset.date || "").localeCompare(a.dataset.date || ""));
+
+    // 전체: live 는 리드 1장 + 나머지 최신순, final 은 중요도 순 / 카테고리: 항상 최신순
+    function arrange(value) {
+      const shown = value ? byDate(cards.filter((c) => c.dataset.cat === value)) : live ? [cards[0], ...byDate(cards.slice(1))] : cards;
+      const order = [...shown, ...cards.filter((c) => !shown.includes(c))];
+      for (const c of order) {
+        c.hidden = !shown.includes(c);
+        c.classList.toggle("is-lead", !value && c === cards[0]);
+        grid?.appendChild(c);
+      }
+      // 카드 번호: CSS counter 는 container-type(.card-media) 안에서 0 으로 초기화되는 브라우저(iOS Safari 등)가 있어 JS 로 넣는다
+      shown.forEach((c, i) => c.querySelector(".card-media")?.setAttribute("data-n", String(i + 1).padStart(2, "0")));
+    }
+    if (cards.length) arrange("");
+
     // 매일 채우는 중인 호: 가장 최근에 추가한 날의 카드에 NEW 배지
-    if (document.body.dataset.status === "live") {
+    if (live) {
       const latest = cards.reduce((m, c) => (c.dataset.added > m ? c.dataset.added : m), "");
       for (const c of cards) if (latest && c.dataset.added === latest) c.classList.add("is-new");
     }
@@ -149,7 +167,7 @@
       if (!btn) return;
       const value = btn.dataset.value;
       for (const b of bar.querySelectorAll(".chip")) b.setAttribute("aria-pressed", String(b === btn));
-      for (const c of cards) c.hidden = value !== "" && c.dataset.cat !== value;
+      arrange(value);
     });
   }
 

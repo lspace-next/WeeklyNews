@@ -831,14 +831,14 @@ a:hover { color: var(--accent); }
 }
 .card-foot a:hover { background: var(--text); color: var(--bg); }
 
-/* lead card: first card spans the full row, media left / text right */
+/* lead card (JS 가 전체 보기의 맨 앞 카드에 .is-lead): spans the full row, media left / text right */
 @media (min-width: 900px) {
-  .grid > .card:first-child { grid-column: 1 / -1; flex-direction: row; }
-  .grid > .card:first-child .card-media { flex: 0 0 55%; aspect-ratio: auto; min-height: 380px; padding: 28px 32px; }
-  .grid > .card:first-child .card-body { padding: 32px 36px 24px; }
-  .grid > .card:first-child .card-title { font-size: clamp(24px, 2.6vw, 32px); line-height: 1.28; }
-  .grid > .card:first-child .card-summary { font-size: 16px; }
-  .grid > .card:first-child .poster-kw { font-size: clamp(56px, 18cqi, 128px); }
+  .grid > .card.is-lead { grid-column: 1 / -1; flex-direction: row; }
+  .grid > .card.is-lead .card-media { flex: 0 0 55%; aspect-ratio: auto; min-height: 380px; padding: 28px 32px; }
+  .grid > .card.is-lead .card-body { padding: 32px 36px 24px; }
+  .grid > .card.is-lead .card-title { font-size: clamp(24px, 2.6vw, 32px); line-height: 1.28; }
+  .grid > .card.is-lead .card-summary { font-size: 16px; }
+  .grid > .card.is-lead .poster-kw { font-size: clamp(56px, 18cqi, 128px); }
 }
 
 /* ---------- videos ---------- */

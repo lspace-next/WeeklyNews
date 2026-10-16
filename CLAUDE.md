@@ -80,10 +80,12 @@ tools/feedback/            독자 피드백 수집용 Google Apps Script(Code.gs
 ## HTML 작성 규칙
 
 - `templates/issue.html` 을 복사해 플레이스홀더를 채우고 맨 위 안내 주석은 지운다.
-- 카드: `<article class="card" data-cat="카테고리명">` > `.card-media`(포스터 + 선택 이미지) + `.card-body`(tag·제목·요약·why·foot). data-cat · `poster-cat` · tag 텍스트는 위 표의 이름과 정확히 일치. 구조는 `templates/issue.html` 참고.
+- 카드: `<article class="card" data-cat="카테고리명" data-date="YYYY-MM-DD">` > `.card-media`(포스터 + 선택 이미지) + `.card-body`(tag·제목·요약·why·foot). data-cat · `poster-cat` · tag 텍스트는 위 표의 이름과 정확히 일치. 구조는 `templates/issue.html` 참고.
 - 포스터 키워드(`poster-kw`): 기사를 한눈에 대표하는 2–12자. 숫자·제품명·고유명사 위주(예: `107.4조`, `GPT-6`, `−20%`, `Vera Rubin`). 원문에 없는 숫자를 만들지 않는다.
 - 이미지: 원문 HTML 의 `og:image`(없으면 `twitter:image`)를 curl 로 뽑아 200 확인 후 `<img class="card-img" ... onerror="this.remove()">`. URL 의 `&` 는 `&amp;`.
-- 카드 순서: 중요도 순 (카테고리 순 아님). **첫 카드는 PC 에서 가로 전체 리드 카드**가 된다. 필터 칩·카테고리 막대는 JS가 자동 생성.
+- 카드 순서: HTML 에는 **중요도 순**으로 둔다(카테고리 순 아님). **맨 앞 카드가 리드 카드**(PC 에서 가로 전체). 화면 순서는 JS 가 정한다.
+  - 전체 보기: live = 리드 카드 고정 + 나머지 원문 날짜 최신순 / final = HTML 순서(중요도 순).
+  - 카테고리 필터: 항상 원문 날짜 최신순(같은 날은 중요도 순). 필터 칩·카테고리 막대도 JS가 자동 생성.
 - 출처 표기: `출처명 · MM.DD` (원문 발표일).
 - 링크 공유 미리보기: 모든 페이지 `og:image` = `assets/images/og-cover.png?v=YYYYMMDD`(1200×630, 템플릿에 포함). 문구·디자인을 바꾸면 이미지를 다시 만들고 모든 페이지의 `?v=` 값을 새 날짜로 올리며(카톡이 이미지 URL 단위로 캐시), 카카오톡은 캐시 초기화(https://developers.kakao.com/tool/clear/og)가 필요하다.
 - CSS/JS 캐시: 모든 페이지가 `style.css?v=YYYYMMDD`·`main.js?v=YYYYMMDD` 로 불러온다(Pages 캐시 10분). `style.css`·`main.js` 를 고치면 모든 페이지와 `templates/issue.html` 의 `?v=` 를 새 날짜로 함께 올린다(같은 날 두 번째면 `YYYYMMDD02`). 주간 발행만 할 때는 템플릿 값을 그대로 쓴다.
@@ -91,6 +93,7 @@ tools/feedback/            독자 피드백 수집용 Google Apps Script(Code.gs
 - 텍스트의 `& < > "` 는 이스케이프.
 - `data/issues.json` 은 배열 맨 앞에 추가. `headline`/`highlights` 는 페이지의 내용과 동일하게, `categories` 는 카테고리별 건수, `count` 는 총 카드 수.
   `status` 는 `live`(채우는 중)/`final`(마감) — 페이지 `<body data-status>` 와 같게. `published` = 호를 연 날, `updated` = 마지막으로 카드를 추가·수정한 날.
+- 카드 `data-date="YYYY-MM-DD"` = 원문 발표일(출처 표기 `MM.DD` 와 같고 수집 기간 안). 정렬에 쓰며 check_issue 가 검사한다.
 - 카드 `data-added="YYYY-MM-DD"` = 추가한 날. live 호에서 가장 최근 날짜 카드에 JS 가 NEW 배지를 붙인다.
 
 ## 커밋 컨벤션
