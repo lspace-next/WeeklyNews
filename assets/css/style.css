@@ -809,6 +809,17 @@ a:hover { color: var(--accent); }
   border-left: 3px solid var(--cat);
   color: var(--text);
 }
+/* 라벨은 CSS 가 그린다 — HTML 본문에는 "왜 중요한가:" 를 쓰지 않는다 */
+.card-why::before {
+  content: "WHY IT MATTERS";
+  display: block;
+  margin-bottom: 4px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  color: var(--cat);
+}
 .card-foot {
   margin-top: auto;
   display: flex;

@@ -129,6 +129,8 @@ def main():
         for cls in ("card-title", "card-summary", "card-why"):
             if f'class="{cls}"' not in body:
                 fails.append(f"카드 {i}: {cls} 없음")
+        if re.search(r'class="card-why">\s*왜 중요한가', body):
+            fails.append(f"카드 {i}: card-why 앞에 '왜 중요한가' 라벨을 쓰지 않는다 (CSS 가 WHY IT MATTERS 를 붙임)")
         if not foot:
             fails.append(f"카드 {i}: 출처 표기 '출처명 · MM.DD' 형식이 아님")
     for cat, c in count.items():
