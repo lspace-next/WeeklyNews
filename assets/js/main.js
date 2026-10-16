@@ -414,7 +414,7 @@
     dlg.className = "search-dialog";
     dlg.setAttribute("aria-label", "기사 검색");
     dlg.innerHTML = `<div class="sd-box">
-        <div class="sd-head">${ICON_SEARCH}<input type="search" placeholder="제목·요약·키워드·출처로 검색" aria-label="검색어" autocomplete="off" enterkeyhint="search"><kbd>Esc</kbd></div>
+        <div class="sd-head">${ICON_SEARCH}<input type="search" placeholder="제목·요약·키워드·출처로 검색" aria-label="검색어" autocomplete="off" enterkeyhint="search"><button type="button" class="sd-close" aria-label="검색 닫기"><kbd>Esc</kbd><span>닫기</span></button></div>
         <div class="sd-body" role="listbox"></div>
         <div class="sd-foot"><span class="sd-keys"><kbd>↑</kbd><kbd>↓</kbd> 이동 <kbd>Enter</kbd> 열기</span><a class="sd-all" href="${searchPage("")}">전체 결과 보기 →</a></div>
       </div>`;
@@ -467,6 +467,7 @@
       }
     });
     body.addEventListener("click", (e) => e.target.closest(".sr-item") && dlg.close());
+    dlg.querySelector(".sd-close").addEventListener("click", () => dlg.close());
     dlg.addEventListener("click", (e) => e.target === dlg && dlg.close()); // 바깥(backdrop) 클릭
     document.addEventListener("keydown", (e) => {
       const typing = e.target.closest?.("input, textarea, select, [contenteditable]");

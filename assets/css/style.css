@@ -1098,6 +1098,8 @@ kbd {
   outline: 0;
 }
 .sd-head input::-webkit-search-cancel-button { display: none; }
+.sd-close { flex: none; display: inline-flex; padding: 0; font: inherit; background: none; border: 0; cursor: pointer; }
+.sd-close span { display: none; }
 .sd-body { flex: 1; overflow-y: auto; padding: 8px; }
 .sd-label { margin: 6px 10px 4px; font-family: var(--mono); font-size: 11px; letter-spacing: .08em; color: var(--text-mute); }
 .sd-empty { margin: 0; padding: 28px 12px; text-align: center; color: var(--text-mute); font-size: 14px; }
@@ -1116,6 +1118,8 @@ kbd {
 @media (max-width: 640px) {
   .search-dialog { margin-top: 16px; max-height: calc(100vh - 32px); }
   .sd-keys { display: none; }
+  .sd-close kbd { display: none; }
+  .sd-close span { display: inline; font-size: 14px; font-weight: 600; color: var(--text-sub); padding: 6px 4px 6px 10px; }
 }
 
 .sr-item {
