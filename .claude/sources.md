@@ -125,24 +125,83 @@
 
 ## 클라우드 루틴 네트워크 허용 목록
 
-자동 업데이트 루틴(클라우드 환경 `env_019Gsub89APkhvWuyuCTH9nL`)은 아래 도메인만 접속할 수 있다. **이 목록은 참고용 사본이고, 실제 적용은 claude.ai/code 환경 설정의 네트워크 허용 목록에서 한다.** 위 표에 소스를 추가하면 두 곳을 함께 고친다.
-허용되지 않은 원문·이미지 도메인은 열리지 않으므로, 루틴 보고에 "접속 실패"가 나오면 그 도메인을 환경 설정에 추가한다.
+자동 업데이트 루틴(클라우드 환경 `env_019Gsub89APkhvWuyuCTH9nL`, 네트워크 접근 **Custom** + "Also include default list" 체크)은 아래 도메인만 접속할 수 있다. **이 목록은 참고용 사본이고, 실제 적용은 claude.ai/code 환경 설정의 Allowed domains 에서 한다.** 위 표에 소스를 추가하면 두 곳을 함께 고친다.
+- 한 줄에 도메인 하나. 앞의 `*.` 는 모든 하위 도메인에 맞는다. 맨 도메인(`www` 없는 주소)도 쓰이면 따로 한 줄 넣는다.
+- 국내는 `*.kr` 로 통째로 연다. 그 밖의 도메인은 루틴 보고의 "허용 목록 추가 후보"를 보고 가끔 추가한다(막힌 출처를 만난 루틴의 처리는 `.claude/commands/weekly.md` 4단계).
+- 막혔는지 확인: 클라우드에서 curl 이 `000` 을 내고 `[agent-proxy] ... connect_rejected` 가 함께 나오면 허용 목록에 없는 도메인이다.
 
 ```
 # 해외 IT 언론
-www.theverge.com techcrunch.com arstechnica.com feeds.arstechnica.com www.wired.com www.technologyreview.com www.theregister.com image.theregister.com www.reuters.com www.bloomberg.com
+theverge.com
+*.theverge.com
+techcrunch.com
+*.techcrunch.com
+arstechnica.com
+*.arstechnica.com
+*.wired.com
+*.technologyreview.com
+*.theregister.com
+*.reuters.com
+*.bloomberg.com
 # 기업 공식
-openai.com www.anthropic.com www-cdn.anthropic.com blog.google storage.googleapis.com deepmind.google blogs.microsoft.com ai.meta.com about.fb.com nvidianews.nvidia.com blogs.nvidia.com www.apple.com aws.amazon.com github.blog
+openai.com
+*.openai.com
+*.anthropic.com
+blog.google
+deepmind.google
+*.googleapis.com
+*.googleusercontent.com
+*.microsoft.com
+*.meta.com
+*.fb.com
+*.nvidia.com
+*.apple.com
+*.amazon.com
+github.blog
+*.samsung.com
+*.paloaltonetworks.com
 # 보안
-www.cisa.gov www.bleepingcomputer.com www.bleepstatic.com thehackernews.com feeds.feedburner.com krebsonsecurity.com www.boho.or.kr www.securityweek.com
+*.cisa.gov
+*.bleepingcomputer.com
+*.bleepstatic.com
+thehackernews.com
+*.thehackernews.com
+*.feedburner.com
+krebsonsecurity.com
+*.securityweek.com
+*.cloudsecurityalliance.org
 # 리서치·커뮤니티
-www.gartner.com www.idc.com hai.stanford.edu news.ycombinator.com hn.algolia.com
-# 국내 IT 언론
-www.etnews.com rss.etnews.com img.etnews.com zdnet.co.kr www.ddaily.co.kr www.bloter.net byline.network cdn.byline.network www.inews24.com image.inews24.com www.yna.co.kr
-# 국내 공공
-www.msit.go.kr www.iitp.kr www.nia.or.kr spri.kr www.nipa.kr www.motie.go.kr www.mof.go.kr
+*.gartner.com
+*.idc.com
+*.stanford.edu
+*.ycombinator.com
+*.algolia.com
+# 국내 (.kr 전체: 언론·공공·연구기관·조선 협회)
+*.kr
+*.etnews.com
+*.bloter.net
+byline.network
+*.byline.network
+inews24.com
+*.inews24.com
 # 조선·해양
-www.hd.com www.samsungshi.com www.hanwhaocean.com www.koshipa.or.kr www.komeri.re.kr www.kriso.re.kr www.kr.co.kr www.shippingnewsnet.com cdn.shippingnewsnet.com www.dnv.com www.lr.org splash247.com www.offshore-energy.biz offshore-energy.biz gcaptain.com www.marinelink.com www.seatrade-maritime.com www.rivieramm.com
+*.hd.com
+*.samsungshi.com
+*.hanwhaocean.com
+*.shippingnewsnet.com
+*.dnv.com
+*.lr.org
+splash247.com
+*.splash247.com
+offshore-energy.biz
+*.offshore-energy.biz
+gcaptain.com
+*.gcaptain.com
+*.marinelink.com
+*.seatrade-maritime.com
+*.rivieramm.com
 # 유튜브
-www.youtube.com youtube.com i.ytimg.com
+youtube.com
+*.youtube.com
+*.ytimg.com
 ```
