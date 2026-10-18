@@ -15,12 +15,15 @@ Claude Code에서:
 /weekly auto                 # 자동 발행: 검증 통과 시 main 에 커밋·푸시
 ```
 
-### 자동 발행 (매주 월요일 05:00 KST)
+### 자동 발행
 
-Claude Code 클라우드 루틴이 `/weekly auto` 를 실행한다. 지난주(월~일) 호를 만들어 `tools/check_issue.py` 검증을 통과하면 `main` 에 푸시하고, 통과하지 못하면 아무것도 푸시하지 않는다.
+Claude Code 클라우드 루틴 두 개가 `/daily auto` 를 실행한다. `tools/check_issue.py` 검증을 통과하면 `main` 에 푸시하고, 통과하지 못하면 아무것도 푸시하지 않는다.
+
+- 평일(월–금) 06:30 KST — 월요일은 이번 주 호를 새로 열고, 화–금은 전날 소식을 추가
+- 일요일 18:00 KST — 금–일 소식을 추가하고 이번 주 호 마감
 실행 기록·결과는 claude.ai 의 Claude Code 루틴 화면에서 확인하고, Claude Code 에서 `/schedule` 로 목록·수정·일시 중지할 수 있다.
 
-규칙·소스 목록은 [CLAUDE.md](CLAUDE.md), 절차는 [.claude/commands/weekly.md](.claude/commands/weekly.md).
+규칙·소스 목록은 [CLAUDE.md](CLAUDE.md), 절차는 [.claude/commands/daily.md](.claude/commands/daily.md)·[.claude/commands/weekly.md](.claude/commands/weekly.md).
 
 ## 로컬 확인
 
