@@ -157,6 +157,16 @@ def main():
         fails.append(f"issues.json highlights {hl}줄 (live 는 1–{min(3, max(n, 1))}줄 — 카드보다 많이 쓰지 않는다)")
     if not live and hl != 3:
         fails.append(f"issues.json highlights {hl}줄 (final 은 3줄)")
+    # 영상: 주 0–8개. 0개면 섹션(제목·목록)째 뺀다
+    vids = re.findall(r'data-yt="([^"]+)"', src)
+    has_section = 'class="videos"' in src
+    if len(vids) > 8:
+        fails.append(f"영상 {len(vids)}개 (주 최대 8개)")
+    if has_section and not vids:
+        fails.append("영상이 0개인데 '이번 주 볼만한 영상' 섹션이 남아 있음 — 제목(h2)부터 </ul> 까지 지울 것")
+    for v, c in Counter(vids).items():
+        if c > 1:
+            fails.append(f"같은 영상이 {c}번 들어 있음: {v}")
 
     # 4. 검색 인덱스(data/cards.json)가 주차 페이지와 일치하는지
     sys.path.insert(0, str(ROOT / "tools"))

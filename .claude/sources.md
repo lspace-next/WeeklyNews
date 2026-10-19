@@ -119,7 +119,7 @@
 | ITSub잇섭 | https://www.youtube.com/@ITSUB | 디바이스 리뷰 |
 | 테크몽 | https://www.youtube.com/@techmong | 디바이스·칩 분석 |
 
-영상은 수집 기간에 올라온 것 중 2–4개(카드 그리드라 4개가 PC 한 줄). 공식 채널 키노트/발표 영상을 우선하고, Shorts(`/shorts/`)는 제외한다. 영상 URL은 `watch?v=` 형식으로 실제 존재를 확인한다.
+영상은 수집 기간에 올라온 것 중 **주 0–8개**(카드 그리드라 PC 한 줄 4개, 8개면 두 줄). 볼만한 게 없으면 0개도 된다(섹션째 뺀다). 개수를 채우려고 약한 영상을 넣지 않는다. 공식 채널 키노트/발표 영상을 우선하고, Shorts(`/shorts/`)는 제외한다. 영상 URL은 `watch?v=` 형식으로 실제 존재를 확인한다.
 - 채널 업로드 목록: `https://www.youtube.com/feeds/videos.xml?channel_id=<UC...>` (채널 ID는 채널 페이지의 `"externalId"`)
 - 영상 카드는 썸네일 `https://i.ytimg.com/vi/<ID>/mqdefault.jpg` 을 쓴다(200 확인). 썸네일 클릭 시 main.js가 페이지 안에서 재생한다.
 
