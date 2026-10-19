@@ -575,16 +575,18 @@
   initViewCounts();
 
   // View counts from GoatCounter (site setting "allow using the visitor counter" must be on).
-  // Every page: "Views for this page" badge in the footer. Hidden on any failure.
+  // Home: site-wide total (all time). Other pages: this page's count. Footer badge, hidden on any failure.
   function initViewCounts() {
     if (!location.hostname.endsWith("github.io")) return; // localhost isn't counted either
+    // Path goes in with its slashes as-is: GoatCounter returns 0 for %2F-encoded paths
     const fetchCount = (path) =>
-      fetch(`https://lspace-next.goatcounter.com/counter/${encodeURIComponent(path)}.json`)
+      fetch(`https://lspace-next.goatcounter.com/counter${path === "TOTAL" ? "/TOTAL" : encodeURI(path)}.json`)
         .then((r) => (r.ok ? r.json() : null))
-        .then((d) => (d && d.count ? String(d.count) : null))
+        .then((d) => (d && d.count && d.count !== "0" ? String(d.count) : null))
         .catch(() => null);
-    const page = fetchCount(location.pathname);
-    page.then((n) => {
+    const isHome = !!document.getElementById("latest");
+    const label = isHome ? "Total views" : "Views for this page";
+    fetchCount(isHome ? "TOTAL" : location.pathname).then((n) => {
       const copy = document.querySelector(".site-footer .wrap > span:last-child");
       if (!n || !copy) return;
       // badge above the copyright line, both right-aligned
@@ -592,7 +594,7 @@
       side.className = "footer-side";
       copy.replaceWith(side);
       side.innerHTML = `<div class="gc-badge">
-        <span class="gc-label">Views for this page</span>
+        <span class="gc-label">${label}</span>
         <strong class="gc-num">${esc(n)}</strong>
         <a class="gc-by" href="https://www.goatcounter.com" target="_blank" rel="noopener">stats by GoatCounter ↗</a>
       </div>`;
