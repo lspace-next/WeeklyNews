@@ -4,7 +4,7 @@ L.SPACE의 주간 기술 동향 콘텐츠. AI·제조/조선 AX·클라우드·�
 빌드 도구 없음. HTML/CSS/JS를 그대로 배포한다.
 - **발행 방식**: 한 주 = 한 호. 월요일 아침에 이번 주 호를 열고, 평일 아침마다 전날 소식으로 채우고(`status: live`), 일요일 저녁에 마감한다(`status: final`).
   - 매일 업데이트: `/daily` (`.claude/commands/daily.md`). 한 주를 통째로 수동 작성·백필: `/weekly` (`.claude/commands/weekly.md`).
-- **자동 발행**: Claude Code 클라우드 루틴 두 개가 `/daily auto` 를 실행해 `main` 에 푸시한다 — 평일(월–금) 06:30 KST(월요일은 이번 주 호 생성), 일요일 18:00 KST(이번 주 호 마감). 발행 전 `tools/check_issue.py` 검증을 통과하지 못하면 푸시하지 않고 실패 사유만 남긴다.
+- **자동 발행**: Claude Code 클라우드 루틴 두 개가 `/daily auto` 를 실행해 `main` 에 푸시한다 — 평일(월–금) 06:30 KST(월요일은 이번 주 호 생성), 일요일 18:00 KST(이번 주 호 마감). 발행 전 `tools/check_issue.py` 검증을 통과하지 못하면 푸시하지 않고 실패 사유만 남긴다. 푸시에 성공하면 루틴이 Gmail 커넥터로 jihye.min@lspace.kr 에 결과 메일(추가 카드·커밋·페이지 링크)을 보낸다(지시문은 루틴 프롬프트에 있음).
 
 - **SITE_URL**: `https://lspace-next.github.io/WeeklyNews`
 - **저장소**: https://github.com/lspace-next/WeeklyNews (main 브랜치 / root 를 Pages 로 배포)

@@ -21,6 +21,8 @@ Claude Code 클라우드 루틴 두 개가 `/daily auto` 를 실행한다. `tool
 
 - 평일(월–금) 06:30 KST — 월요일은 이번 주 호를 새로 열고, 화–금은 전날 소식을 추가
 - 일요일 18:00 KST — 금–일 소식을 추가하고 이번 주 호 마감
+
+푸시에 성공하면 루틴이 Gmail 커넥터로 jihye.min@lspace.kr 에 결과 메일을 보낸다(실패·변경 없음이면 보내지 않음).
 실행 기록·결과는 claude.ai 의 Claude Code 루틴 화면에서 확인하고, Claude Code 에서 `/schedule` 로 목록·수정·일시 중지할 수 있다.
 
 규칙·소스 목록은 [CLAUDE.md](CLAUDE.md), 절차는 [.claude/commands/daily.md](.claude/commands/daily.md)·[.claude/commands/weekly.md](.claude/commands/weekly.md).
