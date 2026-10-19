@@ -151,8 +151,12 @@ def main():
         fails.append(f"issues.json count={entry.get('count')} 와 카드 수 {n} 불일치")
     if entry.get("categories") != dict(count):
         fails.append(f"issues.json categories {entry.get('categories')} 와 실제 {dict(count)} 불일치")
-    if len(entry.get("highlights", [])) != 3:
-        fails.append("issues.json highlights 가 3줄이 아님")
+    # 핵심: final 은 3줄, live 는 1–3줄(카드 수 이하). 빈 줄을 안내 문구로 채우지 않는다
+    hl = len(entry.get("highlights", []))
+    if live and not 1 <= hl <= min(3, max(n, 1)):
+        fails.append(f"issues.json highlights {hl}줄 (live 는 1–{min(3, max(n, 1))}줄 — 카드보다 많이 쓰지 않는다)")
+    if not live and hl != 3:
+        fails.append(f"issues.json highlights {hl}줄 (final 은 3줄)")
 
     # 4. 검색 인덱스(data/cards.json)가 주차 페이지와 일치하는지
     sys.path.insert(0, str(ROOT / "tools"))
