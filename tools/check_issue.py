@@ -167,6 +167,14 @@ def main():
     for v, c in Counter(vids).items():
         if c > 1:
             fails.append(f"같은 영상이 {c}번 들어 있음: {v}")
+    # 영상마다 한글 요약(v-sum). 요약 도입(2026-10-21) 전에 마감한 호는 요약이 없으므로 건너뛴다
+    sums = re.findall(r'<p class="v-sum">([^<]*)</p>', src)
+    if vids and (live or sums):
+        if len(sums) != len(vids):
+            fails.append(f"영상 {len(vids)}개 중 요약(v-sum) {len(sums)}개 — 영상마다 한글 요약 1–2문장")
+        for s in sums:
+            if not s.strip() or "영상 내용 요약" in s:
+                fails.append("영상 요약(v-sum)이 비었거나 템플릿 문구 그대로임")
 
     # 4. 검색 인덱스(data/cards.json)가 주차 페이지와 일치하는지
     sys.path.insert(0, str(ROOT / "tools"))

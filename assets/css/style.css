@@ -958,6 +958,7 @@ a:hover { color: var(--accent); }
   line-height: 1.45;
   letter-spacing: -0.015em;
 }
+.video-body .v-sum { margin: 8px 0 0; font-size: 13.5px; line-height: 1.6; color: var(--text-sub); }
 .video-body .v-ch { display: block; margin-top: 6px; font-size: 13px; color: var(--text-mute); }
 
 /* ---------- reader feedback ---------- */
