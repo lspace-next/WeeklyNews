@@ -17,6 +17,7 @@
 
   /* category colors for text / dots (theme dependent) */
   --c-ai: #7c3aed;
+  --c-robot: #0f766e;
   --c-bigtech: #2563eb;
   --c-security: #dc2626;
   --c-cloud: #0891b2;
@@ -29,6 +30,7 @@
 
   /* category colors for posters (constant — posters are always dark & saturated) */
   --p-ai: #6d28d9;
+  --p-robot: #115e59;
   --p-bigtech: #1d4ed8;
   --p-security: #c81e1e;
   --p-cloud: #0e7490;
@@ -65,6 +67,7 @@
     --shadow-hover: 0 0 0 1px rgba(255,255,255,.12), 0 -20px 80px -20px rgba(255,255,255,.08) inset, 0 24px 48px rgba(0,0,0,.5);
 
     --c-ai: #a78bfa;
+    --c-robot: #2dd4bf;
     --c-bigtech: #60a5fa;
     --c-security: #f87171;
     --c-cloud: #22d3ee;
@@ -80,6 +83,7 @@
 
 /* category → color. Cards use data-cat (must match the CLAUDE.md table), tags/chips/tiles use .cat-* */
 .cat-ai,       [data-cat="AI"]             { --cat: var(--c-ai);       --poster: var(--p-ai); }
+.cat-robot,    [data-cat="로봇"]            { --cat: var(--c-robot);    --poster: var(--p-robot); }
 .cat-bigtech,  [data-cat="빅테크"]          { --cat: var(--c-bigtech);  --poster: var(--p-bigtech); }
 .cat-security, [data-cat="보안"]            { --cat: var(--c-security); --poster: var(--p-security); }
 .cat-cloud,    [data-cat="클라우드·인프라"]  { --cat: var(--c-cloud);    --poster: var(--p-cloud); }

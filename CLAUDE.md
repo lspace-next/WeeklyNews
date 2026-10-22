@@ -51,6 +51,7 @@ tools/feedback/            독자 피드백 수집용 Google Apps Script(Code.gs
 | 카테고리 | class | 범위 |
 |---|---|---|
 | AI | `cat-ai` | 모델 출시, AI 서비스, 연구 성과 |
+| 로봇 | `cat-robot` | 산업·서비스 로봇, 휴머노이드, 피지컬 AI(로봇 학습·시뮬레이션), 공장·물류 자동화 로봇 |
 | 빅테크 | `cat-bigtech` | 애플·구글·MS·메타·아마존 등의 사업/실적/M&A |
 | 보안 | `cat-security` | 취약점, 침해사고, 랜섬웨어, 보안 정책 |
 | 클라우드·인프라 | `cat-cloud` | 클라우드, 데이터센터, 네트워크 |

@@ -8,7 +8,7 @@
   const root = document.body.dataset.root || "";
   // Keep in sync with the category table in CLAUDE.md (name → .cat-* slug in style.css).
   const CATEGORIES = {
-    "AI": "ai", "빅테크": "bigtech", "보안": "security", "클라우드·인프라": "cloud", "반도체·HW": "chip",
+    "AI": "ai", "로봇": "robot", "빅테크": "bigtech", "보안": "security", "클라우드·인프라": "cloud", "반도체·HW": "chip",
     "모바일·디바이스": "device", "정책·규제": "policy", "국내 IT": "korea", "조선·해양": "ship", "개발도구": "dev",
   };
   const CAT_NAMES = Object.keys(CATEGORIES);
