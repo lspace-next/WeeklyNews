@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>2026년 10월 3주차 · L.SPACE Tech Radar</title>
-  <meta name="description" content="eMudhra 인증서 키 노출에 이어 PHP 런타임 결함 PHP2Shell로 정부가 사이버위기 경보를 '주의'로 올리는 등 인터넷 전반에 긴급 패치가 몰렸고, 구글 클라우드는 OpenAI GPT-6 계열까지 들여왔으며, 삼성전기·AWS·엔비디아가 AI 인프라 공급망을 흔들었다">
+  <meta name="description" content="eMudhra가 인증서 키 노출 끝에 TLS 사업에서 손을 뗐고 PHP 런타임 결함 PHP2Shell로 정부가 사이버위기 경보를 '주의'로 올리는 등 인터넷 전반에 긴급 패치가 몰렸고, 구글 클라우드는 OpenAI GPT-6 계열까지 들여왔으며, 삼성전기·AWS·엔비디아가 AI 인프라 공급망을 흔들었다">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="L.SPACE Tech Radar">
   <meta property="og:title" content="2026년 10월 3주차 · L.SPACE Tech Radar">
-  <meta property="og:description" content="eMudhra 인증서 키 노출에 이어 PHP 런타임 결함 PHP2Shell로 정부가 사이버위기 경보를 '주의'로 올리는 등 인터넷 전반에 긴급 패치가 몰렸고, 구글 클라우드는 OpenAI GPT-6 계열까지 들여왔으며, 삼성전기·AWS·엔비디아가 AI 인프라 공급망을 흔들었다">
+  <meta property="og:description" content="eMudhra가 인증서 키 노출 끝에 TLS 사업에서 손을 뗐고 PHP 런타임 결함 PHP2Shell로 정부가 사이버위기 경보를 '주의'로 올리는 등 인터넷 전반에 긴급 패치가 몰렸고, 구글 클라우드는 OpenAI GPT-6 계열까지 들여왔으며, 삼성전기·AWS·엔비디아가 AI 인프라 공급망을 흔들었다">
   <meta property="og:url" content="https://lspace-next.github.io/WeeklyNews/archive/2026/10/week3.html">
   <meta property="og:image" content="https://lspace-next.github.io/WeeklyNews/assets/images/og-cover.png?v=2026101502">
   <meta property="og:image:width" content="1200">
@@ -37,8 +37,8 @@
       <div class="ih-text">
         <p class="eyebrow">2026년 10월 3주차 · 기술 동향</p>
         <h1 class="ih-title">Tech Radar <span class="ih-dot">·</span> <em>Oct W3</em></h1>
-        <p class="ih-headline">eMudhra 인증서 키 노출에 이어 PHP 런타임 결함 PHP2Shell로 정부가 사이버위기 경보를 '주의'로 올리는 등 인터넷 전반에 긴급 패치가 몰렸고, 구글 클라우드는 OpenAI GPT-6 계열까지 들여왔으며, 삼성전기·AWS·엔비디아가 AI 인프라 공급망을 흔들었다</p>
-        <p class="meta">수집 기간 2026.10.19 – 10.25 · 매일 업데이트 중 · 최근 10.23</p>
+        <p class="ih-headline">eMudhra가 인증서 키 노출 끝에 TLS 사업에서 손을 뗐고 PHP 런타임 결함 PHP2Shell로 정부가 사이버위기 경보를 '주의'로 올리는 등 인터넷 전반에 긴급 패치가 몰렸고, 구글 클라우드는 OpenAI GPT-6 계열까지 들여왔으며, 삼성전기·AWS·엔비디아가 AI 인프라 공급망을 흔들었다</p>
+        <p class="meta">수집 기간 2026.10.19 – 10.25 · 매일 업데이트 중 · 최근 10.24</p>
       </div>
       <div class="ih-week" aria-hidden="true"><span class="big-num">W3</span><small>OCT 2026</small></div>
       <div class="catbar" id="catbar" aria-hidden="true"></div>
@@ -47,28 +47,29 @@
     <section class="summary">
       <h2>// 이번 주 핵심</h2>
       <ol>
-        <li>인도 인증기관 eMudhra의 중간 인증서 8개 키가 사실상 노출돼 브라우저·Go가 긴급 차단했고, 이튿날엔 PHP 런타임 자체의 원격 코드 실행 결함 2건(PHP2Shell)이 긴급 패치되자마자 공격 시도가 확인돼 정부가 민간 사이버위기 경보를 '주의'로 올렸다(국내 취약 서버 약 11만 건 추정). GitLab도 2014년 이후 전 버전에 걸친 CVSS 10.0 원격 코드 실행 결함을 고쳤다.</li>
+        <li>인도 인증기관 eMudhra의 중간 인증서 8개 키가 누구나 계산할 수 있는 값으로 드러나 브라우저가 긴급 차단했고(eMudhra는 결국 TLS 인증서 사업 철수를 결정), 이튿날엔 PHP 런타임 자체의 원격 코드 실행 결함 2건(PHP2Shell)이 긴급 패치되자마자 공격 시도가 확인돼 정부가 민간 사이버위기 경보를 '주의'로 올렸다(국내 취약 서버 약 11만 건 추정). GitLab도 2014년 이후 전 버전에 걸친 CVSS 10.0 원격 코드 실행 결함을 고쳤다.</li>
         <li>구글 클라우드가 모델 가든에 OpenAI GPT-6 계열을 들여와 제미나이·클로드·GPT를 한 플랫폼에서 제공하게 됐고, 다음 달엔 Vera Rubin 기반 A5X를 내놓는다. 삼성전기는 엔비디아 전용 AI 기판 라인을 세종·부산에 늘리고, AWS는 TorchNeuron으로 PyTorch의 엔비디아 종속을 겨눴으며, 엔비디아는 GTC 베를린에서 에이전트를 칩 단에서 통제하는 오픈셸(OpenShell)을 선보였다.</li>
-        <li>5대 은행장이 해킹 국감에 나와 정보 유출을 사과하고 보안 예산·인력 확충을 약속했고, 정부는 정보보호 공시 의무를 2027년부터 모든 상장사로 넓히는 시행령 개정안을 통과시켰다.</li>
+        <li>대한항공·아시아나 고객 예약정보가 수탁사인 글로벌 예약·발권 시스템 아마데우스 계정을 통해 유출됐고, 5대 은행장은 해킹 국감에서 정보 유출을 사과했다. 정부는 정보보호 공시 의무를 2027년부터 모든 상장사로 넓히고, 2028년 광주에서 무인 로보택시를 상용화하기 위한 제도 틀을 내놨다.</li>
       </ol>
     </section>
 
     <div class="filters" id="filters" role="toolbar" aria-label="카테고리 필터"></div>
 
     <div class="grid">
-      <article class="card" data-cat="보안" data-date="2026-10-20" data-added="2026-10-21">
+      <article class="card" data-cat="보안" data-date="2026-10-22" data-added="2026-10-21">
         <div class="card-media">
           <span class="poster-cat">보안</span>
           <span class="poster-kw">eMudhra</span>
+          <img class="card-img" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi5DGeZCzWnHOoA87UbpfzGUlpU9xBK1x5tJsYlWOoKtyEkTRjaN4cW_lMOKdtiSXVPhVMd6JhOMRhvFOxvn853LcLaCBSNK-_m4CDIDGt048SdHQQqu63ZSZ09Ymc3UhqD_TZoLaCM6eIJL6TSYbBVINceAi4paPvjxJ4i9uN3CKZQ2s5bT4Dc_jAcv8I/s1600/ssl.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
         </div>
         <div class="card-body">
           <span class="tag cat-security">보안</span>
-          <h2 class="card-title">인도 인증기관 eMudhra 중간 인증서 8개 키 노출…브라우저·Go 긴급 차단</h2>
-          <p class="card-summary">인도 인증기관(CA) eMudhra의 중간 인증서 8개가 개인키 크기가 3–8비트에 불과할 만큼 결함이 있어, 이 키로 아무 사이트의 신뢰받는 TLS 인증서를 발급할 수 있는 상태였던 것으로 드러났다. 제보자가 그중 한 키로 서명한 경고문을 공개해 키 장악을 증명했고, 20일 주요 브라우저와 Go 등 일부 앱·언어가 8개 인증서를 모두 차단했다. 인증서 투명성 로그에서 악용 흔적은 아직 나오지 않았다.</p>
-          <p class="card-why">브라우저는 빠르게 막았지만 리눅스 배포판·IoT 기기·컨테이너·자체 루트 목록을 싣고 다니는 도구까지 갱신해야 해, Go 암호 메인테이너가 &quot;하트블리드보다 큰 정리 작업&quot;이라 할 만큼 후속 조치가 길어질 전망이다.</p>
+          <h2 class="card-title">eMudhra 중간 인증서 8개 키 노출로 브라우저 긴급 차단…eMudhra는 TLS 인증서 사업 철수</h2>
+          <p class="card-summary">인도 인증기관(CA) eMudhra의 중간 인증서 8개 개인키가 모두 256보다 작은 값이라 누구나 곧바로 계산해 낼 수 있었던 것으로 드러나, 크롬·파이어폭스가 몇 시간 만에 TLS용 6개를 차단했다. 모질라에 이어 크롬도 해당 루트(emSign ECC Root CA - G3) 신뢰를 끊기로 했고(사용자 반영 10월 27일 예정), 이 루트에 묶인 유효 인증서는 약 3만800개다. eMudhra는 제보 닷새 만인 22일 이사회에서 전 세계 SSL/TLS 인증서 사업 철수를 결정했다.</p>
+          <p class="card-why">키 생성 결함 하나로 인증기관이 시장에서 퇴출된 사례로, 이 루트 인증서를 쓰는 사이트·기기는 다른 인증 체계의 인증서로 서둘러 바꿔야 하고 자체 루트 목록을 싣고 다니는 장비·도구도 갱신이 필요하다.</p>
           <div class="card-foot">
-            <span>Ars Technica · 10.20</span>
-            <a href="https://arstechnica.com/security/2026/10/the-internet-goes-on-high-alert-after-discovery-of-8-compromised-tls-certs/" target="_blank" rel="noopener">원문 ↗</a>
+            <span>The Hacker News · 10.22</span>
+            <a href="https://thehackernews.com/2026/10/emudhra-to-exit-global-ssltls-business.html" target="_blank" rel="noopener">원문 ↗</a>
           </div>
         </div>
       </article>
@@ -103,6 +104,23 @@
           <div class="card-foot">
             <span>연합뉴스 · 10.22</span>
             <a href="https://www.yna.co.kr/view/AKR20261022133900017" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="국내 IT" data-date="2026-10-23" data-added="2026-10-24">
+        <div class="card-media">
+          <span class="poster-cat">국내 IT</span>
+          <span class="poster-kw">아마데우스</span>
+          <img class="card-img" src="https://img8.yna.co.kr/photo/yna/YH/2026/10/23/PYH2026102308700001300_P4.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+        </div>
+        <div class="card-body">
+          <span class="tag cat-korea">국내 IT</span>
+          <h2 class="card-title">대한항공·아시아나 고객 예약정보 유출…글로벌 예약·발권 시스템 '아마데우스' 계정 뚫려</h2>
+          <p class="card-summary">대한항공과 아시아나항공이 수탁사인 글로벌 항공 IT 기업 아마데우스로부터 20일 밤 개인정보 유출 정황을 통보받고 23일 고객에게 사과 메일을 보냈다. 아마데우스 시스템 계정의 로그인 인증정보를 이용한 비인가 접근으로 2023년 8월부터 지난달 사이 유출된 것으로 추정되며, 대한항공 고객 예약번호 등이 포함됐다. 결제 정보는 별도 시스템이라 빠졌고, 정확한 유출 규모와 항목은 조사 중이다.</p>
+          <p class="card-why">두 항공사 자체 시스템이 아닌 수탁사 계정 하나로 3년 가까이 정보가 새어 나간 사례로, 아마데우스를 쓰는 항공사가 전 세계 200곳 안팎이라 피해가 더 커질 수 있고 국내 기업의 IT 수탁사 관리 점검이 불가피해졌다.</p>
+          <div class="card-foot">
+            <span>연합뉴스 · 10.23</span>
+            <a href="https://www.yna.co.kr/view/AKR20261023182351003" target="_blank" rel="noopener">원문 ↗</a>
           </div>
         </div>
       </article>
@@ -239,6 +257,23 @@
           </div>
         </div>
       </article>
+      <article class="card" data-cat="정책·규제" data-date="2026-10-23" data-added="2026-10-24">
+        <div class="card-media">
+          <span class="poster-cat">정책·규제</span>
+          <span class="poster-kw">로보택시 2028</span>
+          <img class="card-img" src="https://img8.yna.co.kr/photo/yna/YH/2026/09/30/PYH2026093019670001300_P4.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+        </div>
+        <div class="card-body">
+          <span class="tag cat-policy">정책·규제</span>
+          <h2 class="card-title">정부, 2028년 광주부터 무인 로보택시 상용화…원격관제 맡는 '자율주행 서비스 사업자' 신설</h2>
+          <p class="card-summary">국토교통부가 23일 대통령 소속 규제합리화위원회에서 '자율주행 경쟁국 수준 규제 합리화 방안'을 논의하고, 내년까지 법 개정을 마쳐 2028년 실증도시 광주에서 무인 로보택시를 시범 운영하기로 했다. 운전자 대신 원격관제·승객 안전·사고 조치·사이버보안을 맡는 자율주행 서비스 사업자를 새로 두고, 이들에게 데이터 국내 보관 의무와 국외 이전 허가제를 적용한다. 올해 말부터 무인 자율차 B2B 거래용 성능 인증제를 운영하고 사고 책임 가이드라인도 만든다.</p>
+          <p class="card-why">매번 규제 특례에 기대던 무인차 운행을 상시 제도로 바꾸는 첫 틀로, 원격관제·보안·데이터 보관 요건이 국내 자율주행 서비스 사업의 진입 조건이 된다.</p>
+          <div class="card-foot">
+            <span>연합뉴스 · 10.23</span>
+            <a href="https://www.yna.co.kr/view/AKR20261023096800003" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </div>
+      </article>
       <article class="card" data-cat="정책·규제" data-date="2026-10-20" data-added="2026-10-22">
         <div class="card-media">
           <span class="poster-cat">정책·규제</span>
@@ -253,23 +288,6 @@
           <div class="card-foot">
             <span>TechCrunch · 10.20</span>
             <a href="https://techcrunch.com/2026/10/20/anthropic-pitches-ai-safety-bill-that-may-block-a-model-if-50-people-could-be-killed/" target="_blank" rel="noopener">원문 ↗</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-cat="국내 IT" data-date="2026-10-19" data-added="2026-10-19">
-        <div class="card-media">
-          <span class="poster-cat">국내 IT</span>
-          <span class="poster-kw">Qwen3</span>
-          <img class="card-img" src="https://img9.yna.co.kr/photo/cms/2017/08/29/02/C0A8CA3C0000015E2D2F1CC300007E9D_P4.jpeg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
-        </div>
-        <div class="card-body">
-          <span class="tag cat-korea">국내 IT</span>
-          <h2 class="card-title">국부펀드 KIC 사내 AI, 언어·검색 모델 모두 중국산</h2>
-          <p class="card-summary">339조 원을 운용하는 한국투자공사(KIC)의 사내 AI가 언어모델로 알리바바 Qwen3, 검색 임베딩 모델로 베이징인공지능연구원(BAAI)의 BGE-M3를 쓰는 것으로 국감 자료에서 확인됐다. BAAI는 2025년 3월 미국 상무부 수출통제 명단에 올랐는데, KIC의 모델 평가 기준에는 개발사 국적·제재 여부가 없었다. 사내 AI 이용 건수는 5월 3,755건에서 9월 798건으로 줄었지만 GPU는 4개에서 12개로 늘리는 중이다.</p>
-          <p class="card-why">공공기관이 오픈 웨이트 모델을 내부에 들일 때 성능·비용 외에 개발사 국적과 제재 여부를 어떻게 따질지 기준이 필요하다는 신호다.</p>
-          <div class="card-foot">
-            <span>연합뉴스 · 10.19</span>
-            <a href="https://www.yna.co.kr/view/AKR20261018027100002" target="_blank" rel="noopener">원문 ↗</a>
           </div>
         </div>
       </article>
@@ -338,23 +356,6 @@
           <div class="card-foot">
             <span>The Hacker News · 10.20</span>
             <a href="https://thehackernews.com/2026/10/russian-apt28-breaches-nato-naval.html" target="_blank" rel="noopener">원문 ↗</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-cat="AI" data-date="2026-10-19" data-added="2026-10-19">
-        <div class="card-media">
-          <span class="poster-cat">AI</span>
-          <span class="poster-kw">54.6%</span>
-          <img class="card-img" src="https://img6.yna.co.kr/photo/yna/YH/2026/01/21/PYH2026012110080001300_P4.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
-        </div>
-        <div class="card-body">
-          <span class="tag cat-ai">AI</span>
-          <h2 class="card-title">교사 54.6% &quot;매주 AI 쓴다&quot;…관련 법·지침 아는 교사는 17.3%</h2>
-          <p class="card-summary">한국교육개발원(KEDI)이 초·중·고 교사 271명을 조사한 보고서에서 54.6%가 수업에 AI를 주 1회 이상 쓴다고 답했고, 쓰는 도구는 챗GPT·클로드·제미나이 같은 범용 생성형 AI가 94.5%로 가장 많았다. 겪은 문제로는 환각(64.2%), 학생 학습에 대한 악영향(42.8%), 개인정보·민감정보 처리(40.6%)가 꼽혔다. 반면 AI 관련 법령·지침을 안다는 응답은 17.3%에 그쳐, 연구진은 책임 주체를 정하고 AI 교육정책 컨트롤타워를 둘 것을 제안했다.</p>
-          <p class="card-why">학교 현장의 생성형 AI 사용이 제도보다 앞서 퍼지면서, 검증·개인정보 책임이 교사 개인에게 쏠리는 구조를 정책이 어떻게 받칠지가 과제로 떠올랐다.</p>
-          <div class="card-foot">
-            <span>연합뉴스 · 10.19</span>
-            <a href="https://www.yna.co.kr/view/AKR20261016118400530" target="_blank" rel="noopener">원문 ↗</a>
           </div>
         </div>
       </article>
