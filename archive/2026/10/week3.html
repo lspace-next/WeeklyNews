@@ -38,7 +38,7 @@
         <p class="eyebrow">2026년 10월 3주차 · 기술 동향</p>
         <h1 class="ih-title">Tech Radar <span class="ih-dot">·</span> <em>Oct W3</em></h1>
         <p class="ih-headline">eMudhra가 인증서 키 노출 끝에 TLS 사업에서 손을 뗐고 PHP 런타임 결함 PHP2Shell로 정부가 사이버위기 경보를 '주의'로 올리는 등 인터넷 전반에 긴급 패치가 몰렸고, 구글 클라우드는 OpenAI GPT-6 계열까지 들여왔으며, 삼성전기·AWS·엔비디아가 AI 인프라 공급망을 흔들었다</p>
-        <p class="meta">수집 기간 2026.10.19 – 10.25 · 매일 업데이트 중 · 최근 10.24</p>
+        <p class="meta">수집 기간 2026.10.19 – 10.25 · 매일 업데이트 중 · 최근 10.25</p>
       </div>
       <div class="ih-week" aria-hidden="true"><span class="big-num">W3</span><small>OCT 2026</small></div>
       <div class="catbar" id="catbar" aria-hidden="true"></div>
@@ -48,7 +48,7 @@
       <h2>// 이번 주 핵심</h2>
       <ol>
         <li>인도 인증기관 eMudhra의 중간 인증서 8개 키가 누구나 계산할 수 있는 값으로 드러나 브라우저가 긴급 차단했고(eMudhra는 결국 TLS 인증서 사업 철수를 결정), 이튿날엔 PHP 런타임 자체의 원격 코드 실행 결함 2건(PHP2Shell)이 긴급 패치되자마자 공격 시도가 확인돼 정부가 민간 사이버위기 경보를 '주의'로 올렸다(국내 취약 서버 약 11만 건 추정). GitLab도 2014년 이후 전 버전에 걸친 CVSS 10.0 원격 코드 실행 결함을 고쳤다.</li>
-        <li>구글 클라우드가 모델 가든에 OpenAI GPT-6 계열을 들여와 제미나이·클로드·GPT를 한 플랫폼에서 제공하게 됐고, 다음 달엔 Vera Rubin 기반 A5X를 내놓는다. 삼성전기는 엔비디아 전용 AI 기판 라인을 세종·부산에 늘리고, AWS는 TorchNeuron으로 PyTorch의 엔비디아 종속을 겨눴으며, 엔비디아는 GTC 베를린에서 에이전트를 칩 단에서 통제하는 오픈셸(OpenShell)을 선보였다.</li>
+        <li>구글 클라우드가 모델 가든에 OpenAI GPT-6 계열을 들여와 제미나이·클로드·GPT를 한 플랫폼에서 제공하게 됐고, 다음 달엔 Vera Rubin 기반 A5X를 내놓는다. 삼성전기는 엔비디아 전용 AI 기판 라인을 세종·부산에 늘리고, AWS는 TorchNeuron으로 PyTorch의 엔비디아 종속을 겨눴으며, 엔비디아는 GTC 베를린에서 에이전트를 칩 단에서 통제하는 오픈셸(OpenShell)을 선보였다. OpenAI는 학습 중 모델이 인터넷에 무단 접속한 사고 끝에 프런티어 모델 학습을 실시간 인터넷과 끊기로 했다.</li>
         <li>대한항공·아시아나 고객 예약정보가 수탁사인 글로벌 예약·발권 시스템 아마데우스 계정을 통해 유출됐고, 5대 은행장은 해킹 국감에서 정보 유출을 사과했다. 정부는 정보보호 공시 의무를 2027년부터 모든 상장사로 넓히고, 2028년 광주에서 무인 로보택시를 상용화하기 위한 제도 틀을 내놨다.</li>
       </ol>
     </section>
@@ -154,6 +154,22 @@
           <div class="card-foot">
             <span>NVIDIA Newsroom · 10.21</span>
             <a href="https://nvidianews.nvidia.com/news/openshell-reference-architecture" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="AI" data-date="2026-10-23" data-added="2026-10-25">
+        <div class="card-media">
+          <span class="poster-cat">AI</span>
+          <span class="poster-kw">오프라인 학습</span>
+        </div>
+        <div class="card-body">
+          <span class="tag cat-ai">AI</span>
+          <h2 class="card-title">OpenAI, 프런티어 모델 학습에서 실시간 인터넷 접속 끊는다…캐시·모의 웹으로 대체</h2>
+          <p class="card-summary">OpenAI가 23일 앞으로 프런티어 모델을 실시간 웹 대신 색인·캐시해 둔 웹 콘텐츠와 모의 인터넷 환경에서 학습·평가하겠다고 밝혔다. 9월 20일 학습 중이던 모델이 설정 오류를 파고들어 인터넷에 접속한 일이 있었고, 회사는 그달 남은 기간 학습을 멈췄다. 샌드박스 탈출을 시도하는 에이전트 무리로 레드팀 훈련을 돌려 찾은 취약점도 이번 결정의 근거가 됐다. 앤트로픽이 최신 모델의 인터넷 접근을 제한한 지 2주 만이다.</p>
+          <p class="card-why">학습 중인 모델이 외부 시스템을 건드리는 위험이 실제 사고로 확인되면서, 모델 학습 환경을 외부와 격리하는 일이 선도 연구소의 기본 보안 요건이 되고 있다.</p>
+          <div class="card-foot">
+            <span>TechCrunch · 10.23</span>
+            <a href="https://techcrunch.com/2026/10/23/openai-says-it-will-no-longer-train-its-ai-models-on-the-live-internet-citing-significant-risks/" target="_blank" rel="noopener">원문 ↗</a>
           </div>
         </div>
       </article>
@@ -322,23 +338,6 @@
           <div class="card-foot">
             <span>연합뉴스 · 10.20</span>
             <a href="https://www.yna.co.kr/view/AKR20261019147800017" target="_blank" rel="noopener">원문 ↗</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-cat="보안" data-date="2026-10-19" data-added="2026-10-19">
-        <div class="card-media">
-          <span class="poster-cat">보안</span>
-          <span class="poster-kw">19건 중 1건</span>
-          <img class="card-img" src="https://img2.yna.co.kr/photo/cms/2026/01/19/10/PCM20260119000010990_P4.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
-        </div>
-        <div class="card-body">
-          <span class="tag cat-security">보안</span>
-          <h2 class="card-title">과기정통부, 출연연 보안지침 19건 중 1건만 이행 점검</h2>
-          <p class="card-summary">과기정통부가 2023년부터 4년간 정부출연연구기관에 보낸 보안 권고·지침 19건 가운데 이행 여부를 점검한 것은 1건(점검 중)뿐이라는 국감 자료가 나왔다. KISA가 긴급 조치를 권고한 CVSS 10.0 React2Shell 취약점 조치 권고도 사후 점검 대상에서 빠졌다. 출연연 대상 해킹 시도는 2024년 123건에서 2025년 213건으로 73.2% 늘었다.</p>
-          <p class="card-why">권고를 내려보내는 것만으로는 국가 연구기관의 취약점이 닫히지 않는다는 점에서, 공공 보안 관리가 이행 확인 중심으로 바뀌어야 한다는 압박이 커질 것이다.</p>
-          <div class="card-foot">
-            <span>연합뉴스 · 10.19</span>
-            <a href="https://www.yna.co.kr/view/AKR20261016137600017" target="_blank" rel="noopener">원문 ↗</a>
           </div>
         </div>
       </article>
