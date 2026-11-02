@@ -23,6 +23,7 @@
   --c-cloud: #0891b2;
   --c-chip: #ea580c;
   --c-device: #db2777;
+  --c-mobility: #a0562a;
   --c-policy: #4b5563;
   --c-korea: #16a34a;
   --c-ship: #1e3a8a;
@@ -36,6 +37,7 @@
   --p-cloud: #0e7490;
   --p-chip: #d9480f;
   --p-device: #be185d;
+  --p-mobility: #8a4a24;
   --p-policy: #3f4654;
   --p-korea: #15803d;
   --p-ship: #172f6e;
@@ -73,6 +75,7 @@
     --c-cloud: #22d3ee;
     --c-chip: #fb923c;
     --c-device: #f472b6;
+    --c-mobility: #d9a066;
     --c-policy: #9ca3af;
     --c-korea: #4ade80;
     --c-ship: #93c5fd;
@@ -83,12 +86,13 @@
 
 /* category → color. Cards use data-cat (must match the CLAUDE.md table), tags/chips/tiles use .cat-* */
 .cat-ai,       [data-cat="AI"]             { --cat: var(--c-ai);       --poster: var(--p-ai); }
-.cat-robot,    [data-cat="로봇"]            { --cat: var(--c-robot);    --poster: var(--p-robot); }
+.cat-robot,    [data-cat="로봇·제조"]       { --cat: var(--c-robot);    --poster: var(--p-robot); }
 .cat-bigtech,  [data-cat="빅테크"]          { --cat: var(--c-bigtech);  --poster: var(--p-bigtech); }
 .cat-security, [data-cat="보안"]            { --cat: var(--c-security); --poster: var(--p-security); }
 .cat-cloud,    [data-cat="클라우드·인프라"]  { --cat: var(--c-cloud);    --poster: var(--p-cloud); }
 .cat-chip,     [data-cat="반도체·HW"]       { --cat: var(--c-chip);     --poster: var(--p-chip); }
 .cat-device,   [data-cat="모바일·디바이스"]  { --cat: var(--c-device);   --poster: var(--p-device); }
+.cat-mobility, [data-cat="모빌리티·우주"]    { --cat: var(--c-mobility); --poster: var(--p-mobility); }
 .cat-policy,   [data-cat="정책·규제"]       { --cat: var(--c-policy);   --poster: var(--p-policy); }
 .cat-korea,    [data-cat="국내 IT"]         { --cat: var(--c-korea);    --poster: var(--p-korea); }
 .cat-ship,     [data-cat="조선·해양"]       { --cat: var(--c-ship);     --poster: var(--p-ship); }

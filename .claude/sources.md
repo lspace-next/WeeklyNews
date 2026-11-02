@@ -51,6 +51,28 @@
 | Seatrade Maritime | https://www.seatrade-maritime.com/ | https://www.seatrade-maritime.com/rss.xml |
 | Riviera Maritime Media | https://www.rivieramm.com/ | 페이지 직접 |
 
+### 로봇·제조
+2026-11-03 기준 접근 확인.
+| 소스 | URL | RSS/검색 |
+|---|---|---|
+| The Robot Report | https://www.therobotreport.com/ | https://www.therobotreport.com/feed/ |
+| 헬로티 (제조 AX·스마트팩토리) | https://www.hellot.net/ | 페이지 직접 |
+
+### 모빌리티·우주
+2026-11-03 기준 접근 확인.
+| 소스 | URL | RSS/검색 |
+|---|---|---|
+| Waymo 블로그 | https://waymo.com/blog/ | 페이지 직접 |
+| Spaceflight Now | https://spaceflightnow.com/ | https://spaceflightnow.com/feed/ |
+| SpaceNews | https://spacenews.com/ | https://spacenews.com/feed/ |
+| 우주항공청 | https://www.kasa.go.kr/ | 페이지 직접 |
+
+### 양자
+2026-11-03 기준 접근 확인.
+| 소스 | URL | RSS/검색 |
+|---|---|---|
+| IBM Quantum 블로그 | https://www.ibm.com/quantum/blog | 페이지 직접 |
+
 ### 보안
 | 소스 | URL | RSS/검색 |
 |---|---|---|
@@ -201,6 +223,20 @@ gcaptain.com
 *.marinelink.com
 *.seatrade-maritime.com
 *.rivieramm.com
+# 로봇·제조
+therobotreport.com
+*.therobotreport.com
+hellot.net
+*.hellot.net
+# 모빌리티·우주 (우주항공청은 *.kr 에 포함)
+waymo.com
+*.waymo.com
+spaceflightnow.com
+*.spaceflightnow.com
+spacenews.com
+*.spacenews.com
+# 양자
+*.ibm.com
 # 유튜브
 youtube.com
 *.youtube.com
