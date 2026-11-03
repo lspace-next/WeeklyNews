@@ -33,7 +33,7 @@ CLAUDE.md 의 규칙을 따라 L.SPACE Tech Radar 한 호를 만든다. 인자: 
      - 이미지만 막히면 `card-img` 없이 포스터만 쓴다.
      - 막힌 도메인은 모아서 9단계 보고에 "허용 목록 추가 후보"로 남긴다.
 
-5. **영상**: `.claude/sources.md` 유튜브 표의 채널을 모두 피드로 확인해, 영상 규칙에 따라 기간 내 영상 0–8개를 고르고(그 호의 카드와 관련된 영상 우선)(없으면 영상 섹션을 지운다) URL이 존재하는지 확인한다. 영상마다 `v-sum` 한글 요약 1–2문장을 단다.
+5. **영상**: `.claude/sources.md` 유튜브 표의 채널을 모두 YouTube Data API 로 확인해, 영상 규칙에 따라 기간 내 영상 0–8개를 고르고(그 호의 카드와 관련된 영상 우선)(없으면 영상 섹션을 지운다) URL이 존재하는지 확인한다. 영상마다 `v-sum` 한글 요약 1–2문장을 단다.
 
 6. **생성**: `templates/issue.html` → `archive/YYYY/MM/weekN.html` (안내 주석 삭제, STATUS=final, 모든 카드 data-date=원문 발표일·data-added=생성일, meta 는 마감 형식). `data/issues.json` 맨 앞에 항목 추가(`status: "final"`, `published`·`updated` = 생성일). 이미 지난 주를 백필하면 issues.json 안에서 날짜 순 위치에 넣는다.
 
