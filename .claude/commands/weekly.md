@@ -33,7 +33,7 @@ CLAUDE.md 의 규칙을 따라 L.SPACE Tech Radar 한 호를 만든다. 인자: 
      - 이미지만 막히면 `card-img` 없이 포스터만 쓴다.
      - 막힌 도메인은 모아서 9단계 보고에 "허용 목록 추가 후보"로 남긴다.
 
-5. **영상**: `.claude/sources.md` 유튜브 목록과 영상 규칙에 따라 기간 내 영상 0–8개를 고르고(없으면 영상 섹션을 지운다) URL이 존재하는지 확인한다. 영상마다 `v-sum` 한글 요약 1–2문장을 단다.
+5. **영상**: `.claude/sources.md` 유튜브 표의 채널을 모두 피드로 확인해, 영상 규칙에 따라 기간 내 영상 0–8개를 고르고(그 호의 카드와 관련된 영상 우선)(없으면 영상 섹션을 지운다) URL이 존재하는지 확인한다. 영상마다 `v-sum` 한글 요약 1–2문장을 단다.
 
 6. **생성**: `templates/issue.html` → `archive/YYYY/MM/weekN.html` (안내 주석 삭제, STATUS=final, 모든 카드 data-date=원문 발표일·data-added=생성일, meta 는 마감 형식). `data/issues.json` 맨 앞에 항목 추가(`status: "final"`, `published`·`updated` = 생성일). 이미 지난 주를 백필하면 issues.json 안에서 날짜 순 위치에 넣는다.
 
@@ -56,4 +56,4 @@ CLAUDE.md 의 규칙을 따라 L.SPACE Tech Radar 한 호를 만든다. 인자: 
      ```
      검증을 통과하지 못했으면 **커밋·푸시하지 않고** 변경을 되돌린 뒤(`git checkout -- . && git clean -fd archive/`) 실패 사유를 보고한다. 공개 사이트에 불완전한 호를 올리지 않는 것이 우선이다.
 
-9. **보고**: 선정 기사 목록(카테고리·제목·출처·날짜), 제외한 주요 후보와 이유, 허용 목록 추가 후보(막힌 도메인과 그 때문에 바꾸거나 뺀 후보, 없으면 생략), 조선·해양 0건이면 그 사실, `check_issue.py` 결과, (auto) 푸시한 커밋 해시와 페이지 URL(`SITE_URL/archive/YYYY/MM/weekN.html`).
+9. **보고**: 선정 기사 목록(카테고리·제목·출처·날짜), 제외한 주요 후보와 이유, 허용 목록 추가 후보(막힌 도메인과 그 때문에 바꾸거나 뺀 후보, 없으면 생략), 조선·해양 0건이면 그 사실, 영상 보고(sources.md 영상 규칙. 0개여도 후보 수와 이유를 적는다), `check_issue.py` 결과, (auto) 푸시한 커밋 해시와 페이지 URL(`SITE_URL/archive/YYYY/MM/weekN.html`).

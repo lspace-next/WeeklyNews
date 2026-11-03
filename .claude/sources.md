@@ -113,38 +113,43 @@
 
 ### 유튜브 (이번 주 볼만한 영상 후보)
 해외
-| 채널 | URL | 성격 |
-|---|---|---|
-| Fireship | https://www.youtube.com/@Fireship | 개발·기술 뉴스 짧은 요약 |
-| Two Minute Papers | https://www.youtube.com/@TwoMinutePapers | AI 논문 해설 |
-| AI Explained | https://www.youtube.com/@aiexplained-official | AI 모델·벤치마크 분석 |
-| Bloomberg Tech | https://www.youtube.com/bloombergtech | 빅테크 비즈니스 |
-| CNBC Television | https://www.youtube.com/@CNBCtelevision | 빅테크 실적·인터뷰 |
-| The Verge | https://www.youtube.com/@TheVerge | 제품·서비스 리뷰 |
-| Marques Brownlee (MKBHD) | https://www.youtube.com/@mkbhd | 디바이스 리뷰 |
-| Lex Fridman | https://www.youtube.com/@LexFridman | 업계 인물 장편 인터뷰 |
-| Google for Developers | https://www.youtube.com/@GoogleDevelopers | 공식 (개발) |
-| Google DeepMind | https://www.youtube.com/@GoogleDeepMind | 공식 (AI 연구) |
-| Microsoft Developer | https://www.youtube.com/@MicrosoftDeveloper | 공식 (개발) |
-| NVIDIA | https://www.youtube.com/@NVIDIA | 공식 (키노트) |
-| AWS Events | https://www.youtube.com/@AWSEventsChannel | 공식 (클라우드 행사) |
-| OpenAI | https://www.youtube.com/@OpenAI | 공식 (발표) |
-| Anthropic | https://www.youtube.com/@anthropic-ai | 공식 (발표) |
+| 채널 | URL | 채널 ID | 성격 |
+|---|---|---|---|
+| Fireship | https://www.youtube.com/@Fireship | UCsBjURrPoezykLs9EqgamOA | 개발·기술 뉴스 짧은 요약 |
+| Two Minute Papers | https://www.youtube.com/@TwoMinutePapers | UCbfYPyITQ-7l4upoX8nvctg | AI 논문 해설 |
+| AI Explained | https://www.youtube.com/@aiexplained-official | UCNJ1Ymd5yFuUPtn21xtRbbw | AI 모델·벤치마크 분석 |
+| Bloomberg Tech | https://www.youtube.com/bloombergtech | UCrM7B7SL_g1edFOnmj-SDKg | 빅테크 비즈니스 |
+| CNBC Television | https://www.youtube.com/@CNBCtelevision | UCrp_UI8XtuYfpiqluWLD7Lw | 빅테크 실적·인터뷰 |
+| The Verge | https://www.youtube.com/@TheVerge | UCddiUEpeqJcYeBxX1IVBKvQ | 제품·서비스 리뷰 |
+| Marques Brownlee (MKBHD) | https://www.youtube.com/@mkbhd | UCBJycsmduvYEL83R_U4JriQ | 디바이스 리뷰 |
+| Lex Fridman | https://www.youtube.com/@LexFridman | UCSHZKyawb77ixDdsGog4iWA | 업계 인물 장편 인터뷰 |
+| Google for Developers | https://www.youtube.com/@GoogleDevelopers | UC_x5XG1OV2P6uZZ5FSM9Ttw | 공식 (개발) |
+| Google DeepMind | https://www.youtube.com/@GoogleDeepMind | UCP7jMXSY2xbc3KCAE0MHQ-A | 공식 (AI 연구) |
+| Microsoft Developer | https://www.youtube.com/@MicrosoftDeveloper | UCsMica-v34Irf9KVTh6xx-g | 공식 (개발) |
+| NVIDIA | https://www.youtube.com/@NVIDIA | UCHuiy8bXnmK5nisYHUd1J5g | 공식 (키노트) |
+| AWS Events | https://www.youtube.com/@AWSEventsChannel | UCdoadna9HFHsxXWhafhNvKw | 공식 (클라우드 행사) |
+| OpenAI | https://www.youtube.com/@OpenAI | UCXZCJLdBC09xxGZ6gcdrc6A | 공식 (발표) |
+| Anthropic | https://www.youtube.com/@anthropic-ai | UCrDwWp7EBBv4NwvScIpBDOA | 공식 (발표) |
 
 국내
-| 채널 | URL | 성격 |
-|---|---|---|
-| 안될공학 | https://www.youtube.com/@unrealtech | 반도체·IT 산업 분석 |
-| 티타임즈TV | https://www.youtube.com/@TTimesTV | 테크 비즈니스 해설 |
-| 조코딩 | https://www.youtube.com/@jocoding | AI·개발 트렌드 |
-| 노마드 코더 | https://www.youtube.com/@nomadcoders | 개발 생태계 |
-| ITSub잇섭 | https://www.youtube.com/@ITSUB | 디바이스 리뷰 |
-| 테크몽 | https://www.youtube.com/@techmong | 디바이스·칩 분석 |
+| 채널 | URL | 채널 ID | 성격 |
+|---|---|---|---|
+| 안될공학 | https://www.youtube.com/@unrealtech | UCeN2YeJcBCRJoXgzF_OU3qw | 반도체·IT 산업 분석 |
+| 티타임즈TV | https://www.youtube.com/@TTimesTV | UCelFN6fJ6OY6v8pbc_SLiXA | 테크 비즈니스 해설 |
+| 조코딩 | https://www.youtube.com/@jocoding | UCQNE2JmbasNYbjGAcuBiRRg | AI·개발 트렌드 |
+| 노마드 코더 | https://www.youtube.com/@nomadcoders | UCUpJs89fSBXNolQGOYKn0YQ | 개발 생태계 |
+| ITSub잇섭 | https://www.youtube.com/@ITSUB | UCdUcjkyZtf-1WJyPPiETF1g | 디바이스 리뷰 |
+| 테크몽 | https://www.youtube.com/@techmong | UCFX6adXoyQKxft933NB3rmA | 디바이스·칩 분석 |
 
 영상은 수집 기간에 올라온 것 중 **주 0–8개**(카드 그리드라 PC 한 줄 4개, 8개면 두 줄). 볼만한 게 없으면 0개도 된다(섹션째 뺀다). 개수를 채우려고 약한 영상을 넣지 않는다. 공식 채널 키노트/발표 영상을 우선하고, Shorts(`/shorts/`)는 제외한다. 영상 URL은 `watch?v=` 형식으로 실제 존재를 확인한다.
-- 채널 업로드 목록: `https://www.youtube.com/feeds/videos.xml?channel_id=<UC...>` (채널 ID는 채널 페이지의 `"externalId"`)
+- 찾는 방법: 위 표의 채널을 **모두** 업로드 피드로 확인한다. 키워드 검색으로 찾지 않는다.
+  - 피드: `https://www.youtube.com/feeds/videos.xml?channel_id=<채널 ID>` (최근 15개, `published`·`media:description` 포함)
+  - 피드 오류(404·5xx 포함)는 간격을 두고 최대 3번 다시 시도한다. 그래도 실패한 채널은 건너뛰고 나머지로 계속하며, 보고에 적는다.
+  - 채널을 추가할 때는 채널 페이지의 `"externalId"` 를 표에 적는다.
+- 고르는 순서: ① 그 호의 카드와 같은 소식을 다루는 영상 ② 공식 채널의 키노트·발표 ③ 나머지 볼만한 영상. 짧은 시황 클립, 광고, 쇼핑 추천처럼 기술 내용이 약한 영상은 뺀다.
 - 영상 카드는 썸네일 `https://i.ytimg.com/vi/<ID>/mqdefault.jpg` 을 쓴다(200 확인). 썸네일 클릭 시 main.js가 페이지 안에서 재생한다.
-- 영상마다 `<p class="v-sum">` 에 **한글 요약 1–2문장**(직접 작성, 설명란 문장 복사 금지)을 단다. 내용은 watch 페이지(`curl --compressed`) 의 `"shortDescription"`(설명란)과 설명란에 링크된 공식 발표·이번 주 카드로 확인하고, 확인 못 한 수치·주장은 쓰지 않는다. 내용을 확인할 수 없는 영상은 넣지 않는다. check_issue 가 누락을 검사한다.
+- 영상마다 `<p class="v-sum">` 에 **한글 요약 1–2문장**(직접 작성, 설명란 문장 복사 금지)을 단다. 내용은 watch 페이지(`curl --compressed`) 의 `"shortDescription"`(설명란)으로 확인하고, 읽지 못하면 피드의 `media:description` 을 쓴다. 설명란에 링크된 공식 발표·이번 주 카드도 함께 대조하고, 확인 못 한 수치·주장은 쓰지 않는다. 내용을 확인할 수 없는 영상은 넣지 않는다. check_issue 가 누락을 검사한다.
+- 영상 보고(0개여도 필수): 피드 성공/전체 채널 수, 실패한 채널과 오류 코드, 기간 내 후보 수, 추가한 영상, 추가하지 않았으면 그 이유(후보 없음 / 기술 내용이 약함 / 내용 확인 실패 등)를 적는다.
 
 ## 클라우드 루틴 네트워크 허용 목록
 
