@@ -38,7 +38,7 @@
         <p class="eyebrow">2026년 11월 1주차 · 기술 동향</p>
         <h1 class="ih-title">Tech Radar <span class="ih-dot">·</span> <em>Nov W1</em></h1>
         <p class="ih-headline">마벨이 광통신 칩 업체 루멘텀을 1,150억 달러에 사들이며 AI 데이터센터 연결 기술 쟁탈전이 커졌고, 애플은 9월 분기 사상 최대인 1,145억 달러 매출을 냈다</p>
-        <p class="meta">수집 기간 2026.11.02 – 11.06 · 매일 업데이트 중 · 최근 11.06</p>
+        <p class="meta">수집 기간 2026.11.02 – 11.06 · 매일 업데이트 중 · 최근 11.07</p>
       </div>
       <div class="ih-week" aria-hidden="true"><span class="big-num">W1</span><small>NOV 2026</small></div>
       <div class="catbar" id="catbar" aria-hidden="true"></div>
@@ -49,7 +49,7 @@
       <ol>
         <li>AI 인프라를 둘러싼 판이 커지고 있다. 마벨이 광학 칩 업체 루멘텀을 기업가치 1,150억 달러에 인수하기로 하며 데이터센터 광연결 경쟁에 뛰어들었고, 국내에선 GPU 8,496개의 국가 슈퍼컴퓨터 6호기 '한강'이 가동을 시작했으며 SK텔레콤은 울산 AI 데이터센터를 2029년 하반기부터 열겠다고 밝혔다.</li>
         <li>빅테크 실적과 시장의 시선이 엇갈린다. 애플은 9월 분기 매출 1,145억 달러로 사상 최대를 기록했지만, 월가에선 빅테크 5곳의 CDS 프리미엄이 2021년 이후 최고로 오르며 AI 투자 손실에 대비하는 움직임이 커졌다.</li>
-        <li>AI가 보안의 공격과 방어를 함께 바꾸고 있다. 오픈AI는 리눅스 커널에서 루트 권한을 빼앗는 취약점 948건을 찾아 패치까지 만든 데 이어 보안 전용 모델 GPT-6 Cyber를 공개했고, 바이낸스는 64억 달러 탈취가 가짜 채용 면접과 사내 AI 도구 악용으로 이어졌다고 밝혔다. 앤트로픽은 상장 신고서에 AI가 AI 개발을 극적으로 가속하는 기준에 곧 도달할 수 있다고 적었다.</li>
+        <li>AI가 보안의 공격과 방어를 함께 바꾸고 있다. 오픈AI는 리눅스 커널에서 루트 권한을 빼앗는 취약점 948건을 찾아 패치까지 만든 데 이어 보안 전용 모델 GPT-6 Cyber를 공개했고, 바이낸스는 64억 달러 탈취가 가짜 채용 면접과 사내 AI 도구 악용으로 이어졌다고 밝혔다. OpenSSH의 &#x27;SSHole&#x27; 취약점은 공개 9시간도 안 돼 실제 공격에 쓰였다. 앤트로픽은 상장 신고서에 AI가 AI 개발을 극적으로 가속하는 기준에 곧 도달할 수 있다고 적었다.</li>
       </ol>
     </section>
 
@@ -120,6 +120,23 @@
           <div class="card-foot">
             <span>TechCrunch · 11.05</span>
             <a href="https://techcrunch.com/2026/11/05/openai-released-a-new-cybersecurity-model-is-that-enough/" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="보안" data-date="2026-11-06" data-added="2026-11-07">
+        <div class="card-media">
+          <span class="poster-cat">보안</span>
+          <span class="poster-kw">SSHole</span>
+          <img class="card-img" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjHbl1TAGj_ZHZDF3oQ8AfebRDiovg_d8Wk4huY5VJkSa0csE45G7k5jwdG1De-W-7l2RjnyH_ZvT3vcioykVeOooifwvViM8RiuTu0gSt2t-XgOefyYKyM5_zbsI5WFNubkIT0hOUr4inPIQMvXs6GDTLa6j7XWL3etRJYvOcDLJxa3IDXv-KtuCma5JsG/s1600/ssh.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+        </div>
+        <div class="card-body">
+          <span class="tag cat-security">보안</span>
+          <h2 class="card-title">OpenSSH &#x27;SSHole&#x27; 취약점, 공개 9시간 만에 실제 공격…알파인 리눅스서 비밀번호 없는 계정에 로그인</h2>
+          <p class="card-summary">musl C 라이브러리로 빌드되고 PAM 없이 비밀번호를 검사하는 OpenSSH 서버에서, 257–1,024바이트의 지나치게 긴 비밀번호를 넣으면 비밀번호가 막힌 SSH 키 전용 계정으로 로그인되는 취약점(CVE-2026-123158, CVSS 8.1)이 드러났다. 2016년 사용자 이름 노출 버그를 막으려던 패치 탓에 해시 계산 실패가 인증 성공으로 처리되는 것이 원인이며, 알파인 리눅스 기본 설정이 여기에 해당한다. OpenSSH는 10.6p2로 고쳤고, 위협 인텔리전스 업체 Previdian은 CVE 공개 9시간도 안 돼 공격 시도를 포착하고 알파인 허니팟에서 루트 권한 탈취까지 확인했다.</p>
+          <p class="card-why">취약점 공개에서 실제 공격까지 몇 시간이면 충분해진 만큼, 알파인 등 musl 기반 시스템으로 SSH 서버를 운영하는 조직은 패키지 업데이트 뒤 sshd 재시작과 비밀번호 로그인 차단, 접속 로그 점검을 바로 해야 한다.</p>
+          <div class="card-foot">
+            <span>The Hacker News · 11.06</span>
+            <a href="https://thehackernews.com/2026/11/hackers-exploited-openssh-sshole-flaw.html" target="_blank" rel="noopener">원문 ↗</a>
           </div>
         </div>
       </article>
@@ -372,23 +389,6 @@
           <div class="card-foot">
             <span>The Robot Report · 11.03</span>
             <a href="https://www.therobotreport.com/new-iso-interoperability-standard-covers-collaboration-among-mobile-robots-from-multiple-vendors/" target="_blank" rel="noopener">원문 ↗</a>
-          </div>
-        </div>
-      </article>
-      <article class="card" data-cat="조선·해양" data-date="2026-11-02" data-added="2026-11-03">
-        <div class="card-media">
-          <span class="poster-cat">조선·해양</span>
-          <span class="poster-kw">+57%</span>
-          <img class="card-img" src="https://gcaptain.com/wp-content/uploads/2021/06/LNG-Refuel-MD2-low-res.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
-        </div>
-        <div class="card-body">
-          <span class="tag cat-ship">조선·해양</span>
-          <h2 class="card-title">DNV &quot;올해 대체연료 선박 발주 57% 증가&quot;…LNG 추진선이 63% 차지</h2>
-          <p class="card-summary">선급 DNV의 대체연료 인사이트(AFI) 플랫폼 집계로 10월 대체연료 선박 발주는 53척, 올해 누적 364척으로 지난해보다 57% 많다. LNG 추진선이 누적 230척(약 63%)으로 가장 많고 컨테이너선 134척·자동차운반선 75척이 대부분을 차지했다. 10월에는 암모니아 추진 자동차운반선 4척도 새로 등록됐다.</p>
-          <p class="card-why">친환경 선박 발주가 LNG 추진 컨테이너선·자동차운반선에 몰리고 있어, 이 선종에 강한 국내 조선소의 수주와 연료 공급망·운항 기술 투자 방향을 가늠하게 한다.</p>
-          <div class="card-foot">
-            <span>gCaptain · 11.02</span>
-            <a href="https://gcaptain.com/alternative-fuel-ship-orders-up-57-in-2026-as-lng-continues-to-dominate/" target="_blank" rel="noopener">원문 ↗</a>
           </div>
         </div>
       </article>
