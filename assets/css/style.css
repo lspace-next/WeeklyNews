@@ -300,6 +300,17 @@ a:hover { color: var(--accent); }
 }
 .panel-dark .eyebrow { color: #a5b4fc; }
 
+/* 헤더 틴트(main.js 가 .tinted + --poster 지정): live = 요일 색, final = 아카이브 타일과 같은 대표 카테고리 색 */
+.panel-dark.tinted::before {
+  background:
+    radial-gradient(52% 75% at 88% 8%, color-mix(in srgb, var(--poster) 85%, transparent), transparent 70%),
+    radial-gradient(42% 62% at 8% 100%, color-mix(in srgb, var(--poster) 50%, transparent), transparent 70%),
+    radial-gradient(30% 45% at 55% 110%, color-mix(in srgb, var(--poster) 30%, transparent), transparent 70%),
+    linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px) 0 0 / 44px 44px,
+    linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px) 0 0 / 44px 44px;
+}
+.panel-dark.tinted .eyebrow { color: color-mix(in srgb, var(--poster), white 62%); }
+
 .badge {
   display: inline-flex;
   align-items: center;
@@ -382,6 +393,7 @@ a:hover { color: var(--accent); }
   transition: transform .3s, box-shadow .3s;
 }
 .hero-poster:hover { color: #fff; transform: translateY(-3px); box-shadow: 0 30px 60px -20px rgba(37, 37, 120, .45); }
+.hero-poster.tinted:hover { box-shadow: 0 30px 60px -20px color-mix(in srgb, var(--poster) 60%, transparent); }
 .hero-poster .hp-top {
   grid-column: 1 / -1;
   display: flex;

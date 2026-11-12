@@ -21,6 +21,20 @@
   // category entries of an issue, most cards first
   const catsOf = (it) => Object.entries(it.categories || {}).sort((a, b) => b[1] - a[1] || order(a[0]) - order(b[0]));
 
+  // 헤더 틴트: live 호는 오늘(KST) 요일 색, final 호는 아카이브 타일과 같은 대표 카테고리 색
+  const WEEKDAY_POSTER = { Sun: "security", Mon: "bigtech", Tue: "chip", Wed: "korea", Thu: "cloud", Fri: "device", Sat: "ai" };
+  function tintHero(el, live, topCat) {
+    if (!el) return;
+    let slug;
+    if (live) {
+      const day = new Intl.DateTimeFormat("en-US", { timeZone: "Asia/Seoul", weekday: "short" }).format(new Date());
+      slug = WEEKDAY_POSTER[day];
+    } else if (topCat) slug = CATEGORIES[topCat];
+    if (!slug) return;
+    el.style.setProperty("--poster", `var(--p-${slug})`);
+    el.classList.add("tinted");
+  }
+
   let issuesPromise;
   function loadIssues() {
     issuesPromise ||= fetch(root + "data/issues.json", { cache: "no-cache" })
@@ -82,6 +96,7 @@
             <div class="hp-week" aria-hidden="true"><span class="big-num">W${esc(it.week)}</span><small>${MONTHS[it.month - 1] || ""} ${esc(it.year)} · ${esc(it.count)} NEWS</small></div>
           </a>`
         : `<p class="empty">아직 발행된 호가 없습니다.</p>`;
+      if (it) tintHero(latestEl.querySelector(".hero-poster"), live, (catsOf(it)[0] || [])[0]);
     }
     if (recentEl) {
       const rest = issues.slice(1, 7);
@@ -562,6 +577,16 @@
     }
   }
 
+  // 주차 페이지 헤더: 카드 data-cat 으로 카테고리 건수를 세서 issues.json 과 같은 기준으로 대표 카테고리를 고른다
+  function initIssueHero() {
+    const hero = document.querySelector(".issue-hero");
+    if (!hero) return;
+    const counts = {};
+    document.querySelectorAll("article.card[data-cat]").forEach((c) => (counts[c.dataset.cat] = (counts[c.dataset.cat] || 0) + 1));
+    tintHero(hero, document.body.dataset.status === "live", (catsOf({ categories: counts })[0] || [])[0]);
+  }
+
+  initIssueHero();
   renderHome();
   renderArchive();
   initFilter();
