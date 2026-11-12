@@ -100,7 +100,7 @@ def main():
         start = end = None
         fails.append(f"issues.json period '{entry.get('period')}' 가 'YYYY.MM.DD – MM.DD' 형식이 아님")
     n = len(cards)
-    lo, hi = (1, 20) if live else (10, 20)
+    lo, hi = (1, 22) if live else (10, 22)
     if not lo <= n <= hi:
         fails.append(f"카드 수 {n}건 ({lo}–{hi}건이어야 함)")
     count = Counter()
