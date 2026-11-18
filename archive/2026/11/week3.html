@@ -38,7 +38,7 @@
         <p class="eyebrow">2026년 11월 3주차 · 기술 동향</p>
         <h1 class="ih-title">Tech Radar <span class="ih-dot">·</span> <em>Nov W3</em></h1>
         <p class="ih-headline">오픈AI가 작업당 비용을 크게 낮춘 GPT-6.2 아스트라·솔을 내놨고, 젠슨 황이 물러난 엔비디아는 분기 매출 1,158억 달러로 1년 새 두 배가 됐다</p>
-        <p class="meta">수집 기간 2026.11.14 – 11.20 · 매일 업데이트 중 · 최근 11.18</p>
+        <p class="meta">수집 기간 2026.11.14 – 11.20 · 매일 업데이트 중 · 최근 11.19</p>
       </div>
       <div class="ih-week" aria-hidden="true"><span class="big-num">W3</span><small>NOV 2026</small></div>
       <div class="catbar" id="catbar" aria-hidden="true"></div>
@@ -49,7 +49,7 @@
       <ol>
         <li>오픈AI는 17일 GPT-6.2 아스트라와 솔을 ChatGPT Work·Codex와 API에 출시했다. 아스트라는 과제당 비용이 GPT-6 아스트라의 3분의 1 미만이고, 경량 모델 솔은 코딩 평가에서 아스트라에 가까운 성능을 약 5분의 1 비용으로 낸다.</li>
         <li>엔비디아의 3분기(10월 25일 마감) 매출은 1,158억 달러로 전년보다 103% 늘었고 데이터센터가 1,076억 달러를 차지했다. 젠슨 황 퇴진 뒤 임시 CEO 체제의 첫 실적이며, 4분기 전망은 1,300억 달러다.</li>
-        <li>미국 상무부는 중국 등 우려국 기업에 연산을 빌려줄 수 있는 해외 데이터센터로 AI 칩을 보낼 때도 허가를 받도록 했다. H100 약 750개 수준 이상이 대상이며, 말레이시아·싱가포르 등 5개국으로 가는 첨단 칩에도 허가 요건을 붙였다.</li>
+        <li>자바 고속 Base64 디코더의 취약점 Java4Shell(CVE-2026-114938)이 공개됐다. 기본 설정의 지라·젠킨스·키클록 등에서 로그인 없이 원격 코드 실행이 가능해, 오라클·OpenJDK 패치가 나오자 미국 CISA와 국내 개인정보위가 신속한 점검·조치를 당부했다.</li>
       </ol>
     </section>
 
@@ -85,6 +85,23 @@
           <div class="card-foot">
             <span>NVIDIA · 11.17</span>
             <a href="https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-third-quarter-fiscal-2027" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="보안" data-date="2026-11-18" data-added="2026-11-19">
+        <div class="card-media">
+          <span class="poster-cat">보안</span>
+          <span class="poster-kw">Java4Shell</span>
+          <img class="card-img" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEis8B-Vf6puS0vOs9mEVup755KXy8y59KD72B5VQb8SyhO1JDHkYcvg42Y1rh1xg3seyml7j2vZn5Dq1OEnFYVzD_97osoZXWkxVVOBxM48InZPbaVgV7Lo64odzPVKNPEtPeLlEAm2AFfShOFVGtypVUJAJdt07qqik_Yde9X6BxLECPH7Gekbkzl2GBDK/s1600/java4shell-flaw.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+        </div>
+        <div class="card-body">
+          <span class="tag cat-security">보안</span>
+          <h2 class="card-title">자바 Base64 디코더에 &#x27;Java4Shell&#x27; 취약점…로그인 없이 지라·젠킨스·키클록 원격 코드 실행</h2>
+          <p class="card-summary">보안업체 캘리프가 공개한 CVE-2026-114938은 자바 17.0.6 이상에서 AVX-512 VBMI를 지원하는 x86-64 인텔·AMD 칩에서만 쓰이는 고속 Base64 디코더의 결함으로, 끝에 &#x27;=&#x27;가 하나 더 붙은 문자열을 넣으면 출력 버퍼 밖으로 62~63바이트를 덮어쓴다. 로그인 헤더 등을 인증 전에 디코딩하는 탓에 기본 설정의 키클록·지라·컨플루언스·아티팩토리·젠킨스·핑페더레이트에서 계정 없이 코드 실행이 가능했다고 연구진은 밝혔다. 오라클·OpenJDK가 패치를 냈고 미국 CISA는 즉시 적용을 촉구했으며, 아직 실제 악용 사례는 확인되지 않았다.</p>
+          <p class="card-why">기업·공공 업무 시스템과 개발 인프라 상당수가 자바 위에서 돈다. 국내 개인정보위도 18일 컨테이너·오픈소스에 내장된 자바까지 버전을 점검하고 DB 조회 권한을 최소화하라고 당부했다.</p>
+          <div class="card-foot">
+            <span>The Hacker News · 11.18</span>
+            <a href="https://thehackernews.com/2026/11/java4shell-cve-2026-114938-enables-pre.html" target="_blank" rel="noopener">원문 ↗</a>
           </div>
         </div>
       </article>
@@ -138,6 +155,22 @@
           </div>
         </div>
       </article>
+      <article class="card" data-cat="빅테크" data-date="2026-11-17" data-added="2026-11-19">
+        <div class="card-media">
+          <span class="poster-cat">빅테크</span>
+          <span class="poster-kw">Ignite</span>
+        </div>
+        <div class="card-body">
+          <span class="tag cat-bigtech">빅테크</span>
+          <h2 class="card-title">MS 나델라 &#x27;코파일럿은 업무용 새 OS&#x27;…워드·엑셀·파워포인트를 코파일럿 안에서 정식 제공</h2>
+          <p class="card-summary">사티아 나델라 마이크로소프트 CEO가 17일(현지시간) 이그나이트 기조연설에서 워드·엑셀·파워포인트를 코파일럿 안에서 쓰는 기능을 정식 출시했다. 코파일럿에서 바로 만든 문서·시트·슬라이드는 각 오피스 앱에서 이어서 편집할 수 있다. 메일·일정 업무를 맡겨 두면 계속 처리하는 클라우드 에이전트 &#x27;코파일럿 오토파일럿&#x27;과 회사 안의 메일·회의·파일 맥락을 에이전트에 주는 &#x27;Microsoft IQ&#x27;도 공개했으며, 에이전트마다 고유 ID를 주고 모든 활동을 기록해 관리자가 권한을 막을 수 있게 했다.</p>
+          <p class="card-why">오피스 앱이 에이전트의 부품이 되는 쪽으로 업무 소프트웨어의 중심이 옮겨 가고 있다. 사내 메일·문서를 에이전트에 열어 줄지 정하는 보안·거버넌스 검토가 도입의 관건이 된다.</p>
+          <div class="card-foot">
+            <span>Ars Technica · 11.17</span>
+            <a href="https://arstechnica.com/gadgets/2026/11/microsoft-calls-copilot-the-new-os-for-work-at-ignite-keynote/" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </div>
+      </article>
       <article class="card" data-cat="AI" data-date="2026-11-16" data-added="2026-11-17">
         <div class="card-media">
           <span class="poster-cat">AI</span>
@@ -155,20 +188,20 @@
           </div>
         </div>
       </article>
-      <article class="card" data-cat="보안" data-date="2026-11-14" data-added="2026-11-15">
+      <article class="card" data-cat="보안" data-date="2026-11-18" data-added="2026-11-19">
         <div class="card-media">
           <span class="poster-cat">보안</span>
-          <span class="poster-kw">192만 명</span>
-          <img class="card-img" src="https://image.zdnet.co.kr/2026/11/14/b3fe65fc94dd0d1b61b9751e3cc5f39b.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+          <span class="poster-kw">36만 건</span>
+          <img class="card-img" src="https://img1.yna.co.kr/photo/yna/YH/2026/11/15/PYH2026111504370001300_P4.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
         </div>
         <div class="card-body">
           <span class="tag cat-security">보안</span>
-          <h2 class="card-title">192만 명 가입한 &#x27;노란우산공제&#x27; 비정상 접근…주민번호 앞 7자리·주소 유출 가능성</h2>
-          <p class="card-summary">중소기업중앙회는 11일 노란우산공제 시스템에 외부의 비정상 접근이 있었다고 14일 홈페이지에 공지하고 한국인터넷진흥원(KISA)에 신고했다. 유출됐을 수 있는 정보는 성명, 주민등록번호 앞 7자리, 휴대전화·자택 전화번호, 자택 주소, 이메일 주소 등이다. 주민번호 뒷자리는 복호화할 수 없게 암호화해 두었다고 설명했다. 중기중앙회는 공격에 쓰인 IP를 차단하고 관련 화면의 접근 통제를 강화했다.</p>
-          <p class="card-why">소기업·소상공인 192만 명이 가입한 공제 제도다. 유출된 연락처를 이용한 사칭 전화·문자 같은 2차 피해에 대비해야 한다.</p>
+          <h2 class="card-title">&#x27;노란우산공제&#x27; 개인정보 36만여 건 유출 확인…사업자번호·계좌번호·납부 내역까지</h2>
+          <p class="card-summary">중소기업중앙회는 11일 노란우산 홈페이지에 외부의 비인가 접근이 있었다고 14일 공지한 데 이어, 18일 외부 전문기관 정밀 조사 결과 고객 개인정보·계약정보 36만여 건이 유출됐다고 밝혔다. 처음 개인정보위에 신고한 약 20만5천 명보다 16만 명가량 늘었다. 이름·주민번호 앞 6자리·휴대전화·주소·이메일에 사업장명·사업자번호, 월부금액 등 납부 정보, 이체 은행·계좌번호까지 빠져나갔고, 주민번호 뒷자리는 암호화돼 있어 유출되지 않았다.</p>
+          <p class="card-why">소기업·소상공인의 사업·금융 정보까지 함께 나가 사칭 전화·문자 같은 2차 피해 위험이 크다. 계좌 비밀번호는 관리하지 않아 직접 인출할 수 있는 정보는 없다고 중기중앙회는 설명했다.</p>
           <div class="card-foot">
-            <span>ZDNet Korea · 11.14</span>
-            <a href="https://zdnet.co.kr/view/?no=20261114210227" target="_blank" rel="noopener">원문 ↗</a>
+            <span>연합뉴스 · 11.18</span>
+            <a href="https://www.yna.co.kr/view/AKR20261118064352030" target="_blank" rel="noopener">원문 ↗</a>
           </div>
         </div>
       </article>
@@ -379,6 +412,17 @@
 
     <h2 class="section-title"><span><span class="kicker">WATCH</span>이번 주 볼만한 영상</span></h2>
     <ul class="videos">
+      <li class="video">
+        <a class="video-thumb" href="https://www.youtube.com/watch?v=Ovfuubnl0zM" target="_blank" rel="noopener" data-yt="Ovfuubnl0zM">
+          <img src="https://i.ytimg.com/vi/Ovfuubnl0zM/mqdefault.jpg" alt="이기종 컴퓨팅의 시대, NPU 기업은 기회일까 위기일까" loading="lazy" width="320" height="180">
+          <span class="video-play" aria-hidden="true"></span>
+        </a>
+        <div class="video-body">
+          <a class="v-title" href="https://www.youtube.com/watch?v=Ovfuubnl0zM" target="_blank" rel="noopener">이기종 컴퓨팅의 시대, NPU 기업은 기회일까 위기일까</a>
+          <p class="v-sum">AI 작업이 잘게 나뉘면서 GPU 하나 대신 작업마다 맞는 칩을 섞어 쓰는 흐름과 구글 TPU가 갖는 의미를 짚는다. 이 변화가 NPU 기업에 기회이자 위기인 이유와 리벨리온·퓨리오사AI의 서로 다른 전략을 정리한다.</p>
+          <span class="v-ch">티타임즈TV · 11.18</span>
+        </div>
+      </li>
       <li class="video">
         <a class="video-thumb" href="https://www.youtube.com/watch?v=yymE-zL_-Dg" target="_blank" rel="noopener" data-yt="yymE-zL_-Dg">
           <img src="https://i.ytimg.com/vi/yymE-zL_-Dg/mqdefault.jpg" alt="California AG Bonta on OpenAI Lawsuit and Nvidia Scrutiny" loading="lazy" width="320" height="180">
